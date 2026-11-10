@@ -1,0 +1,2481 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#082f67">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Joutes Sète">
+  <meta name="format-detection" content="telephone=no">
+  <title>Les Joutes Sétoises - Guide Interactif, Règles & Galerie Officielle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            seteblue: {
+              50: '#eef6ff',
+              100: '#d9ecff',
+              500: '#1a6cd1',
+              700: '#0c4ba0',
+              900: '#082f67',
+            },
+            setered: {
+              50: '#fff1f1',
+              100: '#ffe1e1',
+              500: '#e12d39',
+              600: '#c51925',
+              700: '#a3101b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Optimisations Tactiles et Safe-Areas Mobile (iOS / Android) */
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+    }
+    button, a {
+      touch-action: manipulation;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    #mobileMenu {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+    .water-bg {
+      background: radial-gradient(circle at 50% 15%, #18375c 0%, #081726 100%);
+    }
+    .img-zoom {
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .img-zoom:hover {
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-setered-500 selection:text-white">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 glass-card border-b border-slate-200/80 shadow-sm transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <span class="text-2xl select-none">🛶</span>
+        <div>
+          <a href="#" class="font-serif font-bold text-lg sm:text-xl tracking-tight text-slate-900 hover:text-seteblue-700 transition">Joutes de Sète</a>
+          <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-seteblue-100 text-seteblue-700">Guide & 3 Quiz</span>
+        </div>
+      </div>
+
+      <!-- Navigation Desktop (écrans larges) -->
+      <div class="hidden lg:flex items-center space-x-5 text-sm font-medium text-slate-600">
+        <a href="#direct" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 transition text-xs font-bold flex items-center gap-1.5 border border-rose-200">
+          <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span> Suivre en Direct
+        </a>
+        <a href="#championnat" class="hover:text-amber-700 transition flex items-center gap-1 font-semibold text-amber-700 text-xs">
+          <span>🏆</span> Programme 2026
+        </a>
+        <a href="#galerie" class="hover:text-seteblue-700 transition flex items-center gap-1 font-semibold text-seteblue-700 text-xs">
+          <span>📸</span> Photos
+        </a>
+        <a href="#evenements" class="hover:text-purple-700 transition flex items-center gap-1 font-semibold text-purple-700 text-xs">
+          <span>🎉</span> Festivals
+        </a>
+        <a href="#duel" class="hover:text-seteblue-700 transition text-xs">Le Duel</a>
+        <a href="#anatomie" class="hover:text-seteblue-700 transition text-xs">La Barque</a>
+        <a href="#regles" class="hover:text-seteblue-700 transition text-xs">Règles</a>
+        <a href="#lexique" class="hover:text-setered-600 transition flex items-center gap-1 font-semibold text-setered-600 text-xs">
+          <span>📖</span> Lexique
+        </a>
+        <a href="#quiz" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-setered-600 to-seteblue-700 text-white hover:opacity-90 transition shadow-sm text-xs font-bold flex items-center gap-1">
+          <span>🏆</span> Les 3 Quiz
+        </a>
+      </div>
+
+      <!-- Boutons Navigation Mobile & Tablette -->
+      <div class="flex items-center lg:hidden gap-2">
+        <a href="#direct" class="px-2.5 py-1 rounded-full bg-rose-50 text-rose-600 text-xs font-bold flex items-center gap-1 border border-rose-200">
+          <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span> Live
+        </a>
+        <button id="mobileMenuBtn" onclick="toggleMobileNav()" aria-label="Menu" class="p-2 rounded-xl text-slate-700 hover:text-seteblue-700 hover:bg-slate-100 focus:outline-none transition border border-slate-200">
+          <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg id="closeIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Tiroir Déroulant Menu Mobile -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-xl px-4 py-3 space-y-1.5 shadow-2xl max-h-[82vh] overflow-y-auto">
+      <a href="#direct" onclick="closeMobileNav()" class="flex items-center justify-between p-3 rounded-xl bg-rose-50 text-rose-700 font-bold text-sm border border-rose-200">
+        <span class="flex items-center gap-2"><span>🔴</span> Suivre les Joutes en Direct & Replay</span>
+        <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
+      </a>
+      <a href="#championnat" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-amber-50 text-amber-800 font-semibold text-sm transition">
+        <span>🏆</span> Programme 2026, Vainqueur & Barème
+      </a>
+      <a href="#galerie" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-blue-50 text-seteblue-800 font-semibold text-sm transition">
+        <span>📸</span> Galerie Photos Officielles de Sète
+      </a>
+      <a href="#evenements" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-purple-50 text-purple-800 font-semibold text-sm transition">
+        <span>🎉</span> Festivals de Sète (Worldwide & Demi)
+      </a>
+      <a href="#duel" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-slate-100 text-slate-700 font-medium text-sm transition">
+        <span>⚔️</span> Le Duel en 4 Étapes Clés
+      </a>
+      <a href="#anatomie" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-slate-100 text-slate-700 font-medium text-sm transition">
+        <span>🚣</span> La Barque, Les Rameurs & La Tintaine
+      </a>
+      <a href="#regles" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-slate-100 text-slate-700 font-medium text-sm transition">
+        <span>⚖️</span> Règles, Fautes & Pénalités FFJSN
+      </a>
+      <a href="#lexique" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-rose-50 text-setered-700 font-semibold text-sm transition">
+        <span>📖</span> Glossaire & Mots Riches Sétois
+      </a>
+      <a href="#quiz" onclick="closeMobileNav()" class="flex items-center justify-center gap-2 p-3.5 rounded-xl bg-gradient-to-r from-setered-600 to-seteblue-700 text-white font-bold text-sm shadow-md mt-2">
+        <span>🎖️</span> Choisir mon Quiz (10, 25 ou 50 Questions)
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section avec Photo Officielle en Arrière-Plan -->
+  <header class="relative overflow-hidden water-bg text-white py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
+    <div class="absolute inset-0 opacity-25 mix-blend-overlay">
+      <img src="images/cadre_royal_nuit.jpg" alt="Cadre Royal de Sète" class="w-full h-full object-cover">
+    </div>
+    <div class="relative max-w-5xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-cyan-200 text-xs font-semibold uppercase tracking-wider backdrop-blur-md border border-white/15">
+        <span>⚓</span> Tradition maritime sétoise depuis 1666 • Grand Prix de la Saint-Louis
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-serif font-extrabold tracking-tight leading-tight">
+        L'Art et les Règles des <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-white to-red-300">Joutes Languedociennes</span>
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
+        Découvrez les règles officielles FFJSN, les photographies du Cadre Royal, le dictionnaire occitan et défiez nos <strong>3 Quiz de l'Île Singulière</strong> (Courtoisie, Téméraire et Sétois Pur Souche !).
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 pt-4">
+        <a href="#direct" class="px-6 py-3.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold transition shadow-lg shadow-rose-600/30 flex items-center gap-2">
+          <span>🔴</span> Suivre les Joutes en Direct
+        </a>
+        <a href="#quiz" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 hover:from-setered-700 hover:to-amber-700 text-white font-bold transition shadow-lg shadow-setered-600/30 flex items-center gap-2">
+          <span>🏆</span> Jouer aux 3 Quiz (10, 25 et 50 Q)
+        </a>
+        <a href="#galerie" class="px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold backdrop-blur-md transition border border-white/20 flex items-center gap-2">
+          <span>📸</span> Photos officielles de Sète
+        </a>
+        <a href="#lexique" class="px-6 py-3.5 rounded-xl bg-seteblue-700 hover:bg-seteblue-800 text-white font-semibold transition flex items-center gap-2">
+          <span>🔍</span> Mots riches & dictionnaire
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+
+    <!-- Section 0 : Galerie Photo Officielle de Sète -->
+    <section id="galerie" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seteblue-50 text-seteblue-700 text-xs font-bold uppercase tracking-wider">
+          <span>📷</span> Galerie Photographique Officielle
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Sète & Ses Joutes en Images Réelles</h2>
+        <p class="text-slate-600">Photographies patrimoniales et de compétitions au cœur du Cadre Royal et des canaux de Sète (cliquez pour agrandir).</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Photo 1 : Action du choc -->
+        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/joutes_action.png', 'Le Choc Frontal des Lances — Fête de la Saint-Louis', 'Les deux ajustaïres en pleine fente avant sur la tintaine. Remarquez la flexion impressionnante de la lance (le cintre) et l\'impact de l\'épure dans le pavois au-dessus du Cadre Royal bondé de spectateurs.')">
+          <div class="relative h-64 overflow-hidden bg-slate-900">
+            <img src="images/joutes_action.png" alt="Choc des lances aux joutes de Sète" class="w-full h-full object-cover img-zoom">
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-setered-600 text-white text-xs font-bold shadow">⚔️ En plein choc</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Le Choc des Lances (Cadre Royal)</h3>
+            <p class="text-xs text-slate-600 line-clamp-2">Combat au sommet de la tintaine lors de la mythique Fête de la Saint-Louis à Sète.</p>
+            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
+              <span>🔍</span> Agrandir la photo
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2 : Barques le matin -->
+        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/barques_matin.jpg', 'Les Barques au Petit Matin dans le Port de Sète', 'La Barque Rouge (La Poncha) et la Barque Bleue (Lo Quartier Naut) au repos avant le défilé et la clameur des peñas. On distingue parfaitement la longueur de 8 mètres et le poste avant des musiciens.')">
+          <div class="relative h-64 overflow-hidden bg-slate-900">
+            <img src="images/barques_matin.jpg" alt="Barques de joutes à Sète au lever du jour" class="w-full h-full object-cover img-zoom">
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-seteblue-700 text-white text-xs font-bold shadow">🛶 Embarcations</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Les Barques au Lever du Jour</h3>
+            <p class="text-xs text-slate-600 line-clamp-2">La Rouge et la Bleue amarrées dans le port de Sète avant l'effervescence du tournoi.</p>
+            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
+              <span>🔍</span> Agrandir la photo
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3 : Détails de la tintaine et bigue -->
+        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/details_barques.jpg', 'Détails de la Bigue et de la Tintaine', 'Vue rapprochée de la charpente en bois de la bigue arrière, de son escalier où se placent les jouteurs d\'attente pour équilibrer l\'assiette, et du plancher perché à 3 mètres.')">
+          <div class="relative h-64 overflow-hidden bg-slate-900">
+            <img src="images/details_barques.jpg" alt="Détails de la bigue et du plancher des barques" class="w-full h-full object-cover img-zoom">
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-600 text-white text-xs font-bold shadow">📐 Structure</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Gros Plan : La Bigue & La Tintaine</h3>
+            <p class="text-xs text-slate-600 line-clamp-2">L'échafaudage en bois arrière et le plancher haut culminant au-dessus du canal.</p>
+            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
+              <span>🔍</span> Agrandir la photo
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4 : Les lances et jouteurs -->
+        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/lances_stlouis.jpg', 'Armement & Contrôle des Lances de 2,80 m', 'Les jouteurs en tenue blanche immaculée préparent les lances réglementaires. On aperçoit les repères de couleur peints (gardes) et les épures en acier.')">
+          <div class="relative h-64 overflow-hidden bg-slate-900">
+            <img src="images/lances_stlouis.jpg" alt="Jouteurs et lances lors de la Saint-Louis" class="w-full h-full object-cover img-zoom">
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold shadow">⚔️ Les Armes</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Les Lances & Tenue Blanche</h3>
+            <p class="text-xs text-slate-600 line-clamp-2">Contrôle technique et armement des lances de 2,80 m par les jouteurs sétois.</p>
+            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
+              <span>🔍</span> Agrandir la photo
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 5 : Le Cadre Royal de nuit -->
+        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer lg:col-span-2" onclick="openLightbox('images/cadre_royal_nuit.jpg', 'Le Cadre Royal Illuminé de Nuit', 'Le canal mythique de Sète traversant la ville, bordé de tribunes et de façades colorées. C\'est ici que se joue chaque année le Grand Prix de la Saint-Louis devant des dizaines de milliers de passionnés.')">
+          <div class="relative h-64 overflow-hidden bg-slate-900">
+            <img src="images/cadre_royal_nuit.jpg" alt="Le canal de Sète de nuit" class="w-full h-full object-cover img-zoom">
+            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold shadow">🌆 L'Arène des Joutes</span>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Le Cadre Royal de Sète (L'Arène Maritime)</h3>
+            <p class="text-xs text-slate-600">Le cœur battant de Sète où s'affrontent les générations d'ajustaïres depuis plus de 350 ans.</p>
+            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
+              <span>🔍</span> Agrandir la photo
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </section>
+
+    
+
+    <!-- Section 1 : Le Duel en 4 étapes simples -->
+    <section id="duel" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-seteblue-700">Comprendre en 2 minutes</h2>
+        <h3 class="text-3xl font-serif font-bold text-slate-900">Le Duel d'une Passe : Étape par Étape</h3>
+        <p class="text-slate-600">Deux barques lourdes s'affrontent sur l'eau. Le principe est limpide : faire tomber l'adversaire à l'eau sans tricher ni tomber soi-même.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Étape 1 -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-seteblue-500 relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-10 h-10 rounded-xl bg-seteblue-50 text-seteblue-700 font-bold flex items-center justify-center text-lg">1</div>
+            <h4 class="font-bold text-lg text-slate-900">L'Élan et La Charge</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Les deux barques (la <strong class="text-setered-600">Rouge</strong> et la <strong class="text-seteblue-700">Bleue</strong>) sont propulsées par <strong>8 à 10 rameurs</strong>. Les musiciens à la proue jouent l'air sacré du hautbois et du tambour : <em>« La Charge »</em>.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
+            <span>⚖️</span> Approche impérative par la droite (tribord)
+          </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-amber-500 relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 font-bold flex items-center justify-center text-lg">2</div>
+            <h4 class="font-bold text-lg text-slate-900">La Posture de Combat</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Perché sur la <em>tintaine</em> à près de 3m au-dessus de l'eau, le jouteur adopte la <strong>fente avant</strong>. Le lourd <em>pavois</em> (bouclier) est collé au torse et au genou, la lance de 2,80m bloquée sous l'aisselle.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
+            <span>🛡️</span> Interdiction formelle de quitter la fente
+          </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-setered-500 relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-10 h-10 rounded-xl bg-setered-50 text-setered-700 font-bold flex items-center justify-center text-lg">3</div>
+            <h4 class="font-bold text-lg text-slate-900">Le Choc Frontal</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Au croisement des pavillons, le crampon d'acier à 3 pointes (l'<em>épure</em>) percute violemment le pavois adverse dans la zone centrale autorisée. L'impact est colossal : les lances cintrent ou se brisent !
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
+            <span>⚡</span> Cible : le centre exact du pavois
+          </div>
+        </div>
+
+        <!-- Étape 4 -->
+        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-emerald-500 relative flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-lg">4</div>
+            <h4 class="font-bold text-lg text-slate-900">Le Verdict de l'Eau</h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Le jouteur qui désarçonne son adversaire et le fait plonger dans le canal remporte la passe. Si les deux tombent ensemble, c'est le <em>« bouquet »</em> : les deux sont éliminés !
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
+            <span>🏆</span> Rester debout sur le plancher
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Section 2 : Anatomie de la Barque et de la Tintaine -->
+    <section id="anatomie" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-setered-600">Dispositif & Équipage</h2>
+        <h3 class="text-3xl font-serif font-bold text-slate-900">Anatomie de la Barque Traditionnelle</h3>
+        <p class="text-slate-600">Une barque de joute (type <em>mourre de porc</em>) pèse lourd et abrite un équipage ultra-synchronisé de 15 à 18 personnes.</p>
+      </div>
+
+      <!-- Schéma interactif des éléments avec photo d'appui -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          
+          <div class="space-y-4">
+            <h4 class="font-bold text-xl text-slate-900 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-setered-500"></span> La Barque Rouge
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">La Poncha (Pointe-Courte)</span>
+            </h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Mesure environ 8 m sur 2,20 m. Elle embarque un contrepoids avant indispensable de <strong>600 kg</strong> pour équilibrer la bigue arrière lors de la poussée des jouteurs.
+            </p>
+            <div class="space-y-2 pt-2">
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                <strong class="text-slate-800">1. Les Musiciens (Avant) :</strong> Hautbois languedocien et tambornet qui donnent la cadence et le moral.
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                <strong class="text-slate-800">2. Rameurs (8 à 10) :</strong> Les moteurs vivants de la barque, ils assurent vitesse égale et ligne droite.
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                <strong class="text-slate-800">3. Timonier patron (Barreur) :</strong> Il tient la barre franche et ajuste la trajectoire au millimètre.
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-b from-sky-50 to-indigo-50/50 rounded-2xl p-6 border border-sky-100 text-center space-y-4">
+            <div class="relative h-44 rounded-xl overflow-hidden shadow-sm border border-slate-200">
+              <img src="images/details_barques.jpg" alt="Détail tintaine et bigue" class="w-full h-full object-cover">
+            </div>
+            <h4 class="font-bold text-slate-900 font-serif text-lg">La Tintaine & La Bigue</h4>
+            <p class="text-xs text-slate-600">
+              La <strong>bigue</strong> est l'escalier en bois à l'arrière où 4 à 5 jouteurs se placent en attente pour régler l'assiette du bateau.
+            </p>
+            <div class="inline-block p-4 rounded-xl bg-white shadow-sm border border-slate-200 text-left space-y-2 w-full">
+              <div class="text-xs font-bold text-seteblue-700">Le Plancher de Combat (Tintaine) :</div>
+              <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
+                <li>Perché à <strong>2,50 m - 3,00 m</strong> au-dessus de l'eau</li>
+                <li>Surface antidérapante</li>
+                <li>Interdiction formelle de toucher le sol de la main ou du genou</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="font-bold text-xl text-slate-900 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-seteblue-500"></span> La Barque Bleue
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">Lo Quartier Naut (Quartier Haut)</span>
+            </h4>
+            <p class="text-sm text-slate-600 leading-relaxed">
+              Jumelle parfaite de la rouge, vêtue de bleu ciel et blanc. Les deux barques doivent impérativement présenter leurs planchers à la <strong>même hauteur absolue</strong> grâce aux poids répartis sur la bigue.
+            </p>
+            <div class="space-y-2 pt-2">
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                <strong class="text-slate-800">Le Pavois (Bouclier) :</strong> Bois du Nord rouge, 70 cm × 40 cm, équipé de liteaux de retenue.
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                <strong class="text-slate-800">La Lance :</strong> 2,80 m avec son crampon fer (épure) et ses gardes peintes.
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
+                <strong class="text-slate-800">Tenue Blanche Obligatoire :</strong> Pantalon, chemise et bas immaculés, symbole de pureté sportive.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Section 3 : Règles Officielles, Fautes & Sanctions -->
+    <section id="regles" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-seteblue-700">Code FFJSN</h2>
+        <h3 class="text-3xl font-serif font-bold text-slate-900">Règles Officielles, Fautes & Disqualifications</h3>
+        <p class="text-slate-600">La joute languedocienne est un sport codifié avec une rigueur absolue pour assurer la sécurité et l'équité des passes.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Cartons rouges directs -->
+        <div class="glass-card rounded-2xl p-6 border-l-4 border-setered-600 space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-slate-900 text-lg">Disqualifications Directes</h4>
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-setered-100 text-setered-700">Faute Majeure</span>
+          </div>
+          <p class="text-xs text-slate-500">Ces infractions entraînent l'exclusion immédiate du tournoi :</p>
+          <ul class="text-sm space-y-2.5 text-slate-700">
+            <li class="flex items-start gap-2">
+              <span class="text-setered-600 font-bold">✕</span>
+              <span><strong>Lance courte :</strong> Ne pas garder la base de la lance coincée sous l'aisselle à l'impact.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-setered-600 font-bold">✕</span>
+              <span><strong>Passer la 2ème garde :</strong> Laisser glisser la main jusqu'à masquer la zone blanche de la lance.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-setered-600 font-bold">✕</span>
+              <span><strong>Double frappe :</strong> Recharger sa lance pour donner un 2ème coup après l'impact initial.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-setered-600 font-bold">✕</span>
+              <span><strong>Faire tomber en avant :</strong> Relâcher délibérément la poussée pour attirer l'adversaire dans le vide.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-setered-600 font-bold">✕</span>
+              <span><strong>Frappe hors zone :</strong> Piquer en dehors de la demi-surface centrale du pavois.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Élimination de la passe -->
+        <div class="glass-card rounded-2xl p-6 border-l-4 border-amber-500 space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-slate-900 text-lg">Passe Perdue / Élimination</h4>
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-800">Chute & Contacts</span>
+          </div>
+          <p class="text-xs text-slate-500">Le jouteur perd son combat sans faute antisportive :</p>
+          <ul class="text-sm space-y-2.5 text-slate-700">
+            <li class="flex items-start gap-2">
+              <span class="text-amber-600 font-bold">!</span>
+              <span><strong>Chute à l'eau :</strong> Toucher l'eau du canal (même le bout du pied).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-600 font-bold">!</span>
+              <span><strong>Contact avec le plancher :</strong> Poser la main, le genou ou le pavois au sol pour garder l'équilibre.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-600 font-bold">!</span>
+              <span><strong>Pied sur la planche de devant :</strong> Mettre le pied sur le rebord avant du plancher.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-600 font-bold">!</span>
+              <span><strong>Lâcher d'arme :</strong> Faire tomber sa lance ou son pavois de ses mains.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-amber-600 font-bold">!</span>
+              <span><strong>Bouquet :</strong> Si les deux tombent ensemble, les deux sont éliminés !</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Format du tournoi et points -->
+        <div class="glass-card rounded-2xl p-6 border-l-4 border-seteblue-600 space-y-4">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-slate-900 text-lg">Format d'un Tournoi</h4>
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-seteblue-100 text-seteblue-800">Compétition</span>
+          </div>
+          <p class="text-xs text-slate-500">Les différentes étapes d'une journée de joutes :</p>
+          <div class="text-sm space-y-3 text-slate-700">
+            <div class="p-3 bg-slate-50 rounded-xl">
+              <strong class="text-slate-900">1. Éliminatoires :</strong>
+              <p class="text-xs text-slate-600 mt-1">Chaque jouteur doit faire tomber <strong>3 adversaires</strong> (2 pour les juniors) pour obtenir son ticket pour les revanches.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl">
+              <strong class="text-slate-900">2. Les Revanches :</strong>
+              <p class="text-xs text-slate-600 mt-1">Tournoi à élimination directe. Une seule passe par tour jusqu'à la grande finale.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl">
+              <strong class="text-slate-900">3. Points Championnat de Ligue :</strong>
+              <p class="text-xs text-slate-600 mt-1">Vainqueur (1er Prix) = <strong>20 pts</strong>, 2e Prix = <strong>12 pts</strong>, 3e/4e = <strong>8 pts</strong>, Qualifié revanches = <strong>4 pts</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </section>
+
+    
+
+    <!-- Section Championnat 2026 : Programme, Championnat de Ligue & Parcours du Vainqueur -->
+    <section id="championnat" class="space-y-12 pt-6 border-t border-slate-200">
+      
+      <!-- En-tête de section -->
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold uppercase tracking-wider">
+          <span>👑</span> 282e Édition de la Saint-Louis (Août 2026) • 454 Jouteurs
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">Programme 2026, Championnat & Parcours du Vainqueur</h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Découvrez le calendrier officiel jour par jour, le barème du Championnat de Ligue FFJSN et l'épopée héroïque de <strong>Valentin Casenove</strong>, vainqueur de la Saint-Louis 2026.
+        </p>
+      </div>
+
+      <!-- CARTE DU CHAMPION : Le Sacre de Valentin Casenove -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-300/80 shadow-lg bg-gradient-to-b from-amber-50/40 via-white to-amber-50/20 space-y-6">
+        
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-amber-200/80 pb-5">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-white flex items-center justify-center text-3xl font-extrabold shadow-md shrink-0">
+              👑
+            </div>
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-xs font-bold">
+                <span>🏆</span> Vainqueur du Grand Prix de la Saint-Louis 2026 (Lourds)
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900 mt-1">Valentin Casenove</h3>
+              <p class="text-xs font-semibold text-slate-600">Société : <strong class="text-setered-600 font-bold">Lance Amicale Sétoise (LAS)</strong> • 1er Titre Suprême</p>
+            </div>
+          </div>
+          <div class="px-4 py-2 rounded-xl bg-slate-900 text-white text-xs font-semibold text-right flex flex-col items-end gap-2">
+            <div>
+              <div>Finale du Lundi 24 Août 2026</div>
+              <div class="text-amber-400 font-bold text-sm">Nom gravé sur le Pavois d'Or</div>
+            </div>
+            <a href="https://www.youtube.com/results?search_query=Saint+Louis+2026+Grand+tournoi+de+joutes+poids+lourds+Sete" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold shadow-sm transition">
+              <span>▶</span> Voir la Finale en Replay ↗
+            </a>
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+          Considéré comme un outsider au début de la compétition réunissant les colosses du Midi, Valentin Casenove a écrit une page légendaire des joutes sétoises. Au terme d'une journée folle interrompue pendant plus de 2 heures par un <strong>violent orage méditerranéen</strong>, il a dominé le Cadre Royal et s'est imposé en finale face à <strong>Thibaut Lognos</strong> (Agde) dès la première passe !
+        </p>
+
+        <!-- Le Parcours Passe par Passe (Bracket interactif) -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Le Parcours Héroïque Passe par Passe :</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+            
+            <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-2">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="text-seteblue-700">1. Éliminatoires</span>
+                <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px]">3 Victoires</span>
+              </div>
+              <p class="text-[11px] text-slate-600">
+                Fait tomber successivement ses <strong>3 adversaires</strong> de l'après-midi grâce à une fente avant d'acier. Il valide son ticket direct pour les Revanches.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 shadow-2xs space-y-2">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="text-amber-800">2. L'Orage d'Apocalypse</span>
+                <span class="px-1.5 py-0.5 rounded bg-amber-200 text-amber-900 text-[10px]">Arrêt 2h</span>
+              </div>
+              <p class="text-[11px] text-slate-600">
+                Vers 18h, un orage diluvien s'abat sur Sète. Le Cadre Royal est évacué. Le tournoi reprend à 20h30 sous les projecteurs et les vivats du public trempé mais fidèle !
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-2xs space-y-2">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="text-setered-600">3. Les Revanches</span>
+                <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px]">Quarts & Demis</span>
+              </div>
+              <p class="text-[11px] text-slate-600">
+                Face aux cadors des poids lourds, il enchaîne les passes sans trembler, cintre sa lance au millimètre et décroche sa place en finale suprême.
+              </p>
+            </div>
+
+            <div class="p-4 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-md space-y-2">
+              <div class="flex items-center justify-between text-xs font-bold">
+                <span class="text-white">4. La Grande Finale</span>
+                <span class="px-1.5 py-0.5 rounded bg-white text-amber-900 text-[10px] font-extrabold">1ère Passe !</span>
+              </div>
+              <p class="text-[11px] text-white/90">
+                Face à <strong>Thibaut Lognos</strong> (Agde). Choc monumental au son du hautbois : Lognos plonge dans le canal ! <strong>Valentin Casenove est sacré Champion !</strong>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <!-- LE PROGRAMME OFFICIEL DES 7 JOURS DE LA SAINT-LOUIS 2026 -->
+      <div class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">Le Programme Officiel de la Saint-Louis 2026</h3>
+            <p class="text-xs text-slate-500">Les 7 jours de ferveur et de compétitions du mercredi 19 au mardi 25 août 2026</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold w-fit">
+            📅 Du 19 au 25 Août 2026
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <div class="glass-card rounded-2xl p-4 border border-slate-200 space-y-2">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">Mercredi 19 Août</span>
+            <h4 class="font-bold text-sm text-slate-900">Ouverture Officielle</h4>
+            <p class="text-xs text-slate-600">19h30 : Cérémonie d'ouverture à La Placette (Place Léon Blum) et départ du Grand Prix cycliste de la Saint-Louis.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-200 space-y-2">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-seteblue-100 text-seteblue-800">Jeudi 20 Août</span>
+            <h4 class="font-bold text-sm text-slate-900">Chariots & Féminines</h4>
+            <p class="text-xs text-slate-600">18h : Tournoi sur chariots pour les tout-petits (3-8 ans). 21h15 : 19e Tournoi de la Presse, personnalités et joutes féminines.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-200 space-y-2">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-seteblue-100 text-seteblue-800">Vendredi 21 Août</span>
+            <h4 class="font-bold text-sm text-slate-900">Jeunes & Coupe d'Or</h4>
+            <p class="text-xs text-slate-600">14h30 : Tournoi des jeunes jouteurs au Cadre Royal. 21h : Coupe d'Or « Challenge Gaston Macone » en nocturne.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-200 space-y-2">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800">Samedi 22 Août</span>
+            <h4 class="font-bold text-sm text-slate-900">Mi-Moyens & Pyromélodie</h4>
+            <p class="text-xs text-slate-600">14h : Tournoi des Mi-Moyens. 22h30 : Grand spectacle pyromélodique « Incandescences Sète » dans le port.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-200 space-y-2">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-purple-100 text-purple-800">Dimanche 23 Août</span>
+            <h4 class="font-bold text-sm text-slate-900">Juniors & Moyens</h4>
+            <p class="text-xs text-slate-600">14h30 : Grands tournois des Juniors (jusqu'à 20 ans) et des Moyens (≤ 90 kg), prélude au grand choc du lundi.</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border-2 border-setered-500 bg-setered-50/30 space-y-2 lg:col-span-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-extrabold px-2.5 py-0.5 rounded bg-setered-600 text-white">Lundi 24 Août • L'APOTHÉOSE</span>
+              <span class="text-xs font-bold text-setered-700">Sommet de l'Année</span>
+            </div>
+            <h4 class="font-bold text-base text-slate-900">Grand Tournoi des Poids Lourds</h4>
+            <p class="text-xs text-slate-600">14h30 : Défilé en blanc dans la ville puis tournoi des Lourds au Cadre Royal. Le vainqueur 2026 est Valentin Casenove (LAS).</p>
+          </div>
+
+          <div class="glass-card rounded-2xl p-4 border border-slate-200 space-y-2">
+            <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700">Mardi 25 Août</span>
+            <h4 class="font-bold text-sm text-slate-900">Clôture & Feu d'Artifice</h4>
+            <p class="text-xs text-slate-600">22h : Grand feu d'artifice de clôture tiré depuis le brise-lames face à la baie de Sète.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LE SYSTÈME DU CHAMPIONNAT DE LIGUE & SIMULATEUR DE POINTS -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-serif font-bold text-slate-900">Le Système de Points du Championnat de Ligue</h3>
+            <p class="text-xs text-slate-500">Réglement officiel FFJSN régissant les tournois tout au long de la saison</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-seteblue-50 text-seteblue-700 text-xs font-bold">
+            Fédération Française (FFJSN)
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          
+          <!-- Tableau officiel des points -->
+          <div class="space-y-3">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Barème Officiel par Tournoi :</h4>
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-left">
+                <thead class="bg-slate-100 text-slate-700 font-bold uppercase">
+                  <tr>
+                    <th class="p-2.5 rounded-l-lg">Résultat au Tournoi</th>
+                    <th class="p-2.5 text-center">Seniors / Lourds</th>
+                    <th class="p-2.5 rounded-r-lg text-center">Juniors</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="p-2.5 font-bold text-slate-900">🥇 1er Prix (Vainqueur)</td>
+                    <td class="p-2.5 text-center font-extrabold text-setered-600">20 pts</td>
+                    <td class="p-2.5 text-center font-extrabold text-setered-600">20 pts</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="p-2.5 font-bold text-slate-900">🥈 2ème Prix (Finaliste)</td>
+                    <td class="p-2.5 text-center font-bold text-amber-700">12 pts</td>
+                    <td class="p-2.5 text-center font-bold text-amber-700">12 pts</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="p-2.5 text-slate-700">🥉 3ème & 4ème Prix (Demi-finales)</td>
+                    <td class="p-2.5 text-center font-semibold text-slate-800">8 pts</td>
+                    <td class="p-2.5 text-center font-semibold text-slate-800">8 pts</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="p-2.5 text-slate-700">🎟️ Qualifié pour les Revanches</td>
+                    <td class="p-2.5 text-center font-semibold text-slate-800">4 pts</td>
+                    <td class="p-2.5 text-center font-semibold text-slate-800">4 pts</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="p-2.5 text-slate-700">⚔️ Vainqueur de 2 hommes (éliminatoires)</td>
+                    <td class="p-2.5 text-center text-slate-600">2 pts</td>
+                    <td class="p-2.5 text-center text-slate-400">—</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="p-2.5 text-slate-700">⚔️ Vainqueur de 1 homme (éliminatoires)</td>
+                    <td class="p-2.5 text-center text-slate-600">1 pt</td>
+                    <td class="p-2.5 text-center text-slate-600">1 pt</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-[10px] text-slate-400 italic">Pénalité société : -20 points si un juré est absent sans remplaçant.</p>
+          </div>
+
+          <!-- Simulateur interactif de points -->
+          <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white rounded-2xl p-5 space-y-4 shadow-md">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🧮</span>
+              <h4 class="font-bold text-sm">Simulateur de Score de Championnat</h4>
+            </div>
+            <p class="text-xs text-slate-300">Sélectionnez la performance d'un jouteur pour calculer ses points de Ligue :</p>
+            
+            <div class="space-y-2">
+              <label class="text-[11px] font-semibold text-slate-300">Parcours réalisé lors du tournoi :</label>
+              <select id="champSimSelect" onchange="calcChampPoints()" class="w-full p-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white focus:outline-none focus:ring-2 focus:ring-amber-400">
+                <option value="20">🥇 Vainqueur du Tournoi (1er Prix)</option>
+                <option value="12">🥈 Finaliste (2ème Prix)</option>
+                <option value="8">🥉 Demi-finaliste (3e / 4e Prix)</option>
+                <option value="4">🎟️ Qualifié aux Revanches (3 victoires en éliminatoires)</option>
+                <option value="2">⚔️ Vainqueur de 2 hommes en éliminatoires</option>
+                <option value="1">⚔️ Vainqueur de 1 homme en éliminatoires</option>
+                <option value="0">❌ Chute dès la 1ère passe (0 victoire)</option>
+              </select>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-between">
+              <span class="text-xs text-slate-300 font-medium">Points attribués au classement :</span>
+              <span id="champSimPointsDisplay" class="text-2xl font-extrabold text-amber-400">20 pts</span>
+            </div>
+
+            <div id="champSimComment" class="text-[11px] text-emerald-300 italic">
+              ✨ Victoire royale ! Valentin Casenove empoche 20 points pour la Lance Amicale Sétoise.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODULE DYNAMIQUE : CLASSEMENT DU CHAMPIONNAT & GESTIONNAIRE DE PROGRAMME -->
+      <div id="dynamicChampionnatModule" class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-seteblue-200 shadow-xl space-y-8 bg-white/95 mt-8">
+        
+        <!-- En-tête du module avec indicateur de statut -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 pb-5">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl select-none">⚡</span>
+              <h3 class="text-2xl sm:text-3xl font-serif font-bold text-slate-900">Championnat de Ligue & Gestion du Programme</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600">
+              Classement officiel des jouteurs, programme par étape et importateur de nouveaux programmes.
+            </p>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <span id="seasonBadge" class="px-3 py-1.5 rounded-full bg-seteblue-100 text-seteblue-800 font-bold border border-seteblue-200 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-seteblue-600 animate-pulse"></span>
+              Saison : <strong id="seasonNameDisplay">2026</strong>
+            </span>
+            <span id="updateBadge" class="px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200">
+              📅 <span id="lastUpdatedDisplay">Août 2026</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Onglets de Navigation Principale -->
+        <div class="flex gap-2 border-b border-slate-200 overflow-x-auto no-scrollbar pb-2">
+          <button onclick="switchChampTab('classement')" id="tabBtn-classement" class="champ-tab-btn active shrink-0 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-seteblue-700 text-white shadow-sm transition flex items-center gap-2">
+            <span>🏆</span> Classement des Jouteurs (<span id="totalJouteursCount">16</span>)
+          </button>
+          <button onclick="switchChampTab('programme')" id="tabBtn-programme" class="champ-tab-btn shrink-0 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2">
+            <span>📅</span> Calendrier des Tournois (<span id="totalTournoisCount">7</span>)
+          </button>
+          <button onclick="switchChampTab('import')" id="tabBtn-import" class="champ-tab-btn shrink-0 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-300 transition flex items-center gap-2">
+            <span>📥</span> Importer un Nouveau Programme
+          </button>
+        </div>
+
+        <!-- VUE 1 : CLASSEMENT DES PARTICIPANTS -->
+        <div id="champView-classement" class="space-y-6">
+          
+          <!-- Filtres et Barre de Recherche -->
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+            <div class="sm:col-span-5 relative">
+              <input type="text" id="jouteurSearchInput" oninput="applyChampFilters()" placeholder="🔍 Rechercher un jouteur, une ville, une société..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-seteblue-600 bg-slate-50 focus:bg-white transition">
+            </div>
+            <div class="sm:col-span-3">
+              <select id="jouteurCatFilter" onchange="applyChampFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-seteblue-600">
+                <option value="all">Toutes les Catégories</option>
+                <option value="Lourds">Poids Lourds</option>
+                <option value="Moyens">Moyens</option>
+                <option value="Seniors">Seniors</option>
+              </select>
+            </div>
+            <div class="sm:col-span-4 flex items-center justify-between sm:justify-end gap-2">
+              <select id="jouteurVilleFilter" onchange="applyChampFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-seteblue-600">
+                <option value="all">Toutes les Villes</option>
+                <option value="Sète">Sète</option>
+                <option value="Agde">Agde</option>
+                <option value="Frontignan">Frontignan</option>
+                <option value="Mèze">Mèze</option>
+                <option value="Palavas-les-Flots">Palavas-les-Flots</option>
+                <option value="Balaruc-les-Bains">Balaruc-les-Bains</option>
+                <option value="Marseillan">Marseillan</option>
+                <option value="Le Grau-du-Roi">Le Grau-du-Roi</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Tableau du Classement -->
+          <div class="overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-xs">
+            <table class="w-full text-xs text-left divide-y divide-slate-200">
+              <thead class="bg-slate-50 text-slate-600 uppercase font-bold text-[10px] tracking-wider">
+                <tr>
+                  <th class="p-3 text-center w-14">Rang</th>
+                  <th class="p-3">Jouteur (Nom & Prénom)</th>
+                  <th class="p-3">Société & Ville d'Origine</th>
+                  <th class="p-3 text-center">Catégorie</th>
+                  <th class="p-3 text-center">Victoires</th>
+                  <th class="p-3 text-center">Passes</th>
+                  <th class="p-3 text-right pr-4">Points</th>
+                </tr>
+              </thead>
+              <tbody id="rankingTableBody" class="divide-y divide-slate-100">
+                <!-- Rempli dynamiquement en JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 pt-2">
+            <span id="filteredCountLabel">Affichage de 16 jouteurs</span>
+            <button onclick="downloadCurrentDataJSON()" class="px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 font-semibold transition flex items-center gap-1.5 shadow-2xs">
+              <span>💾</span> Exporter / Télécharger les données (JSON)
+            </button>
+          </div>
+
+        </div>
+
+        <!-- VUE 2 : PROGRAMME DES TOURNOIS -->
+        <div id="champView-programme" class="hidden space-y-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm sm:text-base">Calendrier Officiel des Tournois & Engagements</h4>
+              <p class="text-xs text-slate-500">Consultez les étapes de la saison, les vainqueurs et les listes de jouteurs engagés.</p>
+            </div>
+          </div>
+
+          <div id="tournoisGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Rempli dynamiquement en JS -->
+          </div>
+        </div>
+
+        <!-- VUE 3 : IMPORTER UN NOUVEAU PROGRAMME -->
+        <div id="champView-import" class="hidden space-y-6">
+          
+          <div class="p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 space-y-2">
+            <div class="flex items-center gap-2 font-bold text-sm">
+              <span>💡</span> Comment importer et actualiser votre nouveau programme ?
+            </div>
+            <p class="text-xs leading-relaxed text-amber-800">
+              Dès que vous avez un nouveau programme (fichier ou texte), chargez-le ici. Vous pouvez soit <strong>choisir un fichier</strong> (JSON, CSV ou TXT), soit <strong>copier-coller</strong> directement votre liste de participants. En cliquant sur <strong>Valider et Actualiser</strong>, la page se met à jour immédiatement et sauvegarde vos données sur votre téléphone !
+            </p>
+          </div>
+
+          <!-- Alert de notification d'import -->
+          <div id="importAlertBox" class="hidden p-4 rounded-2xl font-semibold text-xs border transition"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            <!-- Option 1 : Téléverser un fichier -->
+            <div class="p-5 rounded-2xl border-2 border-dashed border-slate-300 hover:border-seteblue-500 bg-slate-50/50 hover:bg-slate-50 transition space-y-4 text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-seteblue-100 text-seteblue-700 flex items-center justify-center text-2xl font-bold">
+                📁
+              </div>
+              <div class="space-y-1">
+                <h5 class="font-bold text-slate-900 text-sm">Option A : Téléverser un fichier</h5>
+                <p class="text-xs text-slate-500">Formats acceptés : <code>.json</code>, <code>.csv</code> ou <code>.txt</code></p>
+              </div>
+
+              <input type="file" id="programFileInput" accept=".json,.csv,.txt" onchange="handleProgramFile(event)" class="hidden">
+              <button onclick="document.getElementById('programFileInput').click()" class="px-4 py-2.5 rounded-xl bg-white border border-slate-300 hover:bg-slate-100 text-slate-800 font-bold text-xs shadow-xs transition inline-flex items-center gap-2">
+                <span>📎</span> Sélectionner un fichier sur mon appareil
+              </button>
+
+              <div id="filePreviewInfo" class="hidden text-xs text-left p-3 rounded-xl bg-white border border-slate-200 space-y-1">
+                <div class="font-bold text-slate-800 flex items-center gap-1.5">
+                  <span>📄</span> <span id="fileNameDisplay">fichier.json</span>
+                </div>
+                <div class="text-[11px] text-slate-500" id="fileStatsDisplay"></div>
+              </div>
+            </div>
+
+            <!-- Option 2 : Copier-Coller direct -->
+            <div class="p-5 rounded-2xl border border-slate-200 bg-white space-y-3">
+              <div class="flex items-center justify-between">
+                <h5 class="font-bold text-slate-900 text-sm flex items-center gap-2">
+                  <span>✍️</span> Option B : Copier-Coller Direct
+                </h5>
+                <span class="text-[10px] text-slate-400">Texte ou JSON</span>
+              </div>
+              <textarea id="programPasteTextarea" rows="6" placeholder="Collez ici votre liste ou code JSON.
+Format texte simple accepté par ligne :
+Nom;Société;Ville;Catégorie;Points
+
+Exemples :
+Lucas Azaïs;Lance Amicale Sétoise;Sète;Lourds;95
+Enzo Michel;SNJA;Agde;Lourds;80
+Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounded-xl border border-slate-200 text-xs font-mono bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-seteblue-600"></textarea>
+            </div>
+
+          </div>
+
+          <!-- Boutons de validation et d'actions -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-slate-200">
+            <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+              <button onclick="validateAndApplyProgram()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold text-xs sm:text-sm shadow-md hover:opacity-95 transition flex items-center justify-center gap-2">
+                <span>⚡</span> Valider et Actualiser le Programme
+              </button>
+              <button onclick="downloadProgramTemplate()" class="w-full sm:w-auto px-4 py-3 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold text-xs transition flex items-center justify-center gap-2">
+                <span>📥</span> Télécharger le Modèle Exemple
+              </button>
+            </div>
+            
+            <button onclick="confirmResetProgram()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl text-rose-600 hover:bg-rose-50 font-semibold text-xs border border-rose-200 transition flex items-center justify-center gap-1.5">
+              <span>🔄</span> Réinitialiser au Programme 2026
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    
+    
+    <!-- Section Suivre les Joutes en Direct (Live Streaming, TV & Radio) -->
+    <section id="direct" class="space-y-8 pt-6 border-t border-slate-200">
+      
+      <!-- En-tête de section -->
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold uppercase tracking-wider animate-pulse">
+          <span class="w-2 h-2 rounded-full bg-rose-600"></span> Retransmission Officielle en Direct
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">Suivre les Joutes en Direct Vidéo & Radio</h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Lorsque les tournois battent leur plein sur le Cadre Royal, plusieurs canaux officiels retransmettent l'intégralité des passes en direct multicaméras.
+        </p>
+      </div>
+
+      <!-- Carte Principale Direct -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-rose-200 shadow-lg bg-gradient-to-b from-rose-50/20 via-white to-slate-50 space-y-8">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Lecteur / Aperçu Flux Vidéo -->
+          <div class="lg:col-span-7 space-y-3">
+            <div class="relative rounded-2xl overflow-hidden bg-slate-950 aspect-video shadow-xl border border-slate-800 group">
+              <img src="images/joutes_action.png" alt="Direct des joutes de Sète" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 flex flex-col justify-between p-5">
+                <div class="flex items-center justify-between">
+                  <span class="px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-bold flex items-center gap-1.5 shadow">
+                    <span class="w-2 h-2 rounded-full bg-white animate-ping"></span> DIRECT LIVE OFFICIEL
+                  </span>
+                  <span class="text-xs text-white/80 font-mono bg-black/50 px-2 py-0.5 rounded backdrop-blur">Cadre Royal • Sète</span>
+                </div>
+                
+                <div class="text-center space-y-3 my-auto">
+                  <div class="flex flex-wrap items-center justify-center gap-3">
+                    <a href="https://www.youtube.com/results?search_query=Saint+Louis+2026+Grand+tournoi+de+joutes+poids+lourds+Sete" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm shadow-xl transition hover:scale-105 cursor-pointer">
+                      <span>▶</span> Voir la Rediffusion 2026 (Intégrale)
+                    </a>
+                    <a href="https://www.youtube.com/@VilledeseteOfficiel/streams" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-lg transition hover:scale-105 cursor-pointer">
+                      <span>🔴</span> Flux Direct
+                    </a>
+                  </div>
+                  <p class="text-white font-bold text-base">Grand Tournoi des Lourds — Ville de Sète & Décibel Event</p>
+                  <p class="text-white/80 text-xs">Replay intégral des passes, ralentis multicaméras et sacre sous l'orage</p>
+                </div>
+
+                <div class="flex items-center justify-between text-[11px] text-white/70 border-t border-white/10 pt-2">
+                  <span>Flux Vidéo HD 1080p</span>
+                  <span>Accessible gratuitement sur tous écrans</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs text-slate-500">
+              <span class="text-rose-600 font-bold">●</span> <em>Le direct vidéo s'active automatiquement lors des jours de tournois majeurs (notamment le lundi des Lourds de la Saint-Louis et les grands tournois du Championnat de Ligue).</em>
+            </div>
+          </div>
+
+          <!-- Canaux et Moyens de Diffusion -->
+          <div class="lg:col-span-5 space-y-4">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Les Canaux de Diffusion Officiels :</h4>
+
+            <!-- Canal 1 : YouTube Ville de Sète -->
+            <a href="https://www.youtube.com/@VilledeseteOfficiel/streams" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-rose-500 hover:shadow-md transition block group">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 font-bold flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
+                  📺
+                </div>
+                <div class="space-y-0.5 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h5 class="font-bold text-sm text-slate-900 group-hover:text-rose-600 transition">YouTube — Ville de Sète</h5>
+                    <span class="text-xs text-rose-600 font-semibold">Live Vidéo ↗</span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    Le flux officiel de référence. Toutes les passes commentées par les spécialistes sétois avec prises de vue aériennes.
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- Canal 2 : viàOccitanie & France 3 -->
+            <a href="https://viaoccitanie.tv" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-seteblue-500 hover:shadow-md transition block group">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-seteblue-700 font-bold flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
+                  📡
+                </div>
+                <div class="space-y-0.5 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h5 class="font-bold text-sm text-slate-900 group-hover:text-seteblue-700 transition">viàOccitanie & France 3</h5>
+                    <span class="text-xs text-seteblue-700 font-semibold">TNT & Web ↗</span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    Diffusion télévisée régionale sur la TNT (Canal 31/33), les box internet et en streaming sur france.tv.
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- Canal 3 : Radio Saint-Louis (RSL) -->
+            <a href="https://www.sete.fr" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-amber-500 hover:shadow-md transition block group">
+              <div class="flex items-start gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 font-bold flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
+                  📻
+                </div>
+                <div class="space-y-0.5 flex-1">
+                  <div class="flex items-center justify-between">
+                    <h5 class="font-bold text-sm text-slate-900 group-hover:text-amber-700 transition">RSL — La Radio des Joutes</h5>
+                    <span class="text-xs text-amber-700 font-semibold">Audio Live ↗</span>
+                  </div>
+                  <p class="text-xs text-slate-600 leading-relaxed">
+                    Suivez le direct radio avec les clameurs du Cadre Royal, la musique du hautbois et les annonces des jurés.
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- Info Écrans géants -->
+            <div class="p-3 bg-slate-100 rounded-xl text-[11px] text-slate-600 flex items-center gap-2">
+              <span>🏟️</span> <strong>Sur place à Sète :</strong> Retransmission sur écrans géants au complexe Fonquerne et sur les quais.
+            </div>
+
+          </div>
+
+        </div>
+
+        
+
+      
+        <!-- Bandeau Spécial : Rediffusion Intégrale de la Saint-Louis 2026 -->
+        <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500/15 via-setered-500/10 to-indigo-500/10 border-2 border-amber-300 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-1.5 text-left flex-1">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-bold">
+              <span>📼</span> Replay Disponible en Accès Libre
+            </div>
+            <h4 class="font-serif font-bold text-lg sm:text-xl text-slate-900">
+              Revoir la Rediffusion Intégrale de la Saint-Louis 2026
+            </h4>
+            <p class="text-xs text-slate-600 leading-relaxed max-w-2xl">
+              Revivez l'intégralité du Grand Tournoi des Lourds du lundi 24 août 2026 sur le Cadre Royal : l'entrée des barques, les éliminatoires, l'épisode héroïque de l'orage qui a stoppé les joutes pendant 2h, et la passe décisive sacrant <strong>Valentin Casenove</strong> face à <strong>Thibaut Lognos</strong> !
+            </p>
+          </div>
+          <div class="flex flex-wrap sm:flex-nowrap gap-3 shrink-0 w-full sm:w-auto">
+            <a href="https://www.youtube.com/results?search_query=Saint+Louis+2026+Grand+tournoi+de+joutes+poids+lourds+Sete" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 hover:from-setered-700 hover:to-amber-700 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
+              <span>▶</span> Lancer la Rediffusion 2026
+            </a>
+            <a href="https://www.youtube.com/@VilledeseteOfficiel/videos" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm shadow transition flex items-center justify-center gap-1.5">
+              <span>Chaîne Ville de Sète ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="lexique" class="space-y-8">
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <h2 class="text-xs uppercase tracking-widest font-bold text-setered-600">Parler Sétois & Maîtriser le Vocabulaire</h2>
+        <h3 class="text-3xl font-serif font-bold text-slate-900">Le Dictionnaire des « Mots Riches » des Joutes</h3>
+        <p class="text-slate-600">Recherchez ou filtrez tous les termes traditionnels, leur étymologie occitane et leur explication simple.</p>
+      </div>
+
+      <!-- Filtres et Recherche -->
+      <div class="glass-card rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 space-y-4">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <div class="relative flex-1">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">🔍</span>
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Rechercher un mot riche (ex: Pavois, Tintaine, Épure, Chapaïre, Empéguer...)" 
+              class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-seteblue-500 bg-white text-sm"
+              oninput="filterLexicon()"
+            >
+          </div>
+          <div class="flex gap-2 items-center overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap no-scrollbar" id="filterChips">
+            <button onclick="setCategory('all')" class="cat-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white transition">Tous (<span id="totalCount">0</span>)</button>
+            <button onclick="setCategory('armes')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Équipement & Armes</button>
+            <button onclick="setCategory('bateau')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Barque & Équipage</button>
+            <button onclick="setCategory('combat')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Gestes & Fautes</button>
+            <button onclick="setCategory('tradition')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Traditions & Musique</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grille des cartes de vocabulaire -->
+      <div id="lexiconGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Rempli dynamiquement en JS -->
+      </div>
+    </section>
+
+    
+
+    <!-- Section 5 : LES 3 GRANDS QUIZ SÉTOIS -->
+    <section id="quiz" class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 space-y-10">
+      <div class="max-w-3xl mx-auto text-center space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-setered-50 text-setered-700 text-xs font-bold uppercase tracking-wider">
+          <span>🏆</span> Le Défi des Chevaliers du Cadre Royal
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">Choisissez Votre Défi Sétois</h2>
+        <p class="text-slate-600 text-sm sm:text-base">De l'amateur poli au jouteur aguerri, mesurez votre savoir face aux 3 niveaux de l'Île Singulière !</p>
+      </div>
+
+      <!-- Sélecteur des 3 Modes de Quiz -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto" id="quizModeSelector">
+        
+        <!-- Mode 1: Courtoisie -->
+        <div onclick="selectQuizMode('courtoisie')" id="card-courtoisie" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-seteblue-500 bg-white hover:shadow-md transition text-left space-y-3 group">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">🌱</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-seteblue-50 text-seteblue-700">10 Questions</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-seteblue-700 transition">Sétois de Courtoisie</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Les bases indispensables pour apprécier un tournoi et comprendre l'essentiel sans faire d'impair.</p>
+          <div class="pt-2 text-xs font-bold text-seteblue-700 flex items-center gap-1">
+            <span>▶</span> Lancer ce quiz
+          </div>
+        </div>
+
+        <!-- Mode 2: Téméraire -->
+        <div onclick="selectQuizMode('temeraire')" id="card-temeraire" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-amber-500 bg-white hover:shadow-md transition text-left space-y-3 group">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">⚔️</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-50 text-amber-800">25 Questions</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-amber-700 transition">Sétois Téméraire</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Règles fédérales FFJSN complètes, arbitrage, barèmes de points, lances courtes et tactique de fente.</p>
+          <div class="pt-2 text-xs font-bold text-amber-700 flex items-center gap-1">
+            <span>▶</span> Lancer ce quiz
+          </div>
+        </div>
+
+        <!-- Mode 3: Pur Souche -->
+        <div onclick="selectQuizMode('pur_souche')" id="card-pur_souche" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-setered-600 bg-white hover:shadow-md transition text-left space-y-3 group">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">👑</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-setered-100 text-setered-700">50 Questions</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-setered-700 transition">Sétois Pur Souche</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Le graal absolu ! Patois occitan, argot de Sète, secrets de la Saint-Louis, légendes et anecdotes de l'étang.</p>
+          <div class="pt-2 text-xs font-bold text-setered-700 flex items-center gap-1">
+            <span>▶</span> Lancer ce quiz
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <!-- Zone de Jeu du Quiz -->
+      <div id="quizContainer" class="max-w-2xl mx-auto bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6">
+        
+        <!-- En-tête du Quiz Actif -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div class="space-y-0.5">
+            <span id="activeQuizBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700"></span>
+            <h4 id="activeQuizName" class="text-lg font-bold text-slate-900"></h4>
+          </div>
+          <div class="flex items-center gap-4 text-xs font-semibold">
+            <span class="text-slate-500">Question <strong id="currentQuestionNum" class="text-slate-900">1</strong> / <span id="totalQuestionsNum">10</span></span>
+            <span id="quizScoreDisplay" class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold">Score: 0</span>
+          </div>
+        </div>
+
+        <!-- Barre de Progression -->
+        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+          <div id="quizProgressBar" class="bg-gradient-to-r from-seteblue-600 to-setered-600 h-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <!-- Boîte de Question -->
+        <div id="quizQuestionBox" class="space-y-4">
+          <h4 id="questionTitle" class="text-base sm:text-lg font-bold text-slate-900 leading-snug"></h4>
+          <div id="optionsContainer" class="space-y-2.5">
+            <!-- Boutons de réponses injectés ici -->
+          </div>
+        </div>
+
+        <!-- Feedback Explicatif Sétois -->
+        <div id="quizFeedback" class="hidden p-4 rounded-xl text-xs sm:text-sm leading-relaxed"></div>
+
+        <!-- Boutons d'Action -->
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="changeQuizModePrompt()" class="text-xs text-slate-500 hover:text-slate-800 transition underline font-medium">
+            ← Changer de niveau
+          </button>
+          <button id="nextBtn" onclick="nextQuestion()" class="hidden px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition shadow-sm">
+            Question Suivante →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Section 6 : Les Grands Événements & Festivals de Sète (Worldwide & Demi Festival) -->
+    <section id="evenements" class="space-y-8 pt-6 border-t border-slate-200">
+      
+      <!-- En-tête de section -->
+      <div class="text-center max-w-3xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider">
+          <span>🎵</span> Musique & Culture • Bassin de Thau
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Les Deux Festivals Majeurs de Sète</h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          En marge des joutes sacrées, Sète s'embrase chaque été avec deux événements d'envergure internationale célébrés au <strong>Théâtre de la Mer</strong> face aux vagues.
+        </p>
+      </div>
+
+      <!-- Bandeau Écrin : Le Théâtre de la Mer -->
+      <div class="glass-card rounded-2xl overflow-hidden shadow-sm border border-slate-200 flex flex-col md:flex-row items-center gap-6 p-4 sm:p-6 bg-gradient-to-r from-slate-900 to-indigo-950 text-white">
+        <div class="relative w-full md:w-56 h-36 rounded-xl overflow-hidden shrink-0 cursor-pointer shadow-md" onclick="openLightbox('images/theatre_de_la_mer.jpg', 'Le Théâtre de la Mer Jean Vilar', 'Amphithéâtre à ciel ouvert aménagé dans l\'ancien Fort Saint-Pierre (bâti en 1743). Les artistes s\'y produisent avec la mer Méditerranée en toile de fond absolue.')">
+          <img src="images/theatre_de_la_mer.jpg" alt="Théâtre de la Mer à Sète" class="w-full h-full object-cover img-zoom">
+          <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/60 text-[10px] font-bold">🔍 Agrandir</span>
+        </div>
+        <div class="space-y-1 text-left flex-1">
+          <span class="text-xs font-bold text-cyan-300 uppercase tracking-wider">L'Écrin Historique</span>
+          <h3 class="text-lg sm:text-xl font-serif font-bold">Le Théâtre de la Mer Jean Vilar</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Ancien fort défensif du XVIIIe siècle surplombant la falaise, ce joyau architectural offre une acoustique magique et une proximité unique entre artistes et festivaliers au son du ressac méditerranéen.
+          </p>
+        </div>
+      </div>
+
+      <!-- Grille des 2 Festivals : Format compact et élégant -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Festival 1 : Worldwide Festival Sète -->
+        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 flex flex-col justify-between">
+          <div>
+            <!-- Vignette Compacte & Badge -->
+            <div class="relative h-44 overflow-hidden bg-slate-900 cursor-pointer" onclick="openLightbox('images/worldwide_gilles_peterson.jpg', 'Gilles Peterson — Fondateur du Worldwide Festival', 'Le DJ et animateur radio britannique Gilles Peterson, fondateur du Worldwide Festival à Sète depuis 2006, lors d\'une performance.')">
+              <img src="images/worldwide_gilles_peterson.jpg" alt="Gilles Peterson Worldwide Festival" class="w-full h-full object-cover object-top img-zoom">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/30"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold shadow">
+                🌍 Musiques du Monde & Électro
+              </span>
+              <span class="absolute bottom-3 left-3 text-white text-xs font-semibold">
+                Fondé par Gilles Peterson & Freshly Cut (depuis 2006)
+              </span>
+            </div>
+
+            <!-- Contenu descriptif -->
+            <div class="p-5 space-y-3">
+              <div>
+                <h3 class="font-serif font-bold text-xl text-slate-900">Worldwide Festival Sète</h3>
+                <p class="text-xs font-semibold text-seteblue-700 mt-0.5">Jazz, Soul, Funk, Hip-Hop, Broken Beat & Électro</p>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Inspiré de l'émission culte de la BBC, le festival fait de la cité maritime son terrain de jeu musical. Des après-midis sur les plages aux nuits étoilées du Théâtre de la Mer, il incarne l'art de vivre sétois entre dégustations de tielles et découvertes sonores d'avant-garde.
+              </p>
+              
+              <!-- Période habituelle -->
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2 text-xs text-slate-700">
+                <span>🗓️</span> <strong>Période habituelle :</strong> Première semaine de <strong>juillet</strong>.
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Date Future / Statut -->
+          <div class="p-5 pt-0 space-y-3">
+            <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200/80 text-xs space-y-1">
+              <div class="flex items-center gap-1.5 font-bold text-amber-800">
+                <span>⏳</span> Prochainement / Dates 2027 en attente
+              </div>
+              <p class="text-amber-900/80 text-[11px] leading-relaxed">
+                L'édition se tient chaque début juillet. Les dates officielles et l'ouverture de la billetterie ne sont pas encore mises en ligne à ce jour.
+              </p>
+            </div>
+            <a href="https://worldwidefestival.com" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Site officiel</span> <span>worldwidefestival.com ↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Festival 2 : Le Demi Festival (Demi Portion) -->
+        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 flex flex-col justify-between">
+          <div>
+            <!-- Vignette Compacte & Badge -->
+            <div class="relative h-44 overflow-hidden bg-slate-900 cursor-pointer" onclick="openLightbox('images/demi_portion_festival.jpg', 'Demi Portion en concert', 'Le rappeur sétois Demi Portion (Rachid Daïf), créateur et âme du Demi Festival au Théâtre de la Mer.')">
+              <img src="images/demi_portion_festival.jpg" alt="Demi Portion au Demi Festival" class="w-full h-full object-cover object-top img-zoom">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/30"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-setered-600 text-white text-xs font-bold shadow">
+                🎤 Rap Indépendant & Culture Hip-Hop
+              </span>
+              <span class="absolute bottom-3 left-3 text-white text-xs font-semibold">
+                Créé par Demi Portion (depuis 2016)
+              </span>
+            </div>
+
+            <!-- Contenu descriptif -->
+            <div class="p-5 space-y-3">
+              <div>
+                <h3 class="font-serif font-bold text-xl text-slate-900">Le Demi Festival</h3>
+                <p class="text-xs font-semibold text-setered-600 mt-0.5">Le rendez-vous roi du Hip-Hop indépendant à taille humaine</p>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Porté avec ferveur par l'enfant de Sète <strong>Demi Portion</strong>, ce festival défend des valeurs de partage, de proximité et de prix abordables. Il réunit toutes les légendes du rap (Oxmo Puccino, Fonky Family, JoeyStarr, Hugo TSR...) avec un grand concert populaire gratuit sur le port.
+              </p>
+              
+              <!-- Période habituelle -->
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2 text-xs text-slate-700">
+                <span>🗓️</span> <strong>Période habituelle :</strong> Début <strong>août</strong> (sold-out en 10 minutes !).
+              </div>
+            </div>
+          </div>
+
+          <!-- Section Date Future / Statut -->
+          <div class="p-5 pt-0 space-y-3">
+            <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200/80 text-xs space-y-1">
+              <div class="flex items-center gap-1.5 font-bold text-amber-800">
+                <span>⏳</span> Prochainement / Dates 2027 en attente
+              </div>
+              <p class="text-amber-900/80 text-[11px] leading-relaxed">
+                Après la 10ème édition anniversaire d'août 2026, les prochaines dates ne sont pas encore officialisées. Restez à l'affût dès l'ouverture des préventes.
+              </p>
+            </div>
+            <a href="https://demifestival.fr" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-setered-600 hover:bg-setered-700 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-sm">
+              <span>Site officiel</span> <span>demifestival.fr ↗</span>
+            </a>
+          </div>
+        </div>
+
+        
+
+      </div>
+
+    </section>
+
+    
+
+  </main>
+
+  <!-- Lightbox Modal pour les Photos -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeLightbox()">
+    <div class="relative max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center text-lg font-bold transition">✕</button>
+      <div class="max-h-[75vh] bg-black flex items-center justify-center overflow-hidden">
+        <img id="lightboxImg" src="" alt="" class="max-h-[75vh] w-auto object-contain">
+      </div>
+      <div class="p-5 text-white space-y-1">
+        <h4 id="lightboxTitle" class="text-lg font-bold"></h4>
+        <p id="lightboxDesc" class="text-xs text-slate-300 leading-relaxed"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500 space-y-2">
+    <p>Guide Interactif, Photographies Officielles & Les 3 Quiz des Joutes de Sète • Règles Officielles FFJSN.</p>
+    <p class="text-slate-400">Carnet NotebookLM « Les Joutes Nautiques Languedociennes » • Fait avec passion pour les amoureux de l'Île Singulière.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="championnat-data.js"></script>
+  <script src="quiz-data.js"></script>
+  <script>
+    // Lightbox Modal
+    function openLightbox(src, title, desc) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxTitle').textContent = title;
+      document.getElementById('lightboxDesc').textContent = desc;
+      document.getElementById('lightboxModal').classList.remove('hidden');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightboxModal').classList.add('hidden');
+    }
+
+    // Base de données complète des mots riches
+    const lexiconData = [
+      {
+        term: "Ajustaïre",
+        category: "tradition",
+        tag: "Occitan",
+        meaning: "Le jouteur en personne.",
+        explanation: "Terme traditionnel en langue d'oc pour désigner les chevaliers de la tintaine qui montent au combat.",
+        badgeColor: "bg-purple-100 text-purple-700"
+      },
+      {
+        term: "Barelle",
+        category: "armes",
+        tag: "Matériel",
+        meaning: "Liteau vertical de séparation.",
+        explanation: "Morceau de bois fixé verticalement au milieu du pavois qui sépare la zone droite de la zone gauche.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "Bigue",
+        category: "bateau",
+        tag: "Structure",
+        meaning: "L'escalier incliné arrière.",
+        explanation: "Deux poutres en bois qui montent depuis le fond de la barque jusqu'au plancher. 4 à 5 jouteurs s'y tiennent pour faire contrepoids.",
+        badgeColor: "bg-amber-100 text-amber-800"
+      },
+      {
+        term: "Bouquet",
+        category: "combat",
+        tag: "Issue de passe",
+        meaning: "Chute simultanée des deux jouteurs.",
+        explanation: "Quand les deux hommes tombent à l'eau en même temps sous la violence de l'impact. Tous deux sont déclarés battus et éliminés.",
+        badgeColor: "bg-red-100 text-red-700"
+      },
+      {
+        term: "Caler",
+        category: "combat",
+        tag: "Geste d'arrêt",
+        meaning: "Stopper net la course des barques.",
+        explanation: "Exploit de force où la puissance combinée de la frappe et de l'ancrage des deux jouteurs bloque l'avancement des deux barques lors de l'impact.",
+        badgeColor: "bg-emerald-100 text-emerald-800"
+      },
+      {
+        term: "Casse (Double casse)",
+        category: "armes",
+        tag: "Matériel",
+        meaning: "Rupture de la lance de combat.",
+        explanation: "Bris d'une ou deux lances sous la pression gigantesque du choc. La passe est alors généralement rejouée sans pénalité si les lances sont brisées nettes.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "Chariot",
+        category: "tradition",
+        tag: "Apprentissage",
+        meaning: "Barque sur roulettes d'entraînement.",
+        explanation: "Plateforme à roulettes tractée à terre permettant aux enfants des écoles de joutes (de 3 à 8 ans) d'apprendre la fente avant et le coup de lance en toute sécurité.",
+        badgeColor: "bg-purple-100 text-purple-700"
+      },
+      {
+        term: "Cintre",
+        category: "combat",
+        tag: "Physique du coup",
+        meaning: "Courbure impressionnante de la lance.",
+        explanation: "Flexion extrême que prend la perche de bois de 2,80 m sous l'impact avant de propulser le jouteur adverse ou de rompre.",
+        badgeColor: "bg-emerald-100 text-emerald-800"
+      },
+      {
+        term: "Dehors",
+        category: "combat",
+        tag: "Zone interdite",
+        meaning: "Partie extérieure du pavois.",
+        explanation: "Zones périphériques du pavois où il est strictement interdit de piquer. Piquer en « dehors » entraîne une faute ou disqualification.",
+        badgeColor: "bg-red-100 text-red-700"
+      },
+      {
+        term: "Double Frappe",
+        category: "combat",
+        tag: "Faute éliminatoire",
+        meaning: "Donner deux à-coups successifs.",
+        explanation: "Décoller sa lance du pavois après un premier contact pour redonner une seconde impulsion. Formellement interdit et disqualifiant !",
+        badgeColor: "bg-red-100 text-red-700"
+      },
+      {
+        term: "Épine",
+        category: "armes",
+        tag: "Anatomie du Pavois",
+        meaning: "Zone sous la pointe du pavois.",
+        explanation: "Endroit précis du pavois situé sous le repère central, souvent ciblé pour un ancrage parfait de l'épure.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "Épure (ou Crampon)",
+        category: "armes",
+        tag: "Fer de lance",
+        meaning: "Embout métallique à trois pointes.",
+        explanation: "Pièce d'acier fixée au bout de la lance permettant d'accrocher le bois du pavois sans déraper.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "Fente Avant",
+        category: "combat",
+        tag: "Posture de fer",
+        meaning: "Position réglementaire de combat.",
+        explanation: "Jambe arrière tendue au plancher, genou avant fléchi maintenant le bas du pavois. Aucune autre position n'est tolérée.",
+        badgeColor: "bg-emerald-100 text-emerald-800"
+      },
+      {
+        term: "Filer",
+        category: "combat",
+        tag: "Faute de tenue",
+        meaning: "Laisser glisser la lance dans sa main.",
+        explanation: "Sous la force du choc adverse, la main du jouteur glisse en arrière. Si elle dépasse les gardes réglementaires, il est sanctionné ou éliminé.",
+        badgeColor: "bg-amber-100 text-amber-800"
+      },
+      {
+        term: "Gardes (1ère & 2ème)",
+        category: "armes",
+        tag: "Marques arbitrales",
+        meaning: "Anneaux de peinture sur la lance.",
+        explanation: "Repères visuels colorés (bleu/rouge et blanc). La main ne doit jamais masquer la zone blanche (2ème garde) sous peine de disqualification immédiate.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "La Charge",
+        category: "tradition",
+        tag: "Musique sacrée",
+        meaning: "L'hymne de combat des joutes.",
+        explanation: "Mélodie martiale et vibrante jouée par le hautbois et le tambourin dès que les barques se croisent pour porter les jouteurs vers l'impact.",
+        badgeColor: "bg-purple-100 text-purple-700"
+      },
+      {
+        term: "Lance Courte",
+        category: "combat",
+        tag: "Faute majeure",
+        meaning: "Ne pas coincer la lance sous l'aisselle.",
+        explanation: "Faute disqualifiante consistant à tenir la lance trop courte en laissant du bois dépasser derrière le bras, augmentant dangereusement le levier.",
+        badgeColor: "bg-red-100 text-red-700"
+      },
+      {
+        term: "Lo Quartier Naut",
+        category: "bateau",
+        tag: "Tradition sétoise",
+        meaning: "Nom de la Barque Bleue.",
+        explanation: "Rend hommage aux pêcheurs du Quartier Haut de Sète, historiquement opposés aux gens de la Pointe-Courte.",
+        badgeColor: "bg-sky-100 text-sky-800"
+      },
+      {
+        term: "La Poncha",
+        category: "bateau",
+        tag: "Tradition sétoise",
+        meaning: "Nom de la Barque Rouge.",
+        explanation: "Représente le quartier pittoresque de la Pointe-Courte bordant l'étang de Thau à Sète.",
+        badgeColor: "bg-rose-100 text-rose-800"
+      },
+      {
+        term: "Mourre",
+        category: "armes",
+        tag: "Pavois",
+        meaning: "Haut du pavois (sous le menton).",
+        explanation: "Partie supérieure arrondie du pavois en bois. 'Mourre' signifie museau ou visage en occitan.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "Mourre de porc",
+        category: "bateau",
+        tag: "Type d'embarcation",
+        meaning: "Barque traditionnelle à fond plat.",
+        explanation: "Bateau lourd et très stable à fond plat, conçu spécialement pour résister au choc titanesque des deux embarcations.",
+        badgeColor: "bg-amber-100 text-amber-800"
+      },
+      {
+        term: "Passer en avant",
+        category: "combat",
+        tag: "Faute antisportive",
+        meaning: "Attirer l'adversaire dans le vide.",
+        explanation: "Esquiver ou relâcher sournoisement sa poussée pour que l'adversaire bascule dans le vide par son propre élan. Sanctionné d'un carton direct.",
+        badgeColor: "bg-red-100 text-red-700"
+      },
+      {
+        term: "Pavois",
+        category: "armes",
+        tag: "Bouclier sacré",
+        meaning: "Bouclier lourd de 70 × 40 cm.",
+        explanation: "Fabriqué en bois du Nord rouge, orné de liteaux de retenue. Porté plaqué sur la poitrine et le genou, il encaisse toute la violence du coup.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "Peña",
+        category: "tradition",
+        tag: "Fête sétoise",
+        meaning: "Fanfare de rue festive.",
+        explanation: "Orchestre de cuivres et percussions accompagnant les défilés des jouteurs en blanc dans les rues de la ville.",
+        badgeColor: "bg-purple-100 text-purple-700"
+      },
+      {
+        term: "Plancher (Plateau)",
+        category: "bateau",
+        tag: "Arène",
+        meaning: "La surface haute de la tintaine.",
+        explanation: "Plateforme carrée étroite perchée au sommet de la bigue. Seul endroit où les pieds du jouteur doivent rester pendant le combat.",
+        badgeColor: "bg-amber-100 text-amber-800"
+      },
+      {
+        term: "Retenants",
+        category: "armes",
+        tag: "Pavois",
+        meaning: "Liteaux en bois horizontaux.",
+        explanation: "Baguettes de bois clouées sur le pavois servant de cales pour empêcher l'épure de la lance adverse de riper.",
+        badgeColor: "bg-blue-100 text-blue-700"
+      },
+      {
+        term: "Revanches",
+        category: "tradition",
+        tag: "Compétition",
+        meaning: "Phase finale d'un tournoi.",
+        explanation: "Phase palpitante à élimination directe qui débute une fois que les jouteurs ont franchi les éliminatoires (3 victoires).",
+        badgeColor: "bg-purple-100 text-purple-700"
+      },
+      {
+        term: "Tambornet",
+        category: "tradition",
+        tag: "Musique",
+        meaning: "Petit tambour languedocien.",
+        explanation: "Instrument à percussion traditionnel formant un duo indissociable avec le hautbois sétois à la proue des barques.",
+        badgeColor: "bg-purple-100 text-purple-700"
+      },
+      {
+        term: "Timonier patron",
+        category: "bateau",
+        tag: "Capitaine",
+        meaning: "Le barreur de la barque.",
+        explanation: "Pilote expérimenté tenant la barre franche, il guide la trajectoire, motive les rameurs et ajuste la distance de frôlement.",
+        badgeColor: "bg-amber-100 text-amber-800"
+      },
+      {
+        term: "Tintaine",
+        category: "bateau",
+        tag: "Monument",
+        meaning: "L'échafaudage complet arrière.",
+        explanation: "Structure complète comprenant la bigue inclinée et le plancher haut culminant à environ 3 mètres au-dessus du canal.",
+        badgeColor: "bg-amber-100 text-amber-800"
+      }
+    ];
+
+    let currentCategory = 'all';
+
+    function renderLexicon() {
+      const grid = document.getElementById('lexiconGrid');
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      
+      const filtered = lexiconData.filter(item => {
+        const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
+        const matchesSearch = item.term.toLowerCase().includes(search) || 
+                              item.meaning.toLowerCase().includes(search) || 
+                              item.explanation.toLowerCase().includes(search);
+        return matchesCategory && matchesSearch;
+      });
+
+      document.getElementById('totalCount').textContent = lexiconData.length;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400">
+            <span class="text-3xl">🛶</span>
+            <p class="mt-2 text-sm">Aucun mot trouvé pour « ${search} ». Essayez un autre terme !</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(item => `
+        <div class="glass-card rounded-2xl p-5 shadow-sm hover:shadow-md transition border border-slate-200/80 flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold px-2 py-0.5 rounded-full ${item.badgeColor}">${item.tag}</span>
+              <span class="text-xs text-slate-400 font-mono">Languedocien</span>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-slate-900 group-hover:text-seteblue-700 transition">${item.term}</h4>
+              <p class="text-xs font-semibold text-setered-600 mt-0.5">${item.meaning}</p>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">${item.explanation}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterLexicon() {
+      renderLexicon();
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-chip').forEach(btn => {
+        btn.classList.remove('active', 'bg-slate-900', 'text-white');
+        btn.classList.add('bg-slate-100', 'text-slate-700');
+      });
+      event.target.classList.remove('bg-slate-100', 'text-slate-700');
+      event.target.classList.add('active', 'bg-slate-900', 'text-white');
+      renderLexicon();
+    }
+
+    // Simulateur de Points Championnat de Ligue
+    function calcChampPoints() {
+      const sel = document.getElementById('champSimSelect');
+      if (!sel) return;
+      const val = parseInt(sel.value, 10);
+      const disp = document.getElementById('champSimPointsDisplay');
+      const comment = document.getElementById('champSimComment');
+      if (disp) disp.textContent = `${val} pts`;
+      if (!comment) return;
+
+      if (val === 20) {
+        comment.textContent = "✨ Victoire royale ! 20 points remportés (comme Valentin Casenove en 2026 pour la LAS) !";
+        comment.className = "text-[11px] text-emerald-300 italic";
+      } else if (val === 12) {
+        comment.textContent = "🥈 Superbe parcours de finaliste ! 12 points précieux au Championnat.";
+        comment.className = "text-[11px] text-amber-300 italic";
+      } else if (val === 8) {
+        comment.textContent = "🥉 Demi-finale d'honneur : 8 points enregistrés au palmarès de la société.";
+        comment.className = "text-[11px] text-sky-300 italic";
+      } else if (val === 4) {
+        comment.textContent = "🎟️ Bravo pour la qualification aux Revanches ! 4 points garantis.";
+        comment.className = "text-[11px] text-indigo-300 italic";
+      } else if (val > 0) {
+        comment.textContent = "⚔️ Passes éliminatoires vaillantes : des points précieux pour le classement.";
+        comment.className = "text-[11px] text-slate-300 italic";
+      } else {
+        comment.textContent = "🌊 Plouf dans le canal ! 0 point pour cette fois, rendez-vous au prochain tournoi !";
+        comment.className = "text-[11px] text-rose-300 italic";
+      }
+    }
+
+    // Gestion du Moteur de Quiz Multi-Modes
+    let currentQuizMode = 'courtoisie';
+    let currentQuestions = [];
+    let currentQ = 0;
+    let score = 0;
+    let answered = false;
+
+    function selectQuizMode(modeKey) {
+      currentQuizMode = modeKey;
+      const mode = quizLevels[modeKey];
+      currentQuestions = mode.questions;
+      currentQ = 0;
+      score = 0;
+
+      // Update card styles
+      document.querySelectorAll('.mode-card').forEach(card => {
+        card.classList.remove('ring-4', 'ring-seteblue-500', 'ring-amber-500', 'ring-setered-500', 'border-transparent');
+      });
+      const activeCard = document.getElementById(`card-${modeKey}`);
+      if (activeCard) {
+        if (modeKey === 'courtoisie') activeCard.classList.add('ring-4', 'ring-seteblue-500', 'border-transparent');
+        if (modeKey === 'temeraire') activeCard.classList.add('ring-4', 'ring-amber-500', 'border-transparent');
+        if (modeKey === 'pur_souche') activeCard.classList.add('ring-4', 'ring-setered-500', 'border-transparent');
+      }
+
+      // Update Header
+      document.getElementById('activeQuizBadge').textContent = mode.badge;
+      document.getElementById('activeQuizName').textContent = mode.name;
+      document.getElementById('totalQuestionsNum').textContent = currentQuestions.length;
+      document.getElementById('quizScoreDisplay').textContent = `Score: 0 / ${currentQuestions.length}`;
+
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      answered = false;
+      const q = currentQuestions[currentQ];
+      
+      document.getElementById('currentQuestionNum').textContent = currentQ + 1;
+      
+      // Update Progress Bar
+      const progressPct = ((currentQ) / currentQuestions.length) * 100;
+      document.getElementById('quizProgressBar').style.width = `${progressPct}%`;
+
+      document.getElementById('questionTitle').textContent = q.question;
+      
+      const optContainer = document.getElementById('optionsContainer');
+      optContainer.innerHTML = q.options.map((opt, idx) => `
+        <button onclick="checkAnswer(${idx})" class="w-full text-left p-3.5 sm:p-4 rounded-xl border border-slate-200 hover:border-seteblue-500 hover:bg-slate-50 transition text-xs sm:text-sm font-medium text-slate-800 flex items-center justify-between group shadow-2xs">
+          <span>${opt}</span>
+          <span class="w-5 h-5 rounded-full border border-slate-300 group-hover:border-seteblue-500 flex items-center justify-center text-xs"></span>
+        </button>
+      `).join('');
+
+      document.getElementById('quizFeedback').className = 'hidden';
+      document.getElementById('nextBtn').classList.add('hidden');
+    }
+
+    function checkAnswer(chosen) {
+      if (answered) return;
+      answered = true;
+      const q = currentQuestions[currentQ];
+      const fb = document.getElementById('quizFeedback');
+      const optButtons = document.querySelectorAll('#optionsContainer button');
+
+      optButtons.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.answer) {
+          btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'font-bold');
+        } else if (idx === chosen) {
+          btn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-900');
+        }
+      });
+
+      if (chosen === q.answer) {
+        score++;
+        document.getElementById('quizScoreDisplay').textContent = `Score: ${score} / ${currentQuestions.length}`;
+        fb.className = 'p-4 rounded-xl text-xs sm:text-sm leading-relaxed bg-emerald-50 border border-emerald-200 text-emerald-800 block';
+        fb.innerHTML = `<strong>✨ Bravo !</strong> ${q.feedback}`;
+      } else {
+        fb.className = 'p-4 rounded-xl text-xs sm:text-sm leading-relaxed bg-rose-50 border border-rose-200 text-rose-800 block';
+        fb.innerHTML = `<strong>✕ Aïoli ! Faux !</strong> ${q.feedback}`;
+      }
+
+      document.getElementById('nextBtn').classList.remove('hidden');
+      if (currentQ === currentQuestions.length - 1) {
+        document.getElementById('nextBtn').textContent = "Voir le Résultat Final 🎉";
+      } else {
+        document.getElementById('nextBtn').textContent = "Question Suivante →";
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQ < currentQuestions.length - 1) {
+        currentQ++;
+        loadQuestion();
+      } else {
+        showFinalResult();
+      }
+    }
+
+    function showFinalResult() {
+      document.getElementById('quizProgressBar').style.width = '100%';
+      const container = document.getElementById('quizContainer');
+      const total = currentQuestions.length;
+      const pct = (score / total) * 100;
+      
+      let title = "";
+      let emoji = "";
+      let appraisal = "";
+
+      if (currentQuizMode === 'pur_souche') {
+        if (pct >= 90) {
+          emoji = "👑";
+          title = "Seigneur Suprême de la Tintaine !";
+          appraisal = "Macarel ! Tu as le sang sétois qui coule dans les veines. Georges Brassens et Paul Valéry trinquent à ta santé ! Ton nom mérite d'être gravé sur le Pavois d'Or !";
+        } else if (pct >= 70) {
+          emoji = "🛶";
+          title = "Véritable Sétois Pur Souche !";
+          appraisal = "T'es un brave ! Tu maîtrises l'argot, les coins secrets de la Pointe-Courte et le tournoi des Lourds n'a aucun secret pour toi.";
+        } else if (pct >= 50) {
+          emoji = "⚓";
+          title = "Sétois d'Adoption Honorable";
+          appraisal = "Pas mal du tout ! Tu as encore deux ou trois tielles et macaronades à déguster avant de monter en finale de la Saint-Louis, mais le respect est là.";
+        } else {
+          emoji = "🌊";
+          title = "Plouf dans le Cadre Royal !";
+          appraisal = "Aïoli ! Tu t'es fait empéguer par les questions corsées. Revois le lexique et remonte sur la tintaine !";
+        }
+      } else if (currentQuizMode === 'temeraire') {
+        if (pct >= 85) {
+          emoji = "⚔️";
+          title = "Maître Téméraire du Règlement FFJSN !";
+          appraisal = "Rien ne t'échappe : gardes de lances, éliminatoires, fentes et lest avant... Tu peux arbitrer la Saint-Louis dès demain !";
+        } else if (pct >= 60) {
+          emoji = "🛡️";
+          title = "Jouteur Vaillant";
+          appraisal = "Solide sur la bigue ! Tu as évité la lance courte et la double frappe avec brio.";
+        } else {
+          emoji = "🌊";
+          title = "Bouquet !";
+          appraisal = "Chute à l'eau ! Prends une brassée de courage et rejoue pour dompter le règlement officiel.";
+        }
+      } else {
+        if (pct >= 80) {
+          emoji = "🌱";
+          title = "Sétois Courtois et Éclairé !";
+          appraisal = "Bravo ! Tu as toutes les clés pour briller lors des défilés et apprécier le spectacle comme un habitué.";
+        } else {
+          emoji = "🛶";
+          title = "Initié Débutant";
+          appraisal = "C'est un bon début ! Tu connais maintenant le pavois et la tintaine.";
+        }
+      }
+
+      container.innerHTML = `
+        <div class="text-center py-8 space-y-5">
+          <div class="text-6xl animate-bounce">${emoji}</div>
+          <h4 class="text-2xl sm:text-3xl font-extrabold font-serif text-slate-900">${title}</h4>
+          <div class="inline-block px-4 py-2 rounded-xl bg-slate-100 font-bold text-lg text-slate-900">
+            Score Final : <span class="text-setered-600">${score}</span> / ${total} (${Math.round(pct)}%)
+          </div>
+          <p class="text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">${appraisal}</p>
+          
+          <!-- Box Audio Célébration Hymne de la Saint-Louis -->
+          <div class="my-5 p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-setered-500/10 to-seteblue-500/10 border-2 border-amber-300 shadow-sm max-w-md mx-auto space-y-3">
+            <div class="flex items-center justify-center gap-2 text-sm font-bold text-slate-900">
+              <span class="text-xl">🎺</span>
+              <span>L'Hymne Officiel des Joutes de la Saint-Louis</span>
+            </div>
+            <p class="text-xs text-slate-600 italic">
+              « Ils sont venus tous les voisins de l'Étang de Thau, dans le Cadre Royal... Pour la Saint-Louis ! »
+            </p>
+            <div class="pt-1 flex flex-col items-center gap-2">
+              <button id="resultAudioBtn" onclick="toggleSaintLouisAudio()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 hover:from-setered-700 hover:to-amber-700 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 mx-auto cursor-pointer">
+                <span id="resultAudioIcon">▶</span> <span id="resultAudioText">Écouter l'Hymne de la Victoire</span>
+              </button>
+              <!-- Lecteur audio standard de secours -->
+              <audio id="resultNativeAudio" controls class="w-full max-w-xs mt-2 h-9" onplay="syncAudioState(this, true)" onpause="syncAudioState(this, false)">
+                <source src="audio/hymne_saint_louis.mp3" type="audio/mpeg">
+                Votre navigateur ne prend pas en charge l'élément audio.
+              </audio>
+            </div>
+            <div id="audioWaveAnim" class="hidden text-[10px] font-semibold text-setered-600 animate-pulse text-center">
+              🎵 Musique en cours de lecture... Ambiance garantie au Cadre Royal !
+            </div>
+          </div>
+
+          <div class="flex flex-wrap justify-center gap-3 pt-2">
+            <button onclick="selectQuizMode('${currentQuizMode}')" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition shadow">
+              🔄 Rejouer ce Quiz
+            </button>
+            <button onclick="location.href='#quiz'; selectQuizMode('pur_souche')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 text-white font-bold text-xs sm:text-sm hover:opacity-90 transition shadow">
+              👑 Tenter le Défi 50 Questions (Pur Souche)
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function changeQuizModePrompt() {
+      document.getElementById('quizModeSelector').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Gestionnaire Audio Robuste
+    let globalAudio = null;
+
+    function getAudioPlayer() {
+      if (!globalAudio) {
+        globalAudio = document.getElementById('saintLouisAudio');
+        if (!globalAudio) {
+          globalAudio = new Audio('audio/hymne_saint_louis.mp3');
+        }
+        globalAudio.onplay = () => syncAudioUI(true);
+        globalAudio.onpause = () => syncAudioUI(false);
+        globalAudio.onended = () => syncAudioUI(false);
+        globalAudio.onerror = (e) => {
+          console.error('Audio error:', e);
+        };
+      }
+      return globalAudio;
+    }
+
+    function toggleSaintLouisAudio() {
+      const p = getAudioPlayer();
+      if (!p) return;
+      if (p.paused) {
+        p.play().catch(err => {
+          console.warn('Autoplay/play issue:', err);
+        });
+      } else {
+        p.pause();
+      }
+    }
+
+    function syncAudioState(nativeEl, isPlaying) {
+      const p = getAudioPlayer();
+      if (isPlaying) {
+        if (p && p !== nativeEl && !p.paused) {
+          p.pause();
+        }
+        syncAudioUI(true);
+      } else {
+        syncAudioUI(false);
+      }
+    }
+
+    function syncAudioUI(isPlaying) {
+      const widgetBtn = document.getElementById('widgetPlayBtn');
+      const widgetStatus = document.getElementById('widgetStatus');
+      const resIcon = document.getElementById('resultAudioIcon');
+      const resText = document.getElementById('resultAudioText');
+      const wave = document.getElementById('audioWaveAnim');
+
+      if (isPlaying) {
+        if (widgetBtn) widgetBtn.textContent = '⏸';
+        if (widgetStatus) widgetStatus.textContent = 'En cours de lecture 🎵';
+        if (resIcon) resIcon.textContent = '⏸';
+        if (resText) resText.textContent = 'Mettre en pause l\'Hymne';
+        if (wave) wave.classList.remove('hidden');
+      } else {
+        if (widgetBtn) widgetBtn.textContent = '▶';
+        if (widgetStatus) widgetStatus.textContent = 'Cliquer pour lancer l\'ambiance';
+        if (resIcon) resIcon.textContent = '▶';
+        if (resText) resText.textContent = 'Reprendre l\'Hymne de la Victoire';
+        if (wave) wave.classList.add('hidden');
+      }
+    }
+
+    // Init au chargement
+    window.addEventListener('DOMContentLoaded', () => {
+      renderLexicon();
+      selectQuizMode('courtoisie');
+      getAudioPlayer(); // initialise l'audio dès le chargement du DOM
+    });
+  
+    // Gestion du Menu Déroulant Mobile
+    function toggleMobileNav() {
+      const menu = document.getElementById('mobileMenu');
+      const burger = document.getElementById('hamburgerIcon');
+      const close = document.getElementById('closeIcon');
+      if (!menu) return;
+      const isOpen = !menu.classList.contains('hidden');
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        menu.classList.remove('hidden');
+        burger.classList.add('hidden');
+        close.classList.remove('hidden');
+      }
+    }
+
+    function closeMobileNav() {
+      const menu = document.getElementById('mobileMenu');
+      const burger = document.getElementById('hamburgerIcon');
+      const close = document.getElementById('closeIcon');
+      if (!menu) return;
+      menu.classList.add('hidden');
+      burger.classList.remove('hidden');
+      close.classList.add('hidden');
+    }
+
+    // Fermer le menu si clic en dehors
+    document.addEventListener('click', (e) => {
+      const nav = document.querySelector('nav');
+      const menu = document.getElementById('mobileMenu');
+      if (menu && !menu.classList.contains('hidden') && nav && !nav.contains(e.target)) {
+        closeMobileNav();
+      }
+    });
+
+    // ========================================================
+    // LOGIQUE DU CHAMPIONNAT DYNAMIQUE & GESTIONNAIRE DE PROGRAMME
+    // ========================================================
+    let currentChampData = null;
+    let pendingImportContent = null;
+
+    function initChampionnatModule() {
+      if (typeof getChampionnatData === 'function') {
+        currentChampData = getChampionnatData();
+      } else if (typeof DEFAULT_CHAMPIONNAT_DATA !== 'undefined') {
+        currentChampData = JSON.parse(JSON.stringify(DEFAULT_CHAMPIONNAT_DATA));
+      } else {
+        console.warn('Données de championnat non disponibles.');
+        return;
+      }
+      renderChampionnatUI();
+    }
+
+    function switchChampTab(tabName) {
+      const tabs = ['classement', 'programme', 'import'];
+      tabs.forEach(t => {
+        const view = document.getElementById('champView-' + t);
+        const btn = document.getElementById('tabBtn-' + t);
+        if (view) {
+          if (t === tabName) {
+            view.classList.remove('hidden');
+          } else {
+            view.classList.add('hidden');
+          }
+        }
+        if (btn) {
+          if (t === tabName) {
+            btn.className = "champ-tab-btn active shrink-0 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-seteblue-700 text-white shadow-sm transition flex items-center gap-2";
+          } else if (t === 'import') {
+            btn.className = "champ-tab-btn shrink-0 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-300 transition flex items-center gap-2";
+          } else {
+            btn.className = "champ-tab-btn shrink-0 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2";
+          }
+        }
+      });
+    }
+
+    function getCityBadgeClass(city) {
+      city = (city || '').toLowerCase();
+      if (city.includes('sète') || city.includes('sete')) {
+        return 'bg-blue-100 text-blue-800 border-blue-200';
+      } else if (city.includes('agde')) {
+        return 'bg-amber-100 text-amber-800 border-amber-200';
+      } else if (city.includes('frontignan')) {
+        return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+      } else if (city.includes('mèze') || city.includes('meze')) {
+        return 'bg-purple-100 text-purple-800 border-purple-200';
+      } else if (city.includes('palavas')) {
+        return 'bg-cyan-100 text-cyan-800 border-cyan-200';
+      } else if (city.includes('balaruc')) {
+        return 'bg-indigo-100 text-indigo-800 border-indigo-200';
+      } else if (city.includes('grau')) {
+        return 'bg-rose-100 text-rose-800 border-rose-200';
+      }
+      return 'bg-slate-100 text-slate-700 border-slate-200';
+    }
+
+    function renderChampionnatUI() {
+      if (!currentChampData) return;
+
+      // Badges saison
+      const sName = document.getElementById('seasonNameDisplay');
+      if (sName) sName.textContent = currentChampData.saison || "2026";
+      const uDate = document.getElementById('lastUpdatedDisplay');
+      if (uDate) uDate.textContent = currentChampData.derniereMiseAJour || "Août 2026";
+
+      const countJ = document.getElementById('totalJouteursCount');
+      if (countJ) countJ.textContent = (currentChampData.participants || []).length;
+      const countT = document.getElementById('totalTournoisCount');
+      if (countT) countT.textContent = (currentChampData.tournois || []).length;
+
+      renderRankingTable(currentChampData.participants || []);
+      renderTournoisGrid(currentChampData.tournois || []);
+    }
+
+    function renderRankingTable(participants) {
+      const tbody = document.getElementById('rankingTableBody');
+      if (!tbody) return;
+
+      if (!participants || participants.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" class="text-center p-8 text-slate-400">Aucun participant trouvé correspondant à vos critères.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = participants.map((p, idx) => {
+        let rankBadge = '';
+        if (p.rang === 1) {
+          rankBadge = '<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-400 text-slate-900 font-extrabold text-xs shadow-xs">🥇 1</span>';
+        } else if (p.rang === 2) {
+          rankBadge = '<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-300 text-slate-900 font-extrabold text-xs">🥈 2</span>';
+        } else if (p.rang === 3) {
+          rankBadge = '<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-700 text-white font-extrabold text-xs">🥉 3</span>';
+        } else {
+          rankBadge = '<span class="font-bold text-slate-500 text-xs">' + p.rang + '</span>';
+        }
+
+        const cityBadge = getCityBadgeClass(p.ville);
+
+        return '<tr class="hover:bg-slate-50 transition">' +
+          '<td class="p-3 text-center">' + rankBadge + '</td>' +
+          '<td class="p-3">' +
+            '<div class="font-bold text-slate-900 text-xs sm:text-sm">' + p.nom + '</div>' +
+            '<div class="text-[11px] text-slate-500 font-medium">' + (p.statut || '') + '</div>' +
+          '</td>' +
+          '<td class="p-3">' +
+            '<div class="font-semibold text-slate-800 text-xs">' + p.societe + '</div>' +
+            '<span class="inline-block mt-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold border ' + cityBadge + '">' + p.ville + '</span>' +
+          '</td>' +
+          '<td class="p-3 text-center">' +
+            '<span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">' + p.categorie + '</span>' +
+          '</td>' +
+          '<td class="p-3 text-center font-bold text-slate-800 text-xs">' + (p.victoires || 0) + '</td>' +
+          '<td class="p-3 text-center text-slate-600 text-xs font-semibold">' + (p.passesGagnees || 0) + '</td>' +
+          '<td class="p-3 text-right pr-4 font-extrabold text-sm sm:text-base text-setered-600">' + p.points + ' pts</td>' +
+        '</tr>';
+      }).join('');
+
+      const filteredCount = document.getElementById('filteredCountLabel');
+      if (filteredCount) {
+        filteredCount.textContent = 'Affichage de ' + participants.length + ' jouteur' + (participants.length > 1 ? 's' : '');
+      }
+    }
+
+    function applyChampFilters() {
+      if (!currentChampData) return;
+      const search = (document.getElementById('jouteurSearchInput')?.value || '').toLowerCase().trim();
+      const cat = document.getElementById('jouteurCatFilter')?.value || 'all';
+      const ville = document.getElementById('jouteurVilleFilter')?.value || 'all';
+
+      const filtered = (currentChampData.participants || []).filter(p => {
+        const matchSearch = !search ||
+          p.nom.toLowerCase().includes(search) ||
+          p.societe.toLowerCase().includes(search) ||
+          p.ville.toLowerCase().includes(search) ||
+          (p.statut && p.statut.toLowerCase().includes(search));
+
+        const matchCat = (cat === 'all') || (p.categorie === cat);
+        const matchVille = (ville === 'all') || (p.ville.toLowerCase().includes(ville.toLowerCase()));
+
+        return matchSearch && matchCat && matchVille;
+      });
+
+      renderRankingTable(filtered);
+    }
+
+    function renderTournoisGrid(tournois) {
+      const container = document.getElementById('tournoisGrid');
+      if (!container) return;
+
+      if (!tournois || tournois.length === 0) {
+        container.innerHTML = '<div class="col-span-3 text-center p-8 text-slate-400">Aucun tournoi enregistré.</div>';
+        return;
+      }
+
+      container.innerHTML = tournois.map(t => {
+        const isDone = t.statut === 'Terminé';
+        const statusBadge = isDone
+          ? '<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Terminé</span>'
+          : '<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-bold">À venir</span>';
+
+        const participantsList = Array.isArray(t.participants) ? t.participants : [];
+        const partBadges = participantsList.slice(0, 5).map(name => 
+          '<span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-medium">' + name + '</span>'
+        ).join(' ');
+
+        return '<div class="glass-card rounded-2xl p-4 border border-slate-200 hover:border-seteblue-400 shadow-2xs space-y-3 transition flex flex-col justify-between">' +
+          '<div class="space-y-2">' +
+            '<div class="flex items-center justify-between text-xs">' +
+              '<span class="font-bold text-slate-500">' + t.date + '</span>' +
+              statusBadge +
+            '</div>' +
+            '<h5 class="font-bold text-sm text-slate-900 leading-snug">' + t.nom + '</h5>' +
+            '<p class="text-xs text-seteblue-700 font-semibold flex items-center gap-1"><span>📍</span> ' + t.lieu + '</p>' +
+            (t.description ? '<p class="text-[11px] text-slate-600 line-clamp-2">' + t.description + '</p>' : '') +
+            (t.vainqueur && t.vainqueur !== '—' ? 
+              '<div class="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-900 font-semibold flex items-center gap-2">' +
+                '<span>🏆</span> <div>Vainqueur : <strong>' + t.vainqueur + '</strong></div>' +
+              '</div>' : '') +
+          '</div>' +
+          '<div class="border-t border-slate-100 pt-3 space-y-1.5">' +
+            '<div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Engagements (' + participantsList.length + ' jouteurs) :</div>' +
+            '<div class="flex flex-wrap gap-1">' + partBadges + (participantsList.length > 5 ? '<span class="text-[10px] text-slate-400 font-bold">+' + (participantsList.length - 5) + ' autres</span>' : '') + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    // Gestion de l'Importation de Programme
+    function handleProgramFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        pendingImportContent = evt.target.result;
+        const nameDisplay = document.getElementById('fileNameDisplay');
+        const statsDisplay = document.getElementById('fileStatsDisplay');
+        const previewInfo = document.getElementById('filePreviewInfo');
+        
+        if (nameDisplay) nameDisplay.textContent = file.name;
+        if (statsDisplay) {
+          statsDisplay.textContent = (file.size / 1024).toFixed(1) + ' Ko • Prêt pour validation';
+        }
+        if (previewInfo) previewInfo.classList.remove('hidden');
+
+        showImportAlert('Fichier "' + file.name + '" prêt. Cliquez sur "Valider et Actualiser le Programme" pour appliquer.', 'info');
+      };
+      reader.readAsText(file);
+    }
+
+    function showImportAlert(msg, type) {
+      const box = document.getElementById('importAlertBox');
+      if (!box) return;
+      box.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-900', 'border-emerald-300', 'bg-rose-50', 'text-rose-900', 'border-rose-300', 'bg-blue-50', 'text-blue-900', 'border-blue-300');
+      
+      if (type === 'success') {
+        box.classList.add('bg-emerald-50', 'text-emerald-900', 'border-emerald-300');
+        box.innerHTML = '✅ ' + msg;
+      } else if (type === 'error') {
+        box.classList.add('bg-rose-50', 'text-rose-900', 'border-rose-300');
+        box.innerHTML = '❌ ' + msg;
+      } else {
+        box.classList.add('bg-blue-50', 'text-blue-900', 'border-blue-300');
+        box.innerHTML = 'ℹ️ ' + msg;
+      }
+    }
+
+    function validateAndApplyProgram() {
+      // Vérifie si un fichier ou du texte dans le textarea a été fourni
+      const pasteText = (document.getElementById('programPasteTextarea')?.value || '').trim();
+      const contentToParse = pendingImportContent || pasteText;
+
+      if (!contentToParse) {
+        showImportAlert('Veuillez d\'abord sélectionner un fichier ou coller une liste de participants dans la zone de texte.', 'error');
+        return;
+      }
+
+      try {
+        if (typeof parseImportedProgram !== 'function') {
+          throw new Error('Module d\'import non disponible.');
+        }
+
+        const parsed = parseImportedProgram(contentToParse);
+        currentChampData = parsed;
+        if (typeof saveChampionnatData === 'function') {
+          saveChampionnatData(currentChampData);
+        }
+
+        renderChampionnatUI();
+        showImportAlert('Programme validé avec succès ! ' + parsed.participants.length + ' jouteurs chargés. Vos données sont sauvegardées.', 'success');
+
+        // Réinitialiser les champs
+        pendingImportContent = null;
+        const textarea = document.getElementById('programPasteTextarea');
+        if (textarea) textarea.value = '';
+        const fileInput = document.getElementById('programFileInput');
+        if (fileInput) fileInput.value = '';
+        const previewInfo = document.getElementById('filePreviewInfo');
+        if (previewInfo) previewInfo.classList.add('hidden');
+
+        // Basculer automatiquement sur la vue classement après 1.2s
+        setTimeout(() => {
+          switchChampTab('classement');
+        }, 1200);
+
+      } catch (err) {
+        showImportAlert('Erreur lors de la validation : ' + err.message, 'error');
+      }
+    }
+
+    function downloadProgramTemplate() {
+      const template = {
+        saison: "2027",
+        derniereMiseAJour: "Nouveau programme officiel",
+        participants: [
+          {
+            nom: "Lucas Azaïs",
+            societe: "Lance Amicale Sétoise (LAS)",
+            ville: "Sète",
+            categorie: "Lourds",
+            points: 90,
+            victoires: 2,
+            passesGagnees: 18,
+            statut: "Tête de série",
+            historique: "Champion en titre."
+          },
+          {
+            nom: "Enzo Michel",
+            societe: "Société Nautique des Jouteurs Agathois (SNJA)",
+            ville: "Agde",
+            categorie: "Lourds",
+            points: 75,
+            victoires: 1,
+            passesGagnees: 15,
+            statut: "Finaliste",
+            historique: "Jouteur redouté."
+          }
+        ],
+        tournois: [
+          {
+            nom: "Grand Prix d'Ouverture",
+            date: "Dimanche 12 Juillet 2027",
+            lieu: "Sète - Cadre Royal",
+            categorie: "Lourds",
+            statut: "À venir",
+            vainqueur: "—",
+            finaliste: "—",
+            description: "Tournoi d'ouverture de la nouvelle saison.",
+            participants: ["Lucas Azaïs", "Enzo Michel"]
+          }
+        ]
+      };
+
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(template, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", "programme_joutes_modele.json");
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function downloadCurrentDataJSON() {
+      if (!currentChampData) return;
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentChampData, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute("href", dataStr);
+      a.setAttribute("download", "classement_joutes_sete_" + (currentChampData.saison || "2026") + ".json");
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function confirmResetProgram() {
+      if (confirm('Voulez-vous vraiment restaurer le programme et le classement officiel de la Saint-Louis 2026 ?')) {
+        if (typeof resetChampionnatData === 'function') {
+          currentChampData = resetChampionnatData();
+        } else if (typeof DEFAULT_CHAMPIONNAT_DATA !== 'undefined') {
+          currentChampData = JSON.parse(JSON.stringify(DEFAULT_CHAMPIONNAT_DATA));
+        }
+        renderChampionnatUI();
+        showImportAlert('Programme restauré au calendrier officiel 2026 avec succès.', 'success');
+        switchChampTab('classement');
+      }
+    }
+
+    // Initialisation automatique au chargement du DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      initChampionnatModule();
+    });
+</script>
+
+  <!-- Audio Player Principal & Widget Flottant Ambiance Saint-Louis -->
+  <audio id="saintLouisAudio" src="audio/hymne_saint_louis.mp3" preload="auto"></audio>
+
+  <!-- Widget Flottant -->
+  <div id="ambientAudioWidget" style="margin-bottom: env(safe-area-inset-bottom, 0px);" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 glass-card max-w-[calc(100vw-2rem)] px-3 sm:px-4 py-2 sm:py-2.5 rounded-full shadow-xl border border-slate-200/90 flex items-center gap-3 backdrop-blur-md hover:shadow-2xl transition">
+    <button onclick="toggleSaintLouisAudio()" id="widgetPlayBtn" class="w-8 h-8 rounded-full bg-gradient-to-r from-setered-600 to-amber-600 hover:scale-105 text-white flex items-center justify-center text-xs font-bold transition shadow cursor-pointer" title="Lancer / Mettre en pause la musique">
+      ▶
+    </button>
+    <div class="text-left hidden sm:block">
+      <div class="text-[11px] font-bold text-slate-800 leading-tight">Hymne des Joutes</div>
+      <div id="widgetStatus" class="text-[9px] text-slate-500">Cliquer pour lancer l'ambiance</div>
+    </div>
+    <span class="text-sm">🎺</span>
+  </div>
+</body>
+</html>
