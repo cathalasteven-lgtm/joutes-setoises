@@ -9,6 +9,9 @@
   <meta name="apple-mobile-web-app-title" content="Joutes Sète">
   <meta name="format-detection" content="telephone=no">
   <title>Les Joutes Sétoises - Guide Interactif, Règles & Galerie Officielle</title>
+    <!-- Leaflet CSS & JS pour Carte Interactive du Bassin de Thau -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
@@ -78,6 +81,22 @@
     .img-zoom:hover {
       transform: scale(1.03);
     }
+  
+    #mapBassinThau {
+      height: 440px;
+      width: 100%;
+      border-radius: 1.25rem;
+      z-index: 10;
+    }
+    .leaflet-popup-content-wrapper {
+      border-radius: 1rem;
+      padding: 0.25rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+    }
+    .leaflet-container {
+      font-family: 'Outfit', sans-serif;
+    }
+
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-setered-500 selection:text-white">
@@ -98,7 +117,10 @@
         <a href="#direct" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 transition text-xs font-bold flex items-center gap-1.5 border border-rose-200">
           <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span> Suivre en Direct
         </a>
-        <a href="#championnat" class="hover:text-amber-700 transition flex items-center gap-1 font-semibold text-amber-700 text-xs">
+                <a href="#annuaire" class="hover:text-emerald-700 transition flex items-center gap-1 font-semibold text-emerald-700 text-xs">
+          <span>🗺️</span> Annuaire & Carte Thau
+        </a>
+<a href="#championnat" class="hover:text-amber-700 transition flex items-center gap-1 font-semibold text-amber-700 text-xs">
           <span>🏆</span> Programme 2026
         </a>
         <a href="#galerie" class="hover:text-seteblue-700 transition flex items-center gap-1 font-semibold text-seteblue-700 text-xs">
@@ -140,7 +162,10 @@
         <span class="flex items-center gap-2"><span>🔴</span> Suivre les Joutes en Direct & Replay</span>
         <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
       </a>
-      <a href="#championnat" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-amber-50 text-amber-800 font-semibold text-sm transition">
+            <a href="#annuaire" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl bg-emerald-50 text-emerald-900 font-bold text-sm border border-emerald-200 transition">
+        <span>🗺️</span> Annuaire Nautique & Carte du Bassin de Thau
+      </a>
+<a href="#championnat" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-amber-50 text-amber-800 font-semibold text-sm transition">
         <span>🏆</span> Programme 2026, Vainqueur & Barème
       </a>
       <a href="#galerie" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-blue-50 text-seteblue-800 font-semibold text-sm transition">
@@ -1424,7 +1449,183 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
 
     
 
-  </main>
+  
+    <!-- SECTION ANNUAIRE & GUIDE NAUTIQUE DU BASSIN DE THAU -->
+    <section id="annuaire" class="space-y-8 pt-8 border-t border-slate-200">
+      
+      <!-- En-tête Annuaire -->
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-emerald-300/80 shadow-lg bg-gradient-to-br from-emerald-50/50 via-white to-cyan-50/30 space-y-4">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-emerald-200 pb-5">
+          <div class="space-y-1.5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold uppercase tracking-wider border border-emerald-200">
+              <span>🗺️</span> Guide Officiel & Expériences Nautiques du Bassin de Thau
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">
+              L'Annuaire Vivant de Sète & de la Lagune
+            </h2>
+            <p class="text-slate-600 text-xs sm:text-sm max-w-3xl leading-relaxed">
+              Explorez les meilleures activités nautiques, écoles de voile, balades en kayak au milieu des tables conchylicoles et dégustations d'huîtres à <strong>Sète</strong>, <strong>Bouzigues</strong>, <strong>Mèze</strong>, <strong>Frontignan</strong>, <strong>Balaruc-les-Bains</strong> et <strong>Marseillan</strong>.
+            </p>
+          </div>
+
+          <!-- Météo Marine & Conditions en Direct -->
+          <div class="p-3.5 rounded-2xl bg-slate-900 text-white text-xs space-y-1.5 shadow-md shrink-0 w-full md:w-auto">
+            <div class="flex items-center justify-between gap-3 text-[11px] font-bold text-emerald-400">
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Conditions Lagune & Mer</span>
+              <span>En direct</span>
+            </div>
+            <div class="text-xs text-slate-200 flex items-center gap-2">
+              <span>💨 Vent : <strong>Brise thermique 11 kts</strong></span>
+              <span>•</span>
+              <span>🌊 Eau : <strong>19°C</strong></span>
+            </div>
+            <div class="text-[10px] text-slate-400">
+              Plan d'eau calme • Idéal pour Kayak, Paddle & Voile
+            </div>
+          </div>
+        </div>
+
+        <!-- Moteur de Recherche & Filtres Multicritères -->
+        <div class="space-y-3 pt-2">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+            
+            <!-- Recherche textuelle -->
+            <div class="md:col-span-5 relative">
+              <input type="text" id="annuaireSearchInput" oninput="applyAnnuaireFilters()" placeholder="🔍 Rechercher une activité, prestataire, mot-clé..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-white shadow-2xs">
+            </div>
+
+            <!-- Filtre Commune -->
+            <div class="md:col-span-4">
+              <select id="annuaireVilleFilter" onchange="applyAnnuaireFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600 shadow-2xs">
+                <option value="all">📍 Tout le Bassin de Thau (Toutes Villes)</option>
+                <option value="sete">Sète (Cité Maritime & Canaux)</option>
+                <option value="bouzigues">Bouzigues (Berceau de l'Huître)</option>
+                <option value="meze">Mèze (Port & Voile Légère)</option>
+                <option value="frontignan">Frontignan Plage & Aresquiers</option>
+                <option value="balaruc">Balaruc-les-Bains (Criques & Détente)</option>
+                <option value="marseillan">Marseillan (Canal du Midi & Lagune)</option>
+              </select>
+            </div>
+
+            <!-- Compteur / Reset -->
+            <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-2">
+              <span id="annuaireCountBadge" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 font-bold text-xs text-emerald-800 shadow-2xs">
+                8 adresses trouvées
+              </span>
+              <button onclick="resetAnnuaireFilters()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
+                Effacer
+              </button>
+            </div>
+          </div>
+
+          <!-- Filtres Catégories sous forme de Chips horizontaux défilables -->
+          <div class="flex gap-2 items-center overflow-x-auto pb-2 no-scrollbar" id="annuaireCatChips">
+            <button onclick="setAnnuaireCategory('all')" id="catChip-all" class="annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow-xs transition flex items-center gap-1.5">
+              <span>✨</span> Toutes les activités
+            </button>
+            <button onclick="setAnnuaireCategory('location-bateau')" id="catChip-location-bateau" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>🛥️</span> Location Bateaux
+            </button>
+            <button onclick="setAnnuaireCategory('voile-glisse')" id="catChip-voile-glisse" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>⛵</span> Voile & Wingfoil
+            </button>
+            <button onclick="setAnnuaireCategory('kayak-paddle')" id="catChip-kayak-paddle" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>🛶</span> Kayak & Paddle
+            </button>
+            <button onclick="setAnnuaireCategory('croisiere-visite')" id="catChip-croisiere-visite" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>⚓</span> Sorties Mer & Canaux
+            </button>
+            <button onclick="setAnnuaireCategory('conchyliculture-terroir')" id="catChip-conchyliculture-terroir" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>🦪</span> Dégustation d'Huîtres & Mas
+            </button>
+            <button onclick="setAnnuaireCategory('peche')" id="catChip-peche" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>🎣</span> Pêche Sportive
+            </button>
+          </div>
+        </div>
+
+        <!-- Carte Interactive Leaflet -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
+            <span class="flex items-center gap-1.5">
+              <span>📍</span> Cliquez sur un repère pour voir la fiche ou naviguez sur le plan
+            </span>
+            <span class="text-[11px] text-slate-400">Cartographie OpenStreetMap • Sans frais d'API</span>
+          </div>
+          <div id="mapBassinThau" class="shadow-inner border border-slate-200"></div>
+        </div>
+
+        <!-- Grille des Fiches Prestataires -->
+        <div class="space-y-3 pt-4">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif font-bold text-xl text-slate-900">Activités & Bonnes Adresses Recommandées</h3>
+            <span class="text-xs text-slate-500 font-medium">Classées par note & authenticité</span>
+          </div>
+
+          <div id="annuaireCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            <!-- Rempli dynamiquement en JS -->
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Modal Détail Prestataire -->
+    <div id="prestataireModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closePrestataireModal()">
+      <div class="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200" onclick="event.stopPropagation()">
+        <button onclick="closePrestataireModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center font-bold text-sm transition">✕</button>
+        
+        <div class="h-48 bg-slate-900 relative overflow-hidden">
+          <img id="modalPrestaImg" src="" alt="" class="w-full h-full object-cover opacity-85">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+          <div class="absolute bottom-4 left-6 right-6 text-white space-y-1">
+            <span id="modalPrestaBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-white"></span>
+            <h4 id="modalPrestaNom" class="text-2xl font-serif font-bold leading-tight"></h4>
+            <div id="modalPrestaVille" class="text-xs text-emerald-300 font-semibold"></div>
+          </div>
+        </div>
+
+        <div class="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-1.5 text-amber-500 font-bold text-sm">
+              <span>⭐</span> <span id="modalPrestaNote"></span> <span id="modalPrestaAvis" class="text-xs text-slate-400 font-normal"></span>
+            </div>
+            <div id="modalPrestaPrix" class="text-xs font-extrabold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200"></div>
+          </div>
+
+          <div class="space-y-1">
+            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-400">Présentation de l'expérience :</h5>
+            <p id="modalPrestaDesc" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
+          </div>
+
+          <div class="space-y-1.5">
+            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-400">Points forts & Prestations :</h5>
+            <div id="modalPrestaPoints" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-2">
+            <div class="flex items-center gap-2 text-slate-700">
+              <span>📍</span> <span id="modalPrestaAdresse" class="font-medium"></span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-700">
+              <span>📞</span> <span id="modalPrestaTel" class="font-bold text-slate-900"></span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-2">
+            <a id="modalPrestaCallBtn" href="#" class="flex-1 py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold text-center shadow-md transition flex items-center justify-center gap-2">
+              <span>📞</span> Contacter / Réserver
+            </a>
+            <button onclick="closePrestataireModal()" class="py-3 px-4 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition">
+              Fermer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</main>
 
   <!-- Lightbox Modal pour les Photos -->
   <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeLightbox()">
@@ -1447,6 +1648,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
   </footer>
 
   <!-- Scripts -->
+  <script src="annuaire-data.js"></script>
   <script src="championnat-data.js"></script>
   <script src="quiz-data.js"></script>
   <script>
@@ -2460,6 +2662,205 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     // Initialisation automatique au chargement du DOM
     document.addEventListener('DOMContentLoaded', () => {
       initChampionnatModule();
+    });
+
+    // ========================================================
+    // LOGIQUE DE L'ANNUAIRE & CARTE DU BASSIN DE THAU
+    // ========================================================
+    let thauMap = null;
+    let thauMarkers = [];
+    let currentAnnuaireCategory = 'all';
+
+    function initAnnuaireModule() {
+      if (typeof ANNUAIRE_DATA === 'undefined') {
+        console.warn('Données annuaire non trouvées.');
+        return;
+      }
+      initThauMap();
+      renderAnnuaireCards(ANNUAIRE_DATA.prestataires);
+    }
+
+    function initThauMap() {
+      const mapElem = document.getElementById('mapBassinThau');
+      if (!mapElem || typeof L === 'undefined') return;
+
+      // Centrage sur le Bassin de Thau (entre Sète, Bouzigues et Mèze)
+      thauMap = L.map('mapBassinThau', {
+        scrollWheelZoom: false
+      }).setView([43.432, 3.665], 11);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap contributeurs'
+      }).addTo(thauMap);
+
+      updateMapMarkers(ANNUAIRE_DATA.prestataires);
+    }
+
+    function updateMapMarkers(prestataires) {
+      if (!thauMap || typeof L === 'undefined') return;
+
+      // Nettoyer anciens marqueurs
+      thauMarkers.forEach(m => thauMap.removeLayer(m));
+      thauMarkers = [];
+
+      prestataires.forEach(p => {
+        const marker = L.marker([p.lat, p.lng]).addTo(thauMap);
+        
+        const popupContent = document.createElement('div');
+        popupContent.className = 'p-1 space-y-1.5 text-slate-800';
+        popupContent.innerHTML = 
+          '<div class="font-serif font-bold text-sm text-slate-900 leading-tight">' + p.nom + '</div>' +
+          '<div class="text-[11px] font-semibold text-emerald-700">📍 ' + p.villeNom + ' • ' + p.categorieNom + '</div>' +
+          '<div class="text-[11px] text-slate-600 font-medium">' + p.prix + '</div>' +
+          '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="mt-1 w-full py-1 px-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] transition text-center">' +
+            'Voir la fiche complète ↗' +
+          '</button>';
+
+        marker.bindPopup(popupContent);
+        marker.prestataireId = p.id;
+        thauMarkers.push(marker);
+      });
+    }
+
+    function renderAnnuaireCards(list) {
+      const grid = document.getElementById('annuaireCardsGrid');
+      const badge = document.getElementById('annuaireCountBadge');
+      if (!grid) return;
+
+      if (badge) {
+        badge.textContent = list.length + ' adresse' + (list.length > 1 ? 's trouvées' : ' trouvée');
+      }
+
+      if (!list || list.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center p-10 bg-white rounded-2xl border border-slate-200 text-slate-400">Aucune activité ne correspond à vos filtres. Essayez d\'élargir votre recherche.</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(p => {
+        return '<div class="glass-card rounded-2xl overflow-hidden border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition flex flex-col justify-between group">' +
+          '<div>' +
+            '<div class="h-40 bg-slate-900 relative overflow-hidden">' +
+              '<img src="' + p.image + '" alt="' + p.nom + '" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">' +
+              '<div class="absolute top-3 left-3">' +
+                '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-600 text-white shadow-xs">' + p.badge + '</span>' +
+              '</div>' +
+              '<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/70 text-white text-[11px] font-bold flex items-center gap-1">' +
+                '<span>⭐</span> ' + p.note +
+              '</div>' +
+            '</div>' +
+            '<div class="p-4 space-y-2">' +
+              '<div class="flex items-center justify-between text-[11px] text-slate-500 font-semibold">' +
+                '<span class="text-emerald-700">📍 ' + p.villeNom + '</span>' +
+                '<span>' + p.categorieNom + '</span>' +
+              '</div>' +
+              '<h4 class="font-serif font-bold text-base text-slate-900 leading-snug group-hover:text-emerald-800 transition">' + p.nom + '</h4>' +
+              '<p class="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">' + p.description + '</p>' +
+              '<div class="text-[11px] font-extrabold text-slate-900 bg-emerald-50/80 p-2 rounded-lg border border-emerald-100">' +
+                p.prix +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="p-4 pt-0 border-t border-slate-100 mt-2 flex items-center gap-2">' +
+            '<button onclick="focusOnMap(\'' + p.id + '\')" class="p-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold transition" title="Situer sur la carte">' +
+              '📍' +
+            '</button>' +
+            '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="flex-1 py-2 px-3 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-bold text-xs transition text-center shadow-xs">' +
+              'Fiche détaillée ↗' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function setAnnuaireCategory(catId) {
+      currentAnnuaireCategory = catId;
+      document.querySelectorAll('.annuaire-chip').forEach(btn => {
+        btn.className = "annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5";
+      });
+      const activeBtn = document.getElementById('catChip-' + catId);
+      if (activeBtn) {
+        activeBtn.className = "annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow-xs transition flex items-center gap-1.5";
+      }
+      applyAnnuaireFilters();
+    }
+
+    function applyAnnuaireFilters() {
+      if (typeof ANNUAIRE_DATA === 'undefined') return;
+      const search = (document.getElementById('annuaireSearchInput')?.value || '').toLowerCase().trim();
+      const ville = document.getElementById('annuaireVilleFilter')?.value || 'all';
+
+      const filtered = ANNUAIRE_DATA.prestataires.filter(p => {
+        const matchSearch = !search ||
+          p.nom.toLowerCase().includes(search) ||
+          p.description.toLowerCase().includes(search) ||
+          p.villeNom.toLowerCase().includes(search) ||
+          p.categorieNom.toLowerCase().includes(search);
+
+        const matchCat = (currentAnnuaireCategory === 'all') || (p.categorie === currentAnnuaireCategory);
+        const matchVille = (ville === 'all') || (p.ville === ville);
+
+        return matchSearch && matchCat && matchVille;
+      });
+
+      renderAnnuaireCards(filtered);
+      updateMapMarkers(filtered);
+    }
+
+    function resetAnnuaireFilters() {
+      const searchInput = document.getElementById('annuaireSearchInput');
+      const villeSelect = document.getElementById('annuaireVilleFilter');
+      if (searchInput) searchInput.value = '';
+      if (villeSelect) villeSelect.value = 'all';
+      setAnnuaireCategory('all');
+    }
+
+    function focusOnMap(prestaId) {
+      const presta = (ANNUAIRE_DATA?.prestataires || []).find(p => p.id === prestaId);
+      if (!presta || !thauMap) return;
+
+      document.getElementById('mapBassinThau')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      thauMap.setView([presta.lat, presta.lng], 14, { animate: true });
+
+      const targetMarker = thauMarkers.find(m => m.prestataireId === prestaId);
+      if (targetMarker) {
+        setTimeout(() => targetMarker.openPopup(), 400);
+      }
+    }
+
+    function openPrestataireModal(prestaId) {
+      const p = (ANNUAIRE_DATA?.prestataires || []).find(item => item.id === prestaId);
+      if (!p) return;
+
+      document.getElementById('modalPrestaNom').textContent = p.nom;
+      document.getElementById('modalPrestaBadge').textContent = p.badge;
+      document.getElementById('modalPrestaVille').textContent = '📍 ' + p.villeNom + ' • ' + p.categorieNom;
+      document.getElementById('modalPrestaImg').src = p.image;
+      document.getElementById('modalPrestaNote').textContent = p.note;
+      document.getElementById('modalPrestaAvis').textContent = '(' + p.avisCount + ' avis vérifiés)';
+      document.getElementById('modalPrestaPrix').textContent = p.prix;
+      document.getElementById('modalPrestaDesc').textContent = p.description;
+      document.getElementById('modalPrestaAdresse').textContent = p.adresse;
+      document.getElementById('modalPrestaTel').textContent = p.telephone;
+      document.getElementById('modalPrestaCallBtn').href = 'tel:' + p.telephone.replace(/\s+/g, '');
+
+      const pointsContainer = document.getElementById('modalPrestaPoints');
+      if (pointsContainer) {
+        pointsContainer.innerHTML = (p.pointsForts || []).map(pt => 
+          '<span class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200 text-xs font-semibold">✓ ' + pt + '</span>'
+        ).join('');
+      }
+
+      document.getElementById('prestataireModal')?.classList.remove('hidden');
+    }
+
+    function closePrestataireModal() {
+      document.getElementById('prestataireModal')?.classList.add('hidden');
+    }
+
+    // Lancement au chargement du DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      initAnnuaireModule();
     });
 </script>
 
