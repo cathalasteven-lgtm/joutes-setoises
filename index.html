@@ -1450,99 +1450,96 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     
 
   
-    <!-- SECTION ANNUAIRE & GUIDE NAUTIQUE DU BASSIN DE THAU -->
+    <!-- SECTION LE GUIDE OFFICIEL DE SÈTE & SES CANAUX -->
     <section id="annuaire" class="space-y-8 pt-8 border-t border-slate-200">
       
-      <!-- En-tête Annuaire -->
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-emerald-300/80 shadow-lg bg-gradient-to-br from-emerald-50/50 via-white to-cyan-50/30 space-y-4">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-emerald-200 pb-5">
-          <div class="space-y-1.5">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold uppercase tracking-wider border border-emerald-200">
-              <span>🗺️</span> Guide Officiel & Expériences Nautiques du Bassin de Thau
+      <!-- Présentation Immersive : Sète et ses Canaux -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border-2 border-seteblue-300 shadow-xl bg-gradient-to-br from-seteblue-50/50 via-white to-cyan-50/40 space-y-6">
+        
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-seteblue-200 pb-6">
+          <div class="space-y-2 max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seteblue-100 text-seteblue-900 text-xs font-bold uppercase tracking-wider border border-seteblue-200">
+              <span>⚓</span> leguidedesete.fr • Guide Officiel
             </div>
-            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">
-              L'Annuaire Vivant de Sète & de la Lagune
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 leading-tight">
+              Sète & Ses Canaux au Fil de l'Eau
             </h2>
-            <p class="text-slate-600 text-xs sm:text-sm max-w-3xl leading-relaxed">
-              Explorez les meilleures activités nautiques, écoles de voile, balades en kayak au milieu des tables conchylicoles et dégustations d'huîtres à <strong>Sète</strong>, <strong>Bouzigues</strong>, <strong>Mèze</strong>, <strong>Frontignan</strong>, <strong>Balaruc-les-Bains</strong> et <strong>Marseillan</strong>.
+            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+              Surnommée la <em>Venise du Languedoc</em>, <strong>Sète</strong> est une île singulière sculptée par la mer et la lagune. Du mythique <strong>Cadre Royal</strong> où s'affrontent les jouteurs jusqu'aux ruelles poétiques de la <strong>Pointe Courte</strong>, découvrez tous les établissements, activités maritimes et bonnes adresses répertoriés <strong>par secteur et par ordre alphabétique</strong>.
             </p>
           </div>
 
-          <!-- Météo Marine & Conditions en Direct -->
-          <div class="p-3.5 rounded-2xl bg-slate-900 text-white text-xs space-y-1.5 shadow-md shrink-0 w-full md:w-auto">
-            <div class="flex items-center justify-between gap-3 text-[11px] font-bold text-emerald-400">
-              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Conditions Lagune & Mer</span>
-              <span>En direct</span>
+          <!-- Météo Marine & Conditions Canaux -->
+          <div class="p-4 rounded-2xl bg-slate-900 text-white text-xs space-y-2 shadow-lg shrink-0 w-full md:w-auto border border-slate-800">
+            <div class="flex items-center justify-between gap-3 text-xs font-bold text-cyan-400">
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Conditions Canaux & Mer</span>
+              <span class="text-[10px] text-slate-400">En direct</span>
             </div>
             <div class="text-xs text-slate-200 flex items-center gap-2">
-              <span>💨 Vent : <strong>Brise thermique 11 kts</strong></span>
+              <span>💨 Vent : <strong>Brise marine 11 kts</strong></span>
               <span>•</span>
               <span>🌊 Eau : <strong>19°C</strong></span>
             </div>
             <div class="text-[10px] text-slate-400">
-              Plan d'eau calme • Idéal pour Kayak, Paddle & Voile
+              Navigation fluide sous les ponts levants
             </div>
           </div>
         </div>
 
-        <!-- Moteur de Recherche & Filtres Multicritères -->
-        <div class="space-y-3 pt-2">
+        <!-- Moteur de Recherche, Secteurs Sétois & Tri Alphabétique -->
+        <div class="space-y-4 pt-2">
           <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
             
             <!-- Recherche textuelle -->
             <div class="md:col-span-5 relative">
-              <input type="text" id="annuaireSearchInput" oninput="applyAnnuaireFilters()" placeholder="🔍 Rechercher une activité, prestataire, mot-clé..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-white shadow-2xs">
+              <input type="text" id="annuaireSearchInput" oninput="applyAnnuaireFilters()" placeholder="🔍 Rechercher un établissement, une activité à Sète..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-seteblue-600 bg-white shadow-2xs">
             </div>
 
-            <!-- Filtre Commune -->
+            <!-- Filtre par Secteur de Sète (Plus de communes extérieures) -->
             <div class="md:col-span-4">
-              <select id="annuaireVilleFilter" onchange="applyAnnuaireFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-600 shadow-2xs">
-                <option value="all">📍 Tout le Bassin de Thau (Toutes Villes)</option>
-                <option value="sete">Sète (Cité Maritime & Canaux)</option>
-                <option value="bouzigues">Bouzigues (Berceau de l'Huître)</option>
-                <option value="meze">Mèze (Port & Voile Légère)</option>
-                <option value="frontignan">Frontignan Plage & Aresquiers</option>
-                <option value="balaruc">Balaruc-les-Bains (Criques & Détente)</option>
-                <option value="marseillan">Marseillan (Canal du Midi & Lagune)</option>
+              <select id="annuaireSecteurFilter" onchange="applyAnnuaireFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-seteblue-600 shadow-2xs">
+                <option value="all">📍 Tous les Secteurs de Sète</option>
+                <option value="canaux-centre">Canaux Historiques & Cadre Royal</option>
+                <option value="pointe-courte">La Pointe Courte & Quartier des Pêcheurs</option>
+                <option value="port-mole">Vieux Port, Criée & Môle Saint-Louis</option>
+                <option value="plages-corniche">Plages du Lido, Corniche & Quilles</option>
+                <option value="mont-clair">Mont Saint-Clair & Théâtre de la Mer</option>
+                <option value="lagune-rives">Rives de l'Étang de Thau & Parcs</option>
               </select>
             </div>
 
-            <!-- Compteur / Reset -->
-            <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-2">
-              <span id="annuaireCountBadge" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 font-bold text-xs text-emerald-800 shadow-2xs">
-                30 adresses sur le Bassin
-              </span>
-              <button onclick="openReferencementModal()" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
-                <span>➕</span> Référencer mon activité
-              </button>
-              <button onclick="resetAnnuaireFilters()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
-                Effacer
-              </button>
+            <!-- Tri Alphabétique / Pertinence -->
+            <div class="md:col-span-3">
+              <select id="annuaireSortFilter" onchange="applyAnnuaireFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-seteblue-800 bg-white focus:outline-none focus:ring-2 focus:ring-seteblue-600 shadow-2xs">
+                <option value="alpha-asc">🔤 Ordre Alphabétique (A ➔ Z)</option>
+                <option value="alpha-desc">🔤 Ordre Alphabétique (Z ➔ A)</option>
+                <option value="note">⭐ Avis & Note Clients</option>
+              </select>
             </div>
           </div>
 
           <!-- Filtres Catégories sous forme de Chips horizontaux défilables -->
           <div class="flex gap-2 items-center overflow-x-auto pb-2 no-scrollbar" id="annuaireCatChips">
-            <button onclick="setAnnuaireCategory('all')" id="catChip-all" class="annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow-xs transition flex items-center gap-1.5">
+            <button onclick="setAnnuaireCategory('all')" id="catChip-all" class="annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-seteblue-700 text-white shadow-xs transition flex items-center gap-1.5">
               <span>✨</span> Toutes les activités
+            </button>
+            <button onclick="setAnnuaireCategory('canaux-croisiere')" id="catChip-canaux-croisiere" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>⚓</span> Canaux & Mer
             </button>
             <button onclick="setAnnuaireCategory('location-bateau')" id="catChip-location-bateau" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
               <span>🛥️</span> Location Bateaux
             </button>
             <button onclick="setAnnuaireCategory('voile-glisse')" id="catChip-voile-glisse" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>⛵</span> Voile & Wingfoil
+              <span>⛵</span> Voile & Glisse
             </button>
             <button onclick="setAnnuaireCategory('kayak-paddle')" id="catChip-kayak-paddle" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
               <span>🛶</span> Kayak & Paddle
             </button>
-            <button onclick="setAnnuaireCategory('croisiere-visite')" id="catChip-croisiere-visite" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>⚓</span> Sorties Mer & Canaux
-            </button>
-            <button onclick="setAnnuaireCategory('conchyliculture-terroir')" id="catChip-conchyliculture-terroir" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>🦪</span> Dégustation d'Huîtres & Mas
+            <button onclick="setAnnuaireCategory('terroir-halles')" id="catChip-terroir-halles" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>🦪</span> Tielles & Gastronomie
             </button>
             <button onclick="setAnnuaireCategory('peche')" id="catChip-peche" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>🎣</span> Pêche Sportive
+              <span>🎣</span> Pêche
             </button>
             <button onclick="setAnnuaireCategory('plongee-nature')" id="catChip-plongee-nature" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
               <span>🤿</span> Plongée & Nature
@@ -1550,22 +1547,32 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
           </div>
         </div>
 
-        <!-- Carte Interactive Leaflet -->
+        <!-- Carte Interactive Leaflet centrée sur Sète et ses canaux -->
         <div class="space-y-2">
           <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
             <span class="flex items-center gap-1.5">
-              <span>📍</span> Cliquez sur un repère pour voir la fiche ou naviguez sur le plan
+              <span>📍</span> Carte détaillée de Sète et ses canaux (cliquez sur un repère pour voir la fiche)
             </span>
-            <span class="text-[11px] text-slate-400">Cartographie OpenStreetMap • Sans frais d'API</span>
+            <span class="text-[11px] text-slate-400">Cartographie OpenStreetMap • Sète</span>
           </div>
           <div id="mapBassinThau" class="shadow-inner border border-slate-200"></div>
         </div>
 
-        <!-- Grille des Fiches Prestataires -->
-        <div class="space-y-3 pt-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-serif font-bold text-xl text-slate-900">Activités & Bonnes Adresses Recommandées</h3>
-            <span class="text-xs text-slate-500 font-medium">Classées par note & authenticité</span>
+        <!-- Répertoire Général : Toutes les Fiches en Bas par Secteur & Ordre Alphabétique -->
+        <div class="space-y-3 pt-4 border-t border-slate-200">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="font-serif font-bold text-2xl text-slate-900">Le Répertoire Général des Établissements Sétois</h3>
+              <p class="text-xs text-slate-500">Tous les établissements classés par secteur et par ordre alphabétique</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="annuaireCountBadge" class="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 font-bold text-xs text-seteblue-800 shadow-2xs">
+                20 adresses répertoriées
+              </span>
+              <button onclick="openReferencementModal()" class="px-3.5 py-1.5 rounded-xl bg-seteblue-700 hover:bg-seteblue-800 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+                <span>➕</span> Référencer mon établissement
+              </button>
+            </div>
           </div>
 
           <div id="annuaireCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -2752,13 +2759,10 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     });
 
     // ========================================================
-    // LOGIQUE DE L'ANNUAIRE & CARTE DU BASSIN DE THAU
-    // ========================================================
+    // LOGIQUE DU GUIDE DE SÈTE & SES CANAUX (PAR SECTEUR ET ORDRE ALPHABÉTIQUE)
     let thauMap = null;
     let thauMarkers = [];
     let currentAnnuaireCategory = 'all';
-    let annuaireDisplayLimit = 8;
-    let currentFilteredList = [];
 
     function initAnnuaireModule() {
       if (typeof ANNUAIRE_DATA === 'undefined') {
@@ -2766,21 +2770,21 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
         return;
       }
       initThauMap();
-      renderAnnuaireCards(ANNUAIRE_DATA.prestataires);
+      applyAnnuaireFilters();
     }
 
     function initThauMap() {
       const mapElem = document.getElementById('mapBassinThau');
       if (!mapElem || typeof L === 'undefined') return;
 
-      // Centrage sur le Bassin de Thau (entre Sète, Bouzigues et Mèze)
+      // Centrage parfait sur les Canaux de Sète et le Mont Saint-Clair
       thauMap = L.map('mapBassinThau', {
         scrollWheelZoom: false
-      }).setView([43.432, 3.665], 11);
+      }).setView([43.4045, 3.6945], 13);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        attribution: '&copy; OpenStreetMap contributeurs'
+        attribution: '&copy; OpenStreetMap contributeurs • leguidedesete.fr'
       }).addTo(thauMap);
 
       updateMapMarkers(ANNUAIRE_DATA.prestataires);
@@ -2789,7 +2793,6 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     function updateMapMarkers(prestataires) {
       if (!thauMap || typeof L === 'undefined') return;
 
-      // Nettoyer anciens marqueurs
       thauMarkers.forEach(m => thauMap.removeLayer(m));
       thauMarkers = [];
 
@@ -2800,10 +2803,10 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
         popupContent.className = 'p-1 space-y-1.5 text-slate-800';
         popupContent.innerHTML = 
           '<div class="font-serif font-bold text-sm text-slate-900 leading-tight">' + p.nom + '</div>' +
-          '<div class="text-[11px] font-semibold text-emerald-700">📍 ' + p.villeNom + ' • ' + p.categorieNom + '</div>' +
+          '<div class="text-[11px] font-semibold text-seteblue-700">📍 ' + p.secteurNom + '</div>' +
           '<div class="text-[11px] text-slate-600 font-medium">' + p.prix + '</div>' +
-          '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="mt-1 w-full py-1 px-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] transition text-center">' +
-            'Voir la fiche complète ↗' +
+          '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="mt-1 w-full py-1.5 px-2 rounded-lg bg-seteblue-700 hover:bg-seteblue-800 text-white font-bold text-[10px] transition text-center">' +
+            'Consulter la fiche complète ↗' +
           '</button>';
 
         marker.bindPopup(popupContent);
@@ -2813,60 +2816,43 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     }
 
     function renderAnnuaireCards(list) {
-      currentFilteredList = list || [];
       const grid = document.getElementById('annuaireCardsGrid');
       const badge = document.getElementById('annuaireCountBadge');
-      const voirPlusBox = document.getElementById('voirPlusContainer');
-      const remainingDisplay = document.getElementById('remainingCountDisplay');
       if (!grid) return;
 
-      const totalMatches = currentFilteredList.length;
-
       if (badge) {
-        badge.textContent = totalMatches + ' adresse' + (totalMatches > 1 ? 's trouvées' : ' trouvée');
+        badge.textContent = list.length + ' établissement' + (list.length > 1 ? 's répertoriés' : ' répertorié');
       }
 
-      if (!currentFilteredList || currentFilteredList.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center p-10 bg-white rounded-2xl border border-slate-200 text-slate-400 font-medium">Aucune activité ne correspond à vos filtres. Essayez de réinitialiser la recherche.</div>';
-        if (voirPlusBox) voirPlusBox.classList.add('hidden');
+      if (!list || list.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center p-12 bg-white rounded-2xl border border-slate-200 text-slate-400 font-medium">Aucun établissement ne correspond à vos critères dans ce secteur.</div>';
         return;
       }
 
-      const visibleList = currentFilteredList.slice(0, annuaireDisplayLimit);
-      const remaining = totalMatches - visibleList.length;
-
-      if (voirPlusBox) {
-        if (remaining > 0) {
-          voirPlusBox.classList.remove('hidden');
-          if (remainingDisplay) remainingDisplay.textContent = remaining;
-        } else {
-          voirPlusBox.classList.add('hidden');
-        }
-      }
-
-      grid.innerHTML = visibleList.map(p => {
-        return '<div onclick="openPrestataireModal(\'' + p.id + '\')" class="cursor-pointer glass-card rounded-2xl overflow-hidden border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">' +
+      // Affichage de toutes les fiches en forme de fiches complètes cliquables
+      grid.innerHTML = list.map(p => {
+        return '<div onclick="openPrestataireModal(\'' + p.id + '\')" class="cursor-pointer glass-card rounded-2xl overflow-hidden border border-slate-200 hover:border-seteblue-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1 bg-white">' +
           '<div>' +
             '<div class="h-44 bg-slate-900 relative overflow-hidden">' +
               '<img src="' + p.image + '" alt="' + p.nom + '" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">' +
-              '<div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>' +
+              '<div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent"></div>' +
               '<div class="absolute top-3 left-3">' +
-                '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-600 text-white shadow-xs">' + p.badge + '</span>' +
+                '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-seteblue-700 text-white shadow-xs">' + p.badge + '</span>' +
               '</div>' +
               '<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/75 text-white text-[11px] font-bold flex items-center gap-1 backdrop-blur-xs">' +
-                '<span>⭐</span> ' + p.note +
+                '<span>⭐</span> ' + p.note + ' <span class="text-[9px] text-slate-300 font-normal">(' + p.avisCount + ')</span>' +
               '</div>' +
             '</div>' +
             '<div class="p-4 space-y-2">' +
               '<div class="flex items-center justify-between text-[11px] text-slate-500 font-semibold">' +
-                '<span class="text-emerald-700 font-bold">📍 ' + p.villeNom + '</span>' +
-                '<span>' + p.categorieNom + '</span>' +
+                '<span class="text-seteblue-700 font-bold">📍 ' + p.secteurNom + '</span>' +
+                '<span class="text-slate-400">' + p.categorieNom + '</span>' +
               '</div>' +
-              '<h4 class="font-serif font-bold text-base text-slate-900 leading-snug group-hover:text-emerald-800 transition">' + p.nom + '</h4>' +
+              '<h4 class="font-serif font-bold text-base text-slate-900 leading-snug group-hover:text-seteblue-700 transition">' + p.nom + '</h4>' +
               '<p class="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">' + p.description + '</p>' +
-              '<div class="text-[11px] font-extrabold text-slate-900 bg-emerald-50/80 p-2 rounded-lg border border-emerald-100 flex items-center justify-between">' +
+              '<div class="text-[11px] font-extrabold text-slate-900 bg-seteblue-50/70 p-2.5 rounded-xl border border-seteblue-100 flex items-center justify-between">' +
                 '<span>' + p.prix + '</span>' +
-                '<span class="text-[10px] text-emerald-700 font-bold">Voir détails ↗</span>' +
+                '<span class="text-[10px] text-seteblue-700 font-bold">Voir fiche ↗</span>' +
               '</div>' +
             '</div>' +
           '</div>' +
@@ -2874,51 +2860,12 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
             '<button onclick="focusOnMap(\'' + p.id + '\')" class="p-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold transition" title="Situer sur la carte">' +
               '📍' +
             '</button>' +
-            '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="flex-1 py-2 px-3 rounded-xl bg-slate-900 hover:bg-emerald-700 text-white font-bold text-xs transition text-center shadow-xs">' +
-              'Fiche détaillée ↗' +
+            '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="flex-1 py-2 px-3 rounded-xl bg-slate-900 hover:bg-seteblue-700 text-white font-bold text-xs transition text-center shadow-xs">' +
+              'Consulter la fiche ↗' +
             '</button>' +
           '</div>' +
         '</div>';
       }).join('');
-    }
-
-    function loadMoreAnnuaireCards() {
-      annuaireDisplayLimit += 8;
-      renderAnnuaireCards(currentFilteredList);
-    }
-
-    function showAllAnnuaireCards() {
-      annuaireDisplayLimit = currentFilteredList.length;
-      renderAnnuaireCards(currentFilteredList);
-    }
-
-    function openReferencementModal() {
-      document.getElementById('referencementModal')?.classList.remove('hidden');
-    }
-
-    function closeReferencementModal() {
-      document.getElementById('referencementModal')?.classList.add('hidden');
-    }
-
-    function submitReferencement(e) {
-      e.preventDefault();
-      const nom = document.getElementById('refNom')?.value;
-      const ville = document.getElementById('refVille')?.value;
-      const cat = document.getElementById('refCat')?.value;
-      const tel = document.getElementById('refTel')?.value;
-      const feedback = document.getElementById('refFeedback');
-
-      if (feedback) {
-        feedback.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-900 border border-emerald-300";
-        feedback.textContent = 'Merci ! Votre demande pour "' + nom + '" (' + ville + ') a bien été enregistrée. Elle sera vérifiée sous 24h.';
-        feedback.classList.remove('hidden');
-      }
-
-      setTimeout(() => {
-        closeReferencementModal();
-        if (feedback) feedback.classList.add('hidden');
-        document.getElementById('referencementForm')?.reset();
-      }, 2500);
     }
 
     function setAnnuaireCategory(catId) {
@@ -2928,7 +2875,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
       });
       const activeBtn = document.getElementById('catChip-' + catId);
       if (activeBtn) {
-        activeBtn.className = "annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white shadow-xs transition flex items-center gap-1.5";
+        activeBtn.className = "annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-seteblue-700 text-white shadow-xs transition flex items-center gap-1.5";
       }
       applyAnnuaireFilters();
     }
@@ -2936,44 +2883,33 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     function applyAnnuaireFilters() {
       if (typeof ANNUAIRE_DATA === 'undefined') return;
       const search = (document.getElementById('annuaireSearchInput')?.value || '').toLowerCase().trim();
-      const ville = document.getElementById('annuaireVilleFilter')?.value || 'all';
+      const secteur = document.getElementById('annuaireSecteurFilter')?.value || 'all';
+      const sortBy = document.getElementById('annuaireSortFilter')?.value || 'alpha-asc';
 
-      const filtered = ANNUAIRE_DATA.prestataires.filter(p => {
+      let filtered = ANNUAIRE_DATA.prestataires.filter(p => {
         const matchSearch = !search ||
           p.nom.toLowerCase().includes(search) ||
           p.description.toLowerCase().includes(search) ||
-          p.villeNom.toLowerCase().includes(search) ||
+          p.secteurNom.toLowerCase().includes(search) ||
           p.categorieNom.toLowerCase().includes(search);
 
         const matchCat = (currentAnnuaireCategory === 'all') || (p.categorie === currentAnnuaireCategory);
-        const matchVille = (ville === 'all') || (p.ville === ville);
+        const matchSecteur = (secteur === 'all') || (p.secteur === secteur);
 
-        return matchSearch && matchCat && matchVille;
+        return matchSearch && matchCat && matchSecteur;
       });
+
+      // Tri par ordre alphabétique (par défaut) ou note
+      if (sortBy === 'alpha-asc') {
+        filtered.sort((a, b) => a.nom.localeCompare(b.nom, 'fr', { sensitivity: 'base' }));
+      } else if (sortBy === 'alpha-desc') {
+        filtered.sort((a, b) => b.nom.localeCompare(a.nom, 'fr', { sensitivity: 'base' }));
+      } else if (sortBy === 'note') {
+        filtered.sort((a, b) => b.note - a.note);
+      }
 
       renderAnnuaireCards(filtered);
       updateMapMarkers(filtered);
-    }
-
-    function resetAnnuaireFilters() {
-      const searchInput = document.getElementById('annuaireSearchInput');
-      const villeSelect = document.getElementById('annuaireVilleFilter');
-      if (searchInput) searchInput.value = '';
-      if (villeSelect) villeSelect.value = 'all';
-      setAnnuaireCategory('all');
-    }
-
-    function focusOnMap(prestaId) {
-      const presta = (ANNUAIRE_DATA?.prestataires || []).find(p => p.id === prestaId);
-      if (!presta || !thauMap) return;
-
-      document.getElementById('mapBassinThau')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      thauMap.setView([presta.lat, presta.lng], 14, { animate: true });
-
-      const targetMarker = thauMarkers.find(m => m.prestataireId === prestaId);
-      if (targetMarker) {
-        setTimeout(() => targetMarker.openPopup(), 400);
-      }
     }
 
     function openPrestataireModal(prestaId) {
