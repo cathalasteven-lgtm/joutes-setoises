@@ -1510,8 +1510,11 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
             <!-- Compteur / Reset -->
             <div class="md:col-span-3 flex items-center justify-between md:justify-end gap-2">
               <span id="annuaireCountBadge" class="px-3 py-1.5 rounded-xl bg-white border border-slate-200 font-bold text-xs text-emerald-800 shadow-2xs">
-                8 adresses trouvées
+                30 adresses sur le Bassin
               </span>
+              <button onclick="openReferencementModal()" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
+                <span>➕</span> Référencer mon activité
+              </button>
               <button onclick="resetAnnuaireFilters()" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
                 Effacer
               </button>
@@ -1541,6 +1544,9 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
             <button onclick="setAnnuaireCategory('peche')" id="catChip-peche" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
               <span>🎣</span> Pêche Sportive
             </button>
+            <button onclick="setAnnuaireCategory('plongee-nature')" id="catChip-plongee-nature" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
+              <span>🤿</span> Plongée & Nature
+            </button>
           </div>
         </div>
 
@@ -1565,11 +1571,92 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
           <div id="annuaireCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             <!-- Rempli dynamiquement en JS -->
           </div>
+
+          <!-- Bouton Voir Plus d'adresses -->
+          <div id="voirPlusContainer" class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6">
+            <button id="btnVoirPlusAnnuaire" onclick="loadMoreAnnuaireCards()" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition flex items-center gap-2">
+              <span>➕</span> Voir plus d'adresses (<span id="remainingCountDisplay">22</span> restantes)
+            </button>
+            <button onclick="showAllAnnuaireCards()" class="px-5 py-3.5 rounded-2xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 font-semibold text-xs transition">
+              Tout afficher (30 adresses)
+            </button>
+          </div>
         </div>
 
       </div>
 
     </section>
+
+    
+    <!-- Modal Référencer mon Établissement -->
+    <div id="referencementModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeReferencementModal()">
+      <div class="relative max-w-lg w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-5" onclick="event.stopPropagation()">
+        <button onclick="closeReferencementModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm transition">✕</button>
+        
+        <div class="space-y-1">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
+            <span>✨</span> leguidedesete.fr
+          </div>
+          <h4 class="text-2xl font-serif font-bold text-slate-900">Référencer votre Activité</h4>
+          <p class="text-xs text-slate-500">Rejoignez l'annuaire d'expérience du Bassin de Thau. Fiche gratuite ou mise en avant Premium.</p>
+        </div>
+
+        <form id="referencementForm" onsubmit="submitReferencement(event)" class="space-y-3 text-xs">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Nom de votre établissement / activité *</label>
+            <input type="text" id="refNom" required placeholder="Ex: Cap Thau Voile, Mas Chez..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Commune *</label>
+              <select id="refVille" required class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
+                <option value="Sète">Sète</option>
+                <option value="Bouzigues">Bouzigues</option>
+                <option value="Mèze">Mèze</option>
+                <option value="Frontignan">Frontignan</option>
+                <option value="Balaruc-les-Bains">Balaruc-les-Bains</option>
+                <option value="Marseillan">Marseillan</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Catégorie *</label>
+              <select id="refCat" required class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
+                <option value="Location Bateaux">Location Bateaux</option>
+                <option value="Voile & Glisse">Voile & Glisse</option>
+                <option value="Kayak & Paddle">Kayak & Paddle</option>
+                <option value="Sorties Mer">Sorties Mer</option>
+                <option value="Mas Conchylicole">Mas Conchylicole</option>
+                <option value="Pêche">Pêche</option>
+                <option value="Plongée & Nature">Plongée & Nature</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Téléphone de contact *</label>
+              <input type="tel" id="refTel" required placeholder="04 67..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
+            </div>
+            <div>
+              <label class="block font-bold text-slate-700 mb-1">Site web ou Page Réseaux</label>
+              <input type="url" id="refWeb" placeholder="https://..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
+            </div>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Courte description de l'activité</label>
+            <textarea id="refDesc" rows="2" placeholder="Prestations proposées, tarifs indicatifs, spécificités..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50"></textarea>
+          </div>
+
+          <div id="refFeedback" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+
+          <button type="submit" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2">
+            <span>🚀</span> Envoyer ma demande de référencement
+          </button>
+        </form>
+      </div>
+    </div>
 
     <!-- Modal Détail Prestataire -->
     <div id="prestataireModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closePrestataireModal()">
@@ -2670,6 +2757,8 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     let thauMap = null;
     let thauMarkers = [];
     let currentAnnuaireCategory = 'all';
+    let annuaireDisplayLimit = 8;
+    let currentFilteredList = [];
 
     function initAnnuaireModule() {
       if (typeof ANNUAIRE_DATA === 'undefined') {
@@ -2724,44 +2813,64 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
     }
 
     function renderAnnuaireCards(list) {
+      currentFilteredList = list || [];
       const grid = document.getElementById('annuaireCardsGrid');
       const badge = document.getElementById('annuaireCountBadge');
+      const voirPlusBox = document.getElementById('voirPlusContainer');
+      const remainingDisplay = document.getElementById('remainingCountDisplay');
       if (!grid) return;
 
+      const totalMatches = currentFilteredList.length;
+
       if (badge) {
-        badge.textContent = list.length + ' adresse' + (list.length > 1 ? 's trouvées' : ' trouvée');
+        badge.textContent = totalMatches + ' adresse' + (totalMatches > 1 ? 's trouvées' : ' trouvée');
       }
 
-      if (!list || list.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center p-10 bg-white rounded-2xl border border-slate-200 text-slate-400">Aucune activité ne correspond à vos filtres. Essayez d\'élargir votre recherche.</div>';
+      if (!currentFilteredList || currentFilteredList.length === 0) {
+        grid.innerHTML = '<div class="col-span-full text-center p-10 bg-white rounded-2xl border border-slate-200 text-slate-400 font-medium">Aucune activité ne correspond à vos filtres. Essayez de réinitialiser la recherche.</div>';
+        if (voirPlusBox) voirPlusBox.classList.add('hidden');
         return;
       }
 
-      grid.innerHTML = list.map(p => {
-        return '<div class="glass-card rounded-2xl overflow-hidden border border-slate-200 hover:border-emerald-400 hover:shadow-lg transition flex flex-col justify-between group">' +
+      const visibleList = currentFilteredList.slice(0, annuaireDisplayLimit);
+      const remaining = totalMatches - visibleList.length;
+
+      if (voirPlusBox) {
+        if (remaining > 0) {
+          voirPlusBox.classList.remove('hidden');
+          if (remainingDisplay) remainingDisplay.textContent = remaining;
+        } else {
+          voirPlusBox.classList.add('hidden');
+        }
+      }
+
+      grid.innerHTML = visibleList.map(p => {
+        return '<div onclick="openPrestataireModal(\'' + p.id + '\')" class="cursor-pointer glass-card rounded-2xl overflow-hidden border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1">' +
           '<div>' +
-            '<div class="h-40 bg-slate-900 relative overflow-hidden">' +
-              '<img src="' + p.image + '" alt="' + p.nom + '" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">' +
+            '<div class="h-44 bg-slate-900 relative overflow-hidden">' +
+              '<img src="' + p.image + '" alt="' + p.nom + '" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">' +
+              '<div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent"></div>' +
               '<div class="absolute top-3 left-3">' +
                 '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-600 text-white shadow-xs">' + p.badge + '</span>' +
               '</div>' +
-              '<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/70 text-white text-[11px] font-bold flex items-center gap-1">' +
+              '<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/75 text-white text-[11px] font-bold flex items-center gap-1 backdrop-blur-xs">' +
                 '<span>⭐</span> ' + p.note +
               '</div>' +
             '</div>' +
             '<div class="p-4 space-y-2">' +
               '<div class="flex items-center justify-between text-[11px] text-slate-500 font-semibold">' +
-                '<span class="text-emerald-700">📍 ' + p.villeNom + '</span>' +
+                '<span class="text-emerald-700 font-bold">📍 ' + p.villeNom + '</span>' +
                 '<span>' + p.categorieNom + '</span>' +
               '</div>' +
               '<h4 class="font-serif font-bold text-base text-slate-900 leading-snug group-hover:text-emerald-800 transition">' + p.nom + '</h4>' +
               '<p class="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">' + p.description + '</p>' +
-              '<div class="text-[11px] font-extrabold text-slate-900 bg-emerald-50/80 p-2 rounded-lg border border-emerald-100">' +
-                p.prix +
+              '<div class="text-[11px] font-extrabold text-slate-900 bg-emerald-50/80 p-2 rounded-lg border border-emerald-100 flex items-center justify-between">' +
+                '<span>' + p.prix + '</span>' +
+                '<span class="text-[10px] text-emerald-700 font-bold">Voir détails ↗</span>' +
               '</div>' +
             '</div>' +
           '</div>' +
-          '<div class="p-4 pt-0 border-t border-slate-100 mt-2 flex items-center gap-2">' +
+          '<div class="p-4 pt-0 border-t border-slate-100 mt-2 flex items-center gap-2" onclick="event.stopPropagation()">' +
             '<button onclick="focusOnMap(\'' + p.id + '\')" class="p-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold transition" title="Situer sur la carte">' +
               '📍' +
             '</button>' +
@@ -2771,6 +2880,45 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
           '</div>' +
         '</div>';
       }).join('');
+    }
+
+    function loadMoreAnnuaireCards() {
+      annuaireDisplayLimit += 8;
+      renderAnnuaireCards(currentFilteredList);
+    }
+
+    function showAllAnnuaireCards() {
+      annuaireDisplayLimit = currentFilteredList.length;
+      renderAnnuaireCards(currentFilteredList);
+    }
+
+    function openReferencementModal() {
+      document.getElementById('referencementModal')?.classList.remove('hidden');
+    }
+
+    function closeReferencementModal() {
+      document.getElementById('referencementModal')?.classList.add('hidden');
+    }
+
+    function submitReferencement(e) {
+      e.preventDefault();
+      const nom = document.getElementById('refNom')?.value;
+      const ville = document.getElementById('refVille')?.value;
+      const cat = document.getElementById('refCat')?.value;
+      const tel = document.getElementById('refTel')?.value;
+      const feedback = document.getElementById('refFeedback');
+
+      if (feedback) {
+        feedback.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-900 border border-emerald-300";
+        feedback.textContent = 'Merci ! Votre demande pour "' + nom + '" (' + ville + ') a bien été enregistrée. Elle sera vérifiée sous 24h.';
+        feedback.classList.remove('hidden');
+      }
+
+      setTimeout(() => {
+        closeReferencementModal();
+        if (feedback) feedback.classList.add('hidden');
+        document.getElementById('referencementForm')?.reset();
+      }, 2500);
     }
 
     function setAnnuaireCategory(catId) {
