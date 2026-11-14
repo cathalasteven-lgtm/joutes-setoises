@@ -90,6 +90,27 @@
       transform: translateY(-4px);
     }
 
+    /* Scrollbar personnalisée élégante pour le conteneur des fiches */
+    .custom-activities-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: #0A84FF #F1EFEA;
+    }
+    .custom-activities-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .custom-activities-scrollbar::-webkit-scrollbar-track {
+      background: #F1EFEA;
+      border-radius: 9999px;
+    }
+    .custom-activities-scrollbar::-webkit-scrollbar-thumb {
+      background: #0A84FF;
+      border-radius: 9999px;
+      border: 1.5px solid #F1EFEA;
+    }
+    .custom-activities-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #0f2b48;
+    }
+
     /* Style spécifique pour la carte 2 en surbrillance orange comme dans l'image */
     .card-highlight {
       border: 2px solid #FF6B35 !important;
@@ -310,7 +331,7 @@
       <!-- ======================================== -->
       <!-- COLONNE GAUCHE : FILTRES (Même UI que mockup) -->
       <!-- ======================================== -->
-      <aside class="w-full lg:w-64 bg-[#F8F5EE] border border-[#EBE4D5] rounded-2xl p-5 shadow-xs space-y-6 shrink-0">
+      <aside class="w-full lg:w-64 lg:sticky lg:top-24 lg:self-start bg-[#F8F5EE] border border-[#EBE4D5] rounded-2xl p-5 shadow-xs space-y-6 shrink-0 max-h-[calc(100vh-7rem)] overflow-y-auto">
         
         <!-- En-tête Filtres -->
         <div class="flex items-center justify-between border-b border-[#EBE4D5] pb-3">
@@ -512,26 +533,40 @@
           </div>
         </div>
 
-        <!-- GRILLE DYNAMIQUE DES CARTES DU RÉPERTOIRE -->
-        <div id="activitiesGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
-          <!-- Rempli dynamiquement en JS -->
-        </div>
+<!-- CONTENEUR INDÉPENDANT À DÉFILEMENT INTERNE (MAX 8 FICHES VISIBLES À LA FOIS) -->
+        <div id="activitiesScrollBox" class="relative rounded-2xl bg-[#FCFAF6] border border-[#EBE4D5] p-3 sm:p-4 shadow-xs">
+          
+          <!-- Zone de défilement vertical avec scrollbar personnalisée -->
+          <div id="activitiesScrollableContainer" 
+               class="overflow-y-auto max-h-[720px] pr-2 sm:pr-3 space-y-4 custom-activities-scrollbar overscroll-contain">
+            
+            <!-- GRILLE DYNAMIQUE DES CARTES -->
+            <div id="activitiesGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
+              <!-- Rempli dynamiquement en JS -->
+            </div>
 
-        <!-- DÉROULEMENT INFINI & PROGRESSION DYNAMIQUE -->
-        <div id="infiniteScrollContainer" class="pt-6 flex flex-col items-center justify-center gap-3">
-          <div class="text-xs text-slate-500 font-medium">
-            Affichage de <span id="currentShowingCount" class="font-bold text-[#0f2b48]">8</span> sur <span id="totalShowingCount" class="font-bold text-[#0f2b48]">28</span> activités
+            <!-- Sentinelle pour infinite scroll interne -->
+            <div id="scrollSentinel" class="h-4"></div>
           </div>
-          <div class="w-full max-w-xs bg-slate-200/80 rounded-full h-1.5 overflow-hidden">
-            <div id="scrollProgressBar" class="bg-[#0A84FF] h-1.5 rounded-full transition-all duration-300" style="width: 28%"></div>
+
+          <!-- Ligne de délimitation basse et indicateur de progression -->
+          <div class="mt-3 pt-3 border-t border-[#EBE4D5] flex flex-wrap items-center justify-between gap-2 text-xs text-slate-500">
+            <span class="font-medium">
+              Affichage de <span id="currentShowingCount" class="font-bold text-[#0f2b48]">8</span> sur <span id="totalShowingCount" class="font-bold text-[#0f2b48]">28</span> activités
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-[11px] text-slate-400">Défilement interne</span>
+              <div class="w-28 sm:w-36 bg-slate-200 rounded-full h-1.5 overflow-hidden">
+                <div id="scrollProgressBar" class="bg-[#0A84FF] h-1.5 rounded-full transition-all duration-300" style="width: 28%"></div>
+              </div>
+            </div>
+            <button id="loadMoreBtn" onclick="loadMoreCards()" 
+                    class="px-3 py-1 rounded-full bg-[#0f2b48] hover:bg-[#0A84FF] text-white font-bold text-[11px] shadow-xs transition cursor-pointer">
+              <span>⭣ Dérouler la suite</span>
+            </button>
           </div>
-          <button id="loadMoreBtn" onclick="loadMoreCards()" 
-                  class="mt-2 px-6 py-2.5 rounded-full bg-[#0f2b48] hover:bg-[#0A84FF] text-white font-bold text-xs sm:text-sm shadow-xs transition-all duration-200 flex items-center gap-2 cursor-pointer">
-            <span>⭣ Dérouler les activités suivantes</span>
-            <span id="loadMoreRemaining" class="bg-white/20 px-2 py-0.5 rounded-full text-[10px] font-extrabold">+8</span>
-          </button>
+
         </div>
-        <div id="scrollSentinel" class="h-2"></div>
 
       </section>
 
@@ -1265,6 +1300,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
 
     function initInfiniteScrollObserver() {
       const sentinel = document.getElementById('scrollSentinel');
+      const rootElem = document.getElementById('activitiesScrollableContainer');
       if (!sentinel || typeof IntersectionObserver === 'undefined') return;
 
       scrollObserver = new IntersectionObserver((entries) => {
@@ -1273,7 +1309,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
             loadMoreCards();
           }
         });
-      }, { rootMargin: '200px' });
+      }, { root: rootElem || null, rootMargin: '150px' });
 
       scrollObserver.observe(sentinel);
     }
@@ -1407,11 +1443,17 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
       renderCurrentBatch();
       updateLeafletMarkers(currentFilteredList);
 
+      // Faire remonter immédiatement le conteneur interne des fiches tout en haut
+      const scrollBox = document.getElementById('activitiesScrollableContainer');
+      if (scrollBox) {
+        scrollBox.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
       if (scrollToTop) {
-        const gridElem = document.getElementById('activitiesGrid');
-        if (gridElem) {
-          const yOffset = -90;
-          const y = gridElem.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        const activitesSection = document.getElementById('activites');
+        if (activitesSection) {
+          const yOffset = -80;
+          const y = activitesSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }
@@ -1487,7 +1529,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
                 <div class="flex items-center justify-between text-[11px] font-semibold text-[#0A84FF]">
                   <span>${item.categorieNom}</span>
                 </div>
-                <h3 class="font-serif font-bold text-base sm:text-lg text-[#0f2b48] leading-snug line-clamp-1">
+                <h3 class="font-serif font-bold text-base sm:text-lg text-[#0f2b48] leading-snug line-clamp-2 min-h-[2.6rem]">
                   ${item.nom}
                 </h3>
                 <p class="text-xs text-slate-600 leading-relaxed line-clamp-2">
