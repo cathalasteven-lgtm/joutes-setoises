@@ -1805,7 +1805,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
                       <span>↻ Horaires & détails</span>
                     </button>
                   </div>
-                  <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" 
+                  <a href="${item.siteOfficiel || 'https://www.tf7nautic.fr/'}" target="_blank" rel="noopener noreferrer" 
                      class="px-3 py-1.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-[11px] shadow-xs transition inline-flex items-center gap-1 cursor-pointer">
                     <span>Voir le site officiel</span>
                     <span>↗</span>
@@ -1845,7 +1845,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
                     </div>
                     <div>
                       <span class="font-bold text-slate-800 text-[11px]">🌐 Site officiel :</span>
-                      <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#0A84FF] font-bold hover:underline ml-1">
+                      <a href="${item.siteOfficiel || 'https://www.tf7nautic.fr/'}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#0A84FF] font-bold hover:underline ml-1">
                         ${officialDomain} ↗
                       </a>
                     </div>
@@ -1879,7 +1879,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
                   </a>
 
                   <!-- Bouton Voir le site officiel -->
-                  <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" 
+                  <a href="${item.siteOfficiel || 'https://www.tf7nautic.fr/'}" target="_blank" rel="noopener noreferrer" 
                      class="px-2.5 py-1.5 rounded-xl bg-[#0f2b48] hover:bg-[#0A84FF] text-white font-bold text-[10px] sm:text-[11px] shadow-xs transition inline-flex items-center gap-1 cursor-pointer">
                     <span>Site officiel</span>
                     <span>↗</span>
@@ -1935,7 +1935,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
       document.getElementById('grandFormatTelLink').textContent = item.telephone;
       document.getElementById('grandFormatTelLink').href = 'tel:' + (item.telephoneClean || item.telephone.replace(/\s/g, ''));
       document.getElementById('grandFormatSiteName').textContent = item.siteOfficielNom || 'tf7nautic.fr';
-      document.getElementById('grandFormatSiteLink').href = item.siteOfficiel || 'https://www.tourisme-sete.com/';
+      document.getElementById('grandFormatSiteLink').href = item.siteOfficiel || 'https://www.tf7nautic.fr/';
 
       // Description complète
       document.getElementById('grandFormatDescComplete').textContent = item.descriptionComplete || item.description;
@@ -1972,7 +1972,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
               <p class="text-xs text-slate-600 mt-2 leading-relaxed">${f.desc}</p>
             </div>
             <div class="pt-3 mt-3 border-t border-slate-100 flex justify-end">
-              <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" 
+              <a href="${item.siteOfficiel || 'https://www.tf7nautic.fr/'}" target="_blank" rel="noopener noreferrer" 
                  class="px-3 py-1.5 rounded-xl bg-[#0f2b48] hover:bg-[#0A84FF] text-white font-bold text-[11px] shadow-xs transition flex items-center gap-1 cursor-pointer">
                 <span>📅 Choisir ce forfait</span>
                 <span>→</span>
@@ -2038,12 +2038,12 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
 
       const btnSitePill = document.getElementById('grandFormatBtnSitePill');
       if (btnSitePill) {
-        btnSitePill.href = item.siteOfficiel || 'https://www.tourisme-sete.com/';
+        btnSitePill.href = item.siteOfficiel || 'https://www.tf7nautic.fr/';
       }
 
       const btnActionMain = document.getElementById('grandFormatBtnActionMain');
       if (btnActionMain) {
-        btnActionMain.href = item.siteOfficiel || 'https://www.tourisme-sete.com/';
+        btnActionMain.href = item.siteOfficiel || 'https://www.tf7nautic.fr/';
       }
 
       // Bouton carte
@@ -2149,7 +2149,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
           <div class="p-1 space-y-1 text-slate-800">
             <div class="font-bold text-sm text-[#0f2b48]">${p.nom}</div>
             <div class="text-xs text-slate-600">${p.prix}</div>
-            <a href="${p.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" class="mt-1 block w-full py-1 px-2 rounded-lg bg-[#FF6B35] text-white font-bold text-xs text-center hover:bg-[#e05622]">
+            <a href="${p.siteOfficiel || 'https://www.tf7nautic.fr/'}" target="_blank" rel="noopener noreferrer" class="mt-1 block w-full py-1 px-2 rounded-lg bg-[#FF6B35] text-white font-bold text-xs text-center hover:bg-[#e05622]">
      Voir le site officiel ↗
    </a>
           </div>

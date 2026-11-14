@@ -71,7 +71,7 @@ const ANNUAIRE_DATA = {
   "prestataires": [
     {
       "id": "sortie-voilier-sete",
-      "siteOfficiel": "https://www.tourisme-sete.com/nautisme-voile-croisiere-sete.html",
+      "siteOfficiel": "https://www.sete-croisieres.com/",
       "nom": "Sortie en voilier",
       "categorie": "voile",
       "categorieNom": "Voile",
@@ -104,7 +104,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.397,
       "lng": 3.7015,
-      "siteOfficielNom": "tourisme-sete.com",
+      "siteOfficielNom": "sete-croisieres.com",
       "telephoneClean": "33467460505",
       "forfaits": [
         {
@@ -162,7 +162,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "kayak-coucher-soleil",
-      "siteOfficiel": "https://www.tourisme-sete.com/kayak-paddle-sete.html",
+      "siteOfficiel": "https://www.kayakmed.com/",
       "nom": "Kayak au coucher du soleil",
       "categorie": "kayak",
       "categorieNom": "Kayak",
@@ -195,7 +195,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.412,
       "lng": 3.684,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "kayakmed.com",
       "telephoneClean": "33467741234",
       "forfaits": [
         {
@@ -253,7 +253,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "plongee-dans-letang",
-      "siteOfficiel": "https://www.tourisme-sete.com/plongee-sous-marine-sete.html",
+      "siteOfficiel": "https://www.odyssee-plongee.fr/",
       "nom": "Plongée dans l'étang",
       "categorie": "plongee",
       "categorieNom": "Plongée",
@@ -286,7 +286,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.4025,
       "lng": 3.698,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "odyssee-plongee.fr",
       "telephoneClean": "33467745870",
       "forfaits": [
         {
@@ -330,7 +330,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "louez-votre-bateau",
-      "siteOfficiel": "https://www.tourisme-sete.com/location-bateaux-sete.html",
+      "siteOfficiel": "https://www.tf7nautic.fr/",
       "nom": "Louez votre bateau",
       "categorie": "location-bateau",
       "categorieNom": "Location de bateau",
@@ -422,7 +422,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "bateaux-canaux-cadre-royal",
-      "siteOfficiel": "https://www.sete.fr/decouvrir-sete/le-canal-royal/",
+      "siteOfficiel": "https://www.sete-croisieres.com/",
       "nom": "Croisière Canaux & Cadre Royal",
       "categorie": "voile",
       "categorieNom": "Sorties Mer & Canaux",
@@ -455,7 +455,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.405,
       "lng": 3.6945,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "sete-croisieres.com",
       "telephoneClean": "33467460046",
       "forfaits": [
         {
@@ -513,7 +513,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "bateaux-electriques-civette",
-      "siteOfficiel": "https://www.tourisme-sete.com/balade-sur-les-canaux.html",
+      "siteOfficiel": "https://www.sete-croisieres.com/",
       "nom": "Bateaux Électriques Sans Permis",
       "categorie": "location-bateau",
       "categorieNom": "Location de bateau",
@@ -545,7 +545,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.406,
       "lng": 3.692,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "sete-croisieres.com",
       "telephoneClean": "33467431122",
       "forfaits": [
         {
@@ -603,7 +603,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "peche-large-sete-thon",
-      "siteOfficiel": "https://www.tourisme-sete.com/peche-en-mer-sete.html",
+      "siteOfficiel": "https://www.guides-de-peche.fr/",
       "nom": "Pêche Sportive au Grand Large",
       "categorie": "peche",
       "categorieNom": "Pêche sportive",
@@ -635,7 +635,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.4005,
       "lng": 3.704,
-      "siteOfficielNom": "tourisme-sete.com",
+      "siteOfficielNom": "guides-de-peche.fr",
       "telephoneClean": "33612345678",
       "forfaits": [
         {
@@ -679,7 +679,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "centre-nautique-sete-lazaret",
-      "siteOfficiel": "https://www.sete.fr/activites/nautisme/",
+      "siteOfficiel": "https://www.sns-sete.com/",
       "nom": "Centre Nautique du Lazaret",
       "categorie": "voile",
       "categorieNom": "Voile & Catamaran",
@@ -711,7 +711,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.391,
       "lng": 3.678,
-      "siteOfficielNom": "tourisme-sete.com",
+      "siteOfficielNom": "sns-sete.com",
       "telephoneClean": "33467510550",
       "forfaits": [
         {
@@ -769,7 +769,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "excursion-dauphins-sete",
-      "siteOfficiel": "https://www.tourisme-sete.com/sorties-nature-dauphins.html",
+      "siteOfficiel": "https://www.sete-croisieres.com/",
       "nom": "Safari Marin & Dauphins du Golfe",
       "categorie": "voile",
       "categorieNom": "Sorties Mer & Nature",
@@ -801,7 +801,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.4035,
       "lng": 3.7005,
-      "siteOfficielNom": "tourisme-sete.com",
+      "siteOfficielNom": "sete-croisieres.com",
       "telephoneClean": "33467468890",
       "forfaits": [
         {
@@ -859,7 +859,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "mas-amourettes-degustation",
-      "siteOfficiel": "https://www.bouzigues.fr/terroir-huitres-etang-de-thau/",
+      "siteOfficiel": "https://www.fermemarine.fr/",
       "nom": "Dégustation d'Huîtres les Pieds dans l'Eau",
       "categorie": "terroir",
       "categorieNom": "Terroir & Mas",
@@ -892,7 +892,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.447,
       "lng": 3.659,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "fermemarine.fr",
       "telephoneClean": "33467783040",
       "forfaits": [
         {
@@ -943,7 +943,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "chaland-bouzigues-parcs",
-      "siteOfficiel": "https://www.bouzigues.fr/visites-ostreicoles/",
+      "siteOfficiel": "https://www.visites-etang-thau.fr/",
       "nom": "Visite des Parcs en Chaland Conchylicole",
       "categorie": "location-bateau",
       "categorieNom": "Balades en Bateau",
@@ -975,7 +975,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.449,
       "lng": 3.6575,
-      "siteOfficielNom": "bouzigues.fr",
+      "siteOfficielNom": "visites-etang-thau.fr",
       "telephoneClean": "33467781900",
       "forfaits": [
         {
@@ -1033,7 +1033,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "kayak-tables-bouzigues",
-      "siteOfficiel": "https://www.herault-tourisme.com/fr/activites/bouzigues/",
+      "siteOfficiel": "https://www.kayakmed.com/",
       "nom": "Kayak Guidé parmi les Tables d'Huîtres",
       "categorie": "kayak",
       "categorieNom": "Kayak",
@@ -1065,7 +1065,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.4465,
       "lng": 3.662,
-      "siteOfficielNom": "bouzigues.fr",
+      "siteOfficielNom": "kayakmed.com",
       "telephoneClean": "33467784512",
       "forfaits": [
         {
@@ -1123,7 +1123,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "atelier-huitres-prestige-bouzigues",
-      "siteOfficiel": "https://www.bouzigues.fr/mas-conchylicoles/",
+      "siteOfficiel": "https://www.huitres-bouzigues.com/",
       "nom": "Atelier Ostréicole & Dégustation Prestige",
       "categorie": "terroir",
       "categorieNom": "Terroir & Mas",
@@ -1156,7 +1156,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.4505,
       "lng": 3.654,
-      "siteOfficielNom": "bouzigues.fr",
+      "siteOfficielNom": "huitres-bouzigues.com",
       "telephoneClean": "33688123456",
       "forfaits": [
         {
@@ -1207,7 +1207,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "ecole-voile-meze-catamaran",
-      "siteOfficiel": "https://www.ville-meze.fr/sports-nautiques/",
+      "siteOfficiel": "https://www.snmeze.com/",
       "nom": "École de Voile & Catamaran de Mèze",
       "categorie": "voile",
       "categorieNom": "Voile",
@@ -1239,7 +1239,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.424,
       "lng": 3.599,
-      "siteOfficielNom": "ville-meze.fr",
+      "siteOfficielNom": "snmeze.com",
       "telephoneClean": "33467435951",
       "forfaits": [
         {
@@ -1297,7 +1297,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "location-semi-rigide-meze",
-      "siteOfficiel": "https://www.ville-meze.fr/port-de-plaisance/",
+      "siteOfficiel": "https://www.meze-nautisme.fr/",
       "nom": "Location Bateaux Mèze Port",
       "categorie": "location-bateau",
       "categorieNom": "Location de bateau",
@@ -1329,7 +1329,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.427,
       "lng": 3.595,
-      "siteOfficielNom": "ville-meze.fr",
+      "siteOfficielNom": "meze-nautisme.fr",
       "telephoneClean": "33467438010",
       "forfaits": [
         {
@@ -1387,7 +1387,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "paddle-crique-tambourin-meze",
-      "siteOfficiel": "https://www.ville-meze.fr/plages-et-loisirs/",
+      "siteOfficiel": "https://www.snmeze.com/",
       "nom": "Stand-Up Paddle Crique du Tambourin",
       "categorie": "kayak",
       "categorieNom": "Kayak & Paddle",
@@ -1419,7 +1419,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.422,
       "lng": 3.602,
-      "siteOfficielNom": "ville-meze.fr",
+      "siteOfficielNom": "snmeze.com",
       "telephoneClean": "33645678901",
       "forfaits": [
         {
@@ -1477,7 +1477,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "kitesurf-spot-taurus-meze",
-      "siteOfficiel": "https://www.ville-meze.fr/centre-du-taurus/",
+      "siteOfficiel": "https://www.thaukite.com/",
       "nom": "Kitesurf & Wingfoil au Spot du Taurus",
       "categorie": "voile",
       "categorieNom": "Glisse & Wingfoil",
@@ -1509,7 +1509,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.431,
       "lng": 3.611,
-      "siteOfficielNom": "ville-meze.fr",
+      "siteOfficielNom": "thaukite.com",
       "telephoneClean": "33467437200",
       "forfaits": [
         {
@@ -1567,7 +1567,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "marseillan-bateaux-electriques-port",
-      "siteOfficiel": "https://www.marseillan.com/port-et-canal-du-midi/",
+      "siteOfficiel": "https://www.bateaux-du-soleil.fr/",
       "nom": "Bateaux Sans Permis du Port de Marseillan",
       "categorie": "location-bateau",
       "categorieNom": "Location de bateau",
@@ -1599,7 +1599,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.355,
       "lng": 3.531,
-      "siteOfficielNom": "marseillan.com",
+      "siteOfficielNom": "bateaux-du-soleil.fr",
       "telephoneClean": "33467219090",
       "forfaits": [
         {
@@ -1657,7 +1657,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "marseillan-voile-passion",
-      "siteOfficiel": "https://www.marseillan.com/activites-nautiques/",
+      "siteOfficiel": "https://www.cvmarseillan.fr/",
       "nom": "Marseillan Voile Passion",
       "categorie": "voile",
       "categorieNom": "Voile",
@@ -1689,7 +1689,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.359,
       "lng": 3.535,
-      "siteOfficielNom": "marseillan.com",
+      "siteOfficielNom": "cvmarseillan.fr",
       "telephoneClean": "33467771430",
       "forfaits": [
         {
@@ -1747,7 +1747,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "canoe-onglous-canal-midi",
-      "siteOfficiel": "https://www.canal-du-midi.org/fr/les-onglous/",
+      "siteOfficiel": "https://www.canoethau.com/",
       "nom": "Descente Canoë des Onglous vers Thau",
       "categorie": "kayak",
       "categorieNom": "Kayak & Canoë",
@@ -1779,7 +1779,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.342,
       "lng": 3.518,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "canoethau.com",
       "telephoneClean": "33678901234",
       "forfaits": [
         {
@@ -1837,7 +1837,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "noilly-prat-croisiere-aperitif",
-      "siteOfficiel": "https://www.noillyprat.com/fr/fr/la-maison/",
+      "siteOfficiel": "https://www.noillyprat.com/",
       "nom": "Visite Noilly Prat & Croisière Apéritif",
       "categorie": "terroir",
       "categorieNom": "Terroir & Croisière",
@@ -1870,7 +1870,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.3565,
       "lng": 3.529,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "noillyprat.com",
       "telephoneClean": "33467772015",
       "forfaits": [
         {
@@ -1921,7 +1921,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "base-nautique-balaruc-manureva",
-      "siteOfficiel": "https://www.balaruc-les-bains.com/nautisme-etang.html",
+      "siteOfficiel": "https://www.manureva-balaruc.fr/",
       "nom": "Base Nautique Manuréva",
       "categorie": "voile",
       "categorieNom": "Voile & Planche",
@@ -1953,7 +1953,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.443,
       "lng": 3.681,
-      "siteOfficielNom": "balaruc-les-bains.com",
+      "siteOfficielNom": "manureva-balaruc.fr",
       "telephoneClean": "33467468130",
       "forfaits": [
         {
@@ -2011,7 +2011,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "balaruc-pedalo-paddle-crique",
-      "siteOfficiel": "https://www.balaruc-les-bains.com/parc-crique.html",
+      "siteOfficiel": "https://www.manureva-balaruc.fr/",
       "nom": "Pédalos & Paddles de la Crique",
       "categorie": "kayak",
       "categorieNom": "Nautisme détente",
@@ -2043,7 +2043,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.4405,
       "lng": 3.6835,
-      "siteOfficielNom": "balaruc-les-bains.com",
+      "siteOfficielNom": "manureva-balaruc.fr",
       "telephoneClean": "33611223344",
       "forfaits": [
         {
@@ -2101,7 +2101,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "plongee-ecosysteme-balaruc",
-      "siteOfficiel": "https://www.balaruc-les-bains.com/nature-lagune.html",
+      "siteOfficiel": "https://www.odyssee-plongee.fr/",
       "nom": "Sentier Subaquatique & Hippocampes",
       "categorie": "plongee",
       "categorieNom": "Plongée & Palmes",
@@ -2133,7 +2133,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.438,
       "lng": 3.679,
-      "siteOfficielNom": "balaruc-les-bains.com",
+      "siteOfficielNom": "odyssee-plongee.fr",
       "telephoneClean": "33467468000",
       "forfaits": [
         {
@@ -2177,7 +2177,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "navette-maritime-balaruc-sete",
-      "siteOfficiel": "https://www.balaruc-les-bains.com/navette-maritime.html",
+      "siteOfficiel": "https://www.sete-croisieres.com/",
       "nom": "Navette Maritime Balaruc ⇄ Sète",
       "categorie": "location-bateau",
       "categorieNom": "Liaisons Maritimes",
@@ -2209,7 +2209,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.444,
       "lng": 3.685,
-      "siteOfficielNom": "tourisme-sete.com",
+      "siteOfficielNom": "sete-croisieres.com",
       "telephoneClean": "33467467146",
       "forfaits": [
         {
@@ -2267,7 +2267,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "club-nautique-frontignan-port",
-      "siteOfficiel": "https://www.frontignan.fr/tourisme-nautisme/",
+      "siteOfficiel": "https://www.cvfrontignan.fr/",
       "nom": "Club Nautique de Frontignan",
       "categorie": "voile",
       "categorieNom": "Voile & Glisse",
@@ -2299,7 +2299,7 @@ const ANNUAIRE_DATA = {
       "featured": true,
       "lat": 43.441,
       "lng": 3.758,
-      "siteOfficielNom": "frontignan.fr",
+      "siteOfficielNom": "cvfrontignan.fr",
       "telephoneClean": "33467185000",
       "forfaits": [
         {
@@ -2357,7 +2357,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "jetski-bateaux-frontignan-plage",
-      "siteOfficiel": "https://www.frontignan.fr/port-de-plaisance/",
+      "siteOfficiel": "https://www.thaujet.com/",
       "nom": "Jet-Ski & Speedboats Frontignan",
       "categorie": "location-bateau",
       "categorieNom": "Location de bateau",
@@ -2389,7 +2389,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.4385,
       "lng": 3.754,
-      "siteOfficielNom": "frontignan.fr",
+      "siteOfficielNom": "thaujet.com",
       "telephoneClean": "33467482525",
       "forfaits": [
         {
@@ -2447,7 +2447,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "kayak-salins-aresquiers-nature",
-      "siteOfficiel": "https://www.frontignan.fr/reserve-naturelle-aresquiers/",
+      "siteOfficiel": "https://www.kayakmed.com/",
       "nom": "Kayak dans les Anciens Salins & Aresquiers",
       "categorie": "kayak",
       "categorieNom": "Kayak Nature",
@@ -2479,7 +2479,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.462,
       "lng": 3.782,
-      "siteOfficielNom": "leguidedesete.fr",
+      "siteOfficielNom": "kayakmed.com",
       "telephoneClean": "33622334455",
       "forfaits": [
         {
@@ -2537,7 +2537,7 @@ const ANNUAIRE_DATA = {
     },
     {
       "id": "peche-cotiere-frontignan-daurades",
-      "siteOfficiel": "https://www.frontignan.fr/peche-en-mer/",
+      "siteOfficiel": "https://www.guides-de-peche.fr/",
       "nom": "Pêche Côtière Daurades & Loups",
       "categorie": "peche",
       "categorieNom": "Pêche sportive",
@@ -2569,7 +2569,7 @@ const ANNUAIRE_DATA = {
       "featured": false,
       "lat": 43.4425,
       "lng": 3.7565,
-      "siteOfficielNom": "frontignan.fr",
+      "siteOfficielNom": "guides-de-peche.fr",
       "telephoneClean": "33699887766",
       "forfaits": [
         {
