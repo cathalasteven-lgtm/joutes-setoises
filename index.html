@@ -1658,23 +1658,24 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
           ? 'card-face-front bg-white rounded-2xl overflow-hidden shadow-md flex flex-col justify-between border-2 border-[#FF6B35]'
           : 'card-face-front bg-white rounded-2xl overflow-hidden border border-[#EBE4D5] shadow-xs hover:shadow-md flex flex-col justify-between';
 
+        const officialDomain = item.siteOfficiel 
+          ? item.siteOfficiel.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0]
+          : 'tourisme-sete.com';
+
         return `
-          <div id="card-container-${item.id}" class="card-flip-container h-[460px] select-none" onclick="toggleCardFlip('${item.id}')">
+          <div id="card-container-${item.id}" class="card-flip-container h-[465px] select-none" onclick="toggleCardFlip('${item.id}')">
             <div id="card-inner-${item.id}" class="card-flip-inner ${isHighlight ? 'is-highlight' : ''}">
               
               <!-- FACE AVANT (RECTO) -->
               <div class="${frontCardClass}">
                 <div>
-                  <!-- Image Haute Définition avec Badges -->
+                  <!-- Image avec Badges -->
                   <div class="h-44 sm:h-48 overflow-hidden relative rounded-t-2xl">
                     <img src="${item.image}" alt="${item.nom}" class="w-full h-full object-cover">
                     <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5 items-center">
                       ${item.badge ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0f2b48]/85 text-white backdrop-blur-xs">${item.badge}</span>` : ''}
                       <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-white/90 text-[#0f2b48] backdrop-blur-xs shadow-xs">📍 ${item.commune}</span>
                     </div>
-                    <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/60 text-white text-[10px] font-bold backdrop-blur-xs flex items-center gap-1">
-                      <span>↻ Cliquer pour retourner</span>
-                    </span>
                   </div>
 
                   <!-- Contenu Carte -->
@@ -1698,75 +1699,93 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
                   </div>
                 </div>
 
-                <!-- Barre Prix & Bouton Réserver -->
-                <div class="p-4 pt-0 mt-2 flex items-center justify-between border-t border-slate-50" onclick="event.stopPropagation()">
-                  <span class="text-xs font-semibold text-slate-700">
-                    ${item.prix}
-                  </span>
+                <!-- Barre Basse Recto : Prix + Lien Horaires & Retourner + Bouton Voir le site officiel -->
+                <div class="p-3.5 pt-2 border-t border-slate-100 flex items-center justify-between" onclick="event.stopPropagation()">
+                  <div class="space-y-0.5">
+                    <span class="text-xs font-bold text-slate-800 block">${item.prix}</span>
+                    <button onclick="toggleCardFlip('${item.id}')" class="text-[11px] font-semibold text-[#0A84FF] hover:underline flex items-center gap-1 cursor-pointer">
+                      <span>↻ Horaires & détails</span>
+                    </button>
+                  </div>
                   <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" 
-      class="px-3 py-1.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-[11px] shadow-xs transition-all duration-150 inline-flex items-center gap-1 cursor-pointer">
-     <span>Voir le site officiel</span>
-     <span>↗</span>
-   </a>
+                     class="px-3 py-1.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-[11px] shadow-xs transition inline-flex items-center gap-1 cursor-pointer">
+                    <span>Voir le site officiel</span>
+                    <span>↗</span>
+                  </a>
                 </div>
               </div>
 
-              <!-- FACE ARRIÈRE (VERSO AVEC DÉTAILS COMPLETS) -->
+              <!-- FACE ARRIÈRE (VERSO AVEC DÉTAILS IDENTIQUES À LA VIDÉO) -->
               <div class="card-face-back rounded-2xl p-4 bg-[#FCFAF6] border-2 border-[#D4B87C] flex flex-col justify-between shadow-xl">
-                <div class="space-y-3">
+                <div class="space-y-2.5">
                   <!-- En-tête Verso -->
-                  <div class="flex items-center justify-between border-b border-[#EBE4D5] pb-2">
+                  <div class="flex items-center justify-between border-b border-[#EBE4D5] pb-1.5">
                     <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0f2b48] text-white">📍 ${item.commune}</span>
-                    <span class="text-[10px] font-bold text-[#D4B87C] uppercase tracking-wider">Fiche Complète</span>
+                    <span class="text-[10px] font-bold text-[#D4B87C] uppercase tracking-wider">Fiche Pratique</span>
                   </div>
 
                   <h4 class="font-serif font-bold text-base text-[#0f2b48] leading-tight line-clamp-1">
                     ${item.nom}
                   </h4>
 
-                  <p class="text-xs text-slate-700 leading-relaxed line-clamp-3">
-                    ${item.descriptionComplete || item.description}
-                  </p>
-
-                  <!-- Données pratiques -->
-                  <div class="space-y-1 text-xs text-slate-600 bg-white/90 p-2.5 rounded-xl border border-[#EBE4D5]">
-                    <div class="flex items-start gap-1.5 line-clamp-1">
-                      <span class="shrink-0">📍</span>
-                      <span class="font-medium text-slate-800 text-[11px]">${item.adresse}</span>
+                  <!-- Bloc Données Pratiques -->
+                  <div class="space-y-1 text-xs text-slate-700 bg-white/95 p-2.5 rounded-xl border border-[#EBE4D5]">
+                    <div>
+                      <span class="font-bold text-slate-800 text-[11px]">⏰ Horaires :</span>
+                      <p class="text-[11px] text-slate-600 line-clamp-1">${item.horaires}</p>
                     </div>
-                    <div class="flex items-center gap-1.5">
-                      <span>⏰</span>
-                      <span class="text-[11px] text-slate-700 font-medium line-clamp-1">${item.horaires}</span>
+                    <div>
+                      <span class="font-bold text-slate-800 text-[11px]">📍 Adresse & Accès :</span>
+                      <p class="text-[11px] text-slate-600 line-clamp-1">
+                        ${item.adresse}
+                        <button onclick="focusOnMap('${item.id}')" class="text-[#0A84FF] hover:underline font-bold inline-block ml-1">(Maps ↗)</button>
+                      </p>
                     </div>
-                    <div class="flex items-center gap-1.5">
-                      <span>📞</span>
-                      <span class="text-[11px] font-bold text-[#0A84FF]">${item.telephone}</span>
+                    <div>
+                      <span class="font-bold text-slate-800 text-[11px]">📞 Téléphone :</span>
+                      <a href="tel:${item.telephone.replace(/\s/g, '')}" class="text-[11px] text-[#0A84FF] font-bold hover:underline ml-1">${item.telephone}</a>
+                    </div>
+                    <div>
+                      <span class="font-bold text-slate-800 text-[11px]">🌐 Site officiel :</span>
+                      <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-[#0A84FF] font-bold hover:underline ml-1">
+                        ${officialDomain} ↗
+                      </a>
                     </div>
                   </div>
 
-                  <!-- Badges d'équipements -->
+                  <!-- Équipements badges -->
                   ${item.equipements && item.equipements.length > 0 ? `
-                    <div class="flex flex-wrap gap-1 pt-0.5">
-                      ${item.equipements.slice(0, 3).map(eq => `<span class="px-2 py-0.5 rounded-md bg-[#dcebf9] text-[#0b3b60] text-[10px] font-semibold">${eq}</span>`).join('')}
+                    <div class="flex flex-wrap gap-1">
+                      ${item.equipements.slice(0, 3).map(eq => `<span class="px-2 py-0.5 rounded-md bg-[#dcebf9] text-[#0b3b60] text-[10px] font-semibold">✓ ${eq}</span>`).join('')}
                     </div>
                   ` : ''}
                 </div>
 
-                <!-- Pied du Verso : Actions -->
-                <div class="pt-2 border-t border-[#EBE4D5] flex items-center justify-between gap-1.5" onclick="event.stopPropagation()">
+                <!-- Pied du Verso : [ ↗ Voir plus ] en doré + [ 💬 ] WhatsApp + [ Voir le site officiel ↗ ] -->
+                <div class="pt-2 border-t border-[#EBE4D5] flex items-center justify-between gap-1" onclick="event.stopPropagation()">
                   <button onclick="toggleCardFlip('${item.id}')" 
-                          class="px-2 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-[10px] sm:text-[11px] transition flex items-center gap-1 cursor-pointer" title="Retourner la carte">
-                    <span>↶ Retour</span>
+                          class="px-2 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-[10px] transition cursor-pointer" title="Retourner la carte">
+                    <span>↶</span>
                   </button>
+                  
+                  <!-- Bouton Voir plus doré comme dans la vidéo -->
                   <button onclick="openFicheGrandFormat('${item.id}')" 
-                          class="px-2.5 py-1.5 rounded-lg bg-[#0f2b48] hover:bg-[#0A84FF] text-white font-bold text-[10px] sm:text-[11px] transition flex items-center gap-1 cursor-pointer shadow-xs" title="Voir la fiche détaillée en grand">
-                    <span>🔍 Voir plus</span>
+                          class="px-2.5 py-1.5 rounded-lg bg-[#D4B87C] hover:bg-[#c2a466] text-[#0f2b48] font-bold text-[10px] sm:text-[11px] transition flex items-center gap-1 cursor-pointer shadow-xs" title="Voir la fiche détaillée en grand">
+                    <span>↗ Voir plus</span>
                   </button>
+
+                  <!-- Bouton Contact WhatsApp / Téléphone -->
+                  <a href="tel:${item.telephone.replace(/\s/g, '')}" 
+                     class="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 transition text-[11px]" title="Contacter directement">
+                    <span>💬</span>
+                  </a>
+
+                  <!-- Bouton Voir le site officiel -->
                   <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" 
-      class="px-3 py-1.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-[11px] shadow-xs transition-all duration-150 inline-flex items-center gap-1 cursor-pointer">
-     <span>Voir le site officiel</span>
-     <span>↗</span>
-   </a>
+                     class="px-2.5 py-1.5 rounded-xl bg-[#0f2b48] hover:bg-[#0A84FF] text-white font-bold text-[10px] sm:text-[11px] shadow-xs transition inline-flex items-center gap-1 cursor-pointer">
+                    <span>Site officiel</span>
+                    <span>↗</span>
+                  </a>
                 </div>
 
               </div>
@@ -1825,28 +1844,21 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
       document.getElementById('grandFormatHoraires').textContent = item.horaires;
       document.getElementById('grandFormatTelephone').textContent = item.telephone;
 
+      const telLink = document.getElementById('grandFormatTelephoneLink');
+      if (telLink) telLink.href = 'tel:' + item.telephone.replace(/\s/g, '');
+
+      const domain = item.siteOfficiel 
+        ? item.siteOfficiel.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0]
+        : 'tourisme-sete.com';
+
+      const siteNom = document.getElementById('grandFormatSiteNom');
+      if (siteNom) siteNom.textContent = domain;
+
+      const siteLienTexte = document.getElementById('grandFormatSiteLienTexte');
+      if (siteLienTexte) siteLienTexte.href = item.siteOfficiel || 'https://www.tourisme-sete.com/';
+
       const btnSite = document.getElementById('grandFormatBtnSite');
-      if (btnSite) {
-        btnSite.href = item.siteOfficiel || 'https://www.tourisme-sete.com/';
-      }
-
-      // Bouton situer sur la carte
-      const btnCarte = document.getElementById('grandFormatBtnCarte');
-      if (btnCarte) {
-        btnCarte.onclick = () => {
-          closeFicheGrandFormat();
-          focusOnMap(item.id);
-        };
-      }
-
-      // Bouton Réserver depuis la grande modale
-      const btnReserver = document.getElementById('grandFormatBtnReserver');
-      if (btnReserver) {
-        btnReserver.onclick = () => {
-          closeFicheGrandFormat();
-          openBookingModal(item.id);
-        };
-      }
+      if (btnSite) btnSite.href = item.siteOfficiel || 'https://www.tourisme-sete.com/';
 
       // Équipements badges
       const eqContainer = document.getElementById('grandFormatEquipements');
@@ -1856,7 +1868,7 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
             `<span class="px-3 py-1 rounded-xl bg-[#dcebf9] text-[#0b3b60] text-xs font-semibold">✓ ${eq}</span>`
           ).join('');
         } else {
-          eqContainer.innerHTML = '<span class="text-xs text-slate-400">Matériel professionnel fourni sur place.</span>';
+          eqContainer.innerHTML = '<span class="text-xs text-slate-400">Prestations de qualité incluses.</span>';
         }
       }
 
