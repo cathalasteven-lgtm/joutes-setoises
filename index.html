@@ -1213,7 +1213,110 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
   <!-- ========================================== -->
   <!-- MODAL DE RÉSERVATION / CONTACT RAPIDE -->
   <!-- ========================================== -->
-  <div id="bookingModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="closeBookingModal()">
+    <!-- ======================================================== -->
+  <!-- MODALE FORMAT INTERMÉDIAIRE (MINI GRAND FICHE AVEC FOND VISIBLE) -->
+  <!-- ======================================================== -->
+  <div id="ficheGrandFormatModal" class="fixed inset-0 z-50 bg-slate-950/65 backdrop-blur-sm hidden flex items-center justify-center p-4 sm:p-6" onclick="closeFicheGrandFormat()">
+    <div class="relative max-w-2xl w-full max-h-[88vh] bg-white rounded-3xl overflow-hidden shadow-2xl border-2 border-[#D4B87C]/50 flex flex-col justify-between" onclick="event.stopPropagation()">
+      
+      <!-- Bouton Fermer Flottant -->
+      <button onclick="closeFicheGrandFormat()" class="absolute top-3.5 right-3.5 z-20 w-9 h-9 rounded-full bg-white/95 hover:bg-white text-slate-800 flex items-center justify-center font-bold text-sm shadow-md transition cursor-pointer" title="Fermer la fiche">✕</button>
+
+      <!-- Zone Scrollable Contenu de la Fiche -->
+      <div class="overflow-y-auto max-h-[calc(88vh-72px)] overscroll-contain">
+        
+        <!-- Bannière Photo HD -->
+        <div class="h-52 sm:h-60 w-full relative overflow-hidden bg-slate-900">
+          <img id="grandFormatImage" src="" alt="" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/25"></div>
+          
+          <!-- Badges sur la photo -->
+          <div class="absolute top-3.5 left-3.5 flex flex-wrap gap-1.5 items-center">
+            <span id="grandFormatBadge" class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-[#FF6B35] text-white shadow-xs"></span>
+            <span id="grandFormatCommune" class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-white/95 text-[#0f2b48] shadow-xs"></span>
+            <span id="grandFormatCat" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#0A84FF] text-white shadow-xs"></span>
+          </div>
+
+          <!-- Note et avis en bas à gauche -->
+          <div class="absolute bottom-3 left-3.5 flex items-center gap-1.5 text-white">
+            <span class="text-amber-400 text-sm">★★★★★</span>
+            <span id="grandFormatNote" class="font-extrabold text-sm"></span>
+            <span id="grandFormatAvis" class="text-xs text-white/80"></span>
+          </div>
+
+          <!-- Prix indicatif -->
+          <div class="absolute bottom-3 right-3.5 px-3 py-1 rounded-xl bg-black/75 backdrop-blur-xs text-white">
+            <span id="grandFormatPrix" class="font-extrabold text-xs sm:text-sm text-amber-300"></span>
+          </div>
+        </div>
+
+        <!-- Corps de la Fiche -->
+        <div class="p-5 sm:p-7 space-y-5">
+          
+          <div>
+            <h3 id="grandFormatTitre" class="font-serif font-extrabold text-xl sm:text-2xl text-[#0f2b48] leading-tight"></h3>
+            <p id="grandFormatCourt" class="text-xs sm:text-sm font-semibold text-slate-500 mt-1"></p>
+          </div>
+
+          <!-- Description Complète -->
+          <div class="space-y-1.5">
+            <h4 class="text-[11px] font-bold uppercase tracking-wider text-[#D4B87C]">Présentation de l'activité</h4>
+            <div id="grandFormatDescComplete" class="text-xs sm:text-sm text-slate-700 leading-relaxed font-sans bg-[#FCFAF6] p-3.5 rounded-2xl border border-[#EBE4D5]"></div>
+          </div>
+
+          <!-- Grille d'Informations Pratiques -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            
+            <div class="p-3.5 rounded-2xl bg-[#FCFAF6] border border-[#EBE4D5] space-y-1.5">
+              <div class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0f2b48]">
+                <span>📍</span> <span>Localisation</span>
+              </div>
+              <div id="grandFormatAdresse" class="text-xs text-slate-700 font-medium"></div>
+              <button id="grandFormatBtnCarte" class="inline-flex items-center gap-1 text-[11px] font-bold text-[#0A84FF] hover:underline pt-0.5 cursor-pointer">
+                <span>🗺️ Situer sur la carte du bassin</span>
+              </button>
+            </div>
+
+            <div class="p-3.5 rounded-2xl bg-[#FCFAF6] border border-[#EBE4D5] space-y-1.5">
+              <div class="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#0f2b48]">
+                <span>⏰</span> <span>Horaires & Contacts</span>
+              </div>
+              <div id="grandFormatHoraires" class="text-xs text-slate-700 font-medium"></div>
+              <div class="flex items-center gap-1 text-xs pt-0.5">
+                <span>📞</span>
+                <span class="text-slate-500 text-[11px]">Contact :</span>
+                <span id="grandFormatTelephone" class="font-bold text-[#0f2b48] text-xs"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Équipements inclus -->
+          <div class="space-y-2 pt-1 border-t border-slate-100">
+            <h4 class="text-[11px] font-bold uppercase tracking-wider text-[#D4B87C]">Équipements & Prestations incluses</h4>
+            <div id="grandFormatEquipements" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Pied de la Fiche : Bouton Voir le site officiel -->
+      <div class="p-4 bg-[#FCFAF6] border-t border-[#EBE4D5] flex items-center justify-between gap-3">
+        <button onclick="closeFicheGrandFormat()" class="px-4 py-2 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-xs transition cursor-pointer">
+          ✕ Fermer
+        </button>
+        <a id="grandFormatBtnSite" href="https://www.tourisme-sete.com/" target="_blank" rel="noopener noreferrer" 
+           class="px-5 py-2.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-xs shadow-md transition flex items-center gap-1.5 cursor-pointer">
+          <span>Voir le site officiel</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+<div id="bookingModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="closeBookingModal()">
     <div class="relative max-w-lg w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-5" onclick="event.stopPropagation()">
       <button onclick="closeBookingModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm transition">✕</button>
       
@@ -1600,10 +1703,11 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
                   <span class="text-xs font-semibold text-slate-700">
                     ${item.prix}
                   </span>
-                  <button onclick="openBookingModal('${item.id}')" 
-                          class="px-4 py-2 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-xs shadow-xs transition-all duration-150 cursor-pointer">
-                    Réserver
-                  </button>
+                  <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" 
+      class="px-3 py-1.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-[11px] shadow-xs transition-all duration-150 inline-flex items-center gap-1 cursor-pointer">
+     <span>Voir le site officiel</span>
+     <span>↗</span>
+   </a>
                 </div>
               </div>
 
@@ -1649,15 +1753,20 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
                 </div>
 
                 <!-- Pied du Verso : Actions -->
-                <div class="pt-2 border-t border-[#EBE4D5] flex items-center justify-between" onclick="event.stopPropagation()">
+                <div class="pt-2 border-t border-[#EBE4D5] flex items-center justify-between gap-1.5" onclick="event.stopPropagation()">
                   <button onclick="toggleCardFlip('${item.id}')" 
-                          class="px-2.5 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-[11px] transition flex items-center gap-1 cursor-pointer">
+                          class="px-2 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-100 text-slate-700 font-bold text-[10px] sm:text-[11px] transition flex items-center gap-1 cursor-pointer" title="Retourner la carte">
                     <span>↶ Retour</span>
                   </button>
-                  <button onclick="openBookingModal('${item.id}')" 
-                          class="px-4 py-2 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-xs shadow-xs transition cursor-pointer">
-                    Réserver
+                  <button onclick="openFicheGrandFormat('${item.id}')" 
+                          class="px-2.5 py-1.5 rounded-lg bg-[#0f2b48] hover:bg-[#0A84FF] text-white font-bold text-[10px] sm:text-[11px] transition flex items-center gap-1 cursor-pointer shadow-xs" title="Voir la fiche détaillée en grand">
+                    <span>🔍 Voir plus</span>
                   </button>
+                  <a href="${item.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" 
+      class="px-3 py-1.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-[11px] shadow-xs transition-all duration-150 inline-flex items-center gap-1 cursor-pointer">
+     <span>Voir le site officiel</span>
+     <span>↗</span>
+   </a>
                 </div>
 
               </div>
@@ -1683,6 +1792,95 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
       }
     }
 
+
+
+    // Modale Fiche Grand Format Immersive
+    function openFicheGrandFormat(itemId) {
+      if (typeof ANNUAIRE_DATA === 'undefined') return;
+      const item = ANNUAIRE_DATA.prestataires.find(p => p.id === itemId);
+      if (!item) return;
+
+      document.getElementById('grandFormatImage').src = item.image;
+      document.getElementById('grandFormatImage').alt = item.nom;
+
+      const badgeElem = document.getElementById('grandFormatBadge');
+      if (item.badge) {
+        badgeElem.textContent = item.badge;
+        badgeElem.classList.remove('hidden');
+      } else {
+        badgeElem.classList.add('hidden');
+      }
+
+      document.getElementById('grandFormatCommune').textContent = '📍 ' + item.commune;
+      document.getElementById('grandFormatCat').textContent = item.categorieNom;
+      document.getElementById('grandFormatNote').textContent = item.note;
+      document.getElementById('grandFormatAvis').textContent = '(' + item.avisCount + ' avis clients)';
+      document.getElementById('grandFormatPrix').textContent = item.prix;
+
+      document.getElementById('grandFormatTitre').textContent = item.nom;
+      document.getElementById('grandFormatCourt').textContent = item.description;
+      document.getElementById('grandFormatDescComplete').textContent = item.descriptionComplete || item.description;
+
+      document.getElementById('grandFormatAdresse').textContent = item.adresse;
+      document.getElementById('grandFormatHoraires').textContent = item.horaires;
+      document.getElementById('grandFormatTelephone').textContent = item.telephone;
+
+      const btnSite = document.getElementById('grandFormatBtnSite');
+      if (btnSite) {
+        btnSite.href = item.siteOfficiel || 'https://www.tourisme-sete.com/';
+      }
+
+      // Bouton situer sur la carte
+      const btnCarte = document.getElementById('grandFormatBtnCarte');
+      if (btnCarte) {
+        btnCarte.onclick = () => {
+          closeFicheGrandFormat();
+          focusOnMap(item.id);
+        };
+      }
+
+      // Bouton Réserver depuis la grande modale
+      const btnReserver = document.getElementById('grandFormatBtnReserver');
+      if (btnReserver) {
+        btnReserver.onclick = () => {
+          closeFicheGrandFormat();
+          openBookingModal(item.id);
+        };
+      }
+
+      // Équipements badges
+      const eqContainer = document.getElementById('grandFormatEquipements');
+      if (eqContainer) {
+        if (item.equipements && item.equipements.length > 0) {
+          eqContainer.innerHTML = item.equipements.map(eq => 
+            `<span class="px-3 py-1 rounded-xl bg-[#dcebf9] text-[#0b3b60] text-xs font-semibold">✓ ${eq}</span>`
+          ).join('');
+        } else {
+          eqContainer.innerHTML = '<span class="text-xs text-slate-400">Matériel professionnel fourni sur place.</span>';
+        }
+      }
+
+      document.getElementById('ficheGrandFormatModal')?.classList.remove('hidden');
+    }
+
+    function closeFicheGrandFormat() {
+      document.getElementById('ficheGrandFormatModal')?.classList.add('hidden');
+    }
+
+    function focusOnMap(itemId) {
+      if (typeof ANNUAIRE_DATA === 'undefined') return;
+      const item = ANNUAIRE_DATA.prestataires.find(p => p.id === itemId);
+      if (!item) return;
+
+      const mapElem = document.getElementById('decouvrir');
+      if (mapElem) {
+        mapElem.scrollIntoView({ behavior: 'smooth' });
+      }
+
+      if (thauMap && item.lat && item.lng) {
+        thauMap.flyTo([item.lat, item.lng], 14, { duration: 1.5 });
+      }
+    }
 
     // Gestion du retournement 3D des fiches (Flip)
     function toggleCardFlip(cardId) {
@@ -1756,9 +1954,9 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
           <div class="p-1 space-y-1 text-slate-800">
             <div class="font-bold text-sm text-[#0f2b48]">${p.nom}</div>
             <div class="text-xs text-slate-600">${p.prix}</div>
-            <button onclick="openBookingModal('${p.id}')" class="mt-1 w-full py-1 px-2 rounded-lg bg-[#FF6B35] text-white font-bold text-xs text-center">
-              Réserver ↗
-            </button>
+            <a href="${p.siteOfficiel || 'https://www.tourisme-sete.com/'}" target="_blank" rel="noopener noreferrer" class="mt-1 block w-full py-1 px-2 rounded-lg bg-[#FF6B35] text-white font-bold text-xs text-center hover:bg-[#e05622]">
+     Voir le site officiel ↗
+   </a>
           </div>
         `);
         thauMarkers.push(marker);

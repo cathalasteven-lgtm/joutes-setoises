@@ -27,6 +27,7 @@ const ANNUAIRE_DATA = {
     // ==========================================
     {
       id: "sortie-voilier-sete",
+      siteOfficiel: "https://www.tourisme-sete.com/nautisme-voile-croisiere-sete.html",
       nom: "Sortie en voilier",
       categorie: "voile",
       categorieNom: "Voile",
@@ -53,6 +54,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "kayak-coucher-soleil",
+      siteOfficiel: "https://www.tourisme-sete.com/kayak-paddle-sete.html",
       nom: "Kayak au coucher du soleil",
       categorie: "kayak",
       categorieNom: "Kayak",
@@ -79,6 +81,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "plongee-dans-letang",
+      siteOfficiel: "https://www.tourisme-sete.com/plongee-sous-marine-sete.html",
       nom: "Plongée dans l'étang",
       categorie: "plongee",
       categorieNom: "Plongée",
@@ -105,6 +108,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "louez-votre-bateau",
+      siteOfficiel: "https://www.tourisme-sete.com/location-bateaux-sete.html",
       nom: "Louez votre bateau",
       categorie: "location-bateau",
       categorieNom: "Location de bateau",
@@ -131,6 +135,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "bateaux-canaux-cadre-royal",
+      siteOfficiel: "https://www.sete.fr/decouvrir-sete/le-canal-royal/",
       nom: "Croisière Canaux & Cadre Royal",
       categorie: "voile",
       categorieNom: "Sorties Mer & Canaux",
@@ -157,6 +162,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "bateaux-electriques-civette",
+      siteOfficiel: "https://www.tourisme-sete.com/balade-sur-les-canaux.html",
       nom: "Bateaux Électriques Sans Permis",
       categorie: "location-bateau",
       categorieNom: "Location de bateau",
@@ -183,6 +189,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "peche-large-sete-thon",
+      siteOfficiel: "https://www.tourisme-sete.com/peche-en-mer-sete.html",
       nom: "Pêche Sportive au Grand Large",
       categorie: "peche",
       categorieNom: "Pêche sportive",
@@ -209,6 +216,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "centre-nautique-sete-lazaret",
+      siteOfficiel: "https://www.sete.fr/activites/nautisme/",
       nom: "Centre Nautique du Lazaret",
       categorie: "voile",
       categorieNom: "Voile & Catamaran",
@@ -235,6 +243,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "excursion-dauphins-sete",
+      siteOfficiel: "https://www.tourisme-sete.com/sorties-nature-dauphins.html",
       nom: "Safari Marin & Dauphins du Golfe",
       categorie: "voile",
       categorieNom: "Sorties Mer & Nature",
@@ -265,6 +274,7 @@ const ANNUAIRE_DATA = {
     // ==========================================
     {
       id: "mas-amourettes-degustation",
+      siteOfficiel: "https://www.bouzigues.fr/terroir-huitres-etang-de-thau/",
       nom: "Dégustation d'Huîtres les Pieds dans l'Eau",
       categorie: "terroir",
       categorieNom: "Terroir & Mas",
@@ -291,6 +301,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "chaland-bouzigues-parcs",
+      siteOfficiel: "https://www.bouzigues.fr/visites-ostreicoles/",
       nom: "Visite des Parcs en Chaland Conchylicole",
       categorie: "location-bateau",
       categorieNom: "Balades en Bateau",
@@ -317,6 +328,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "kayak-tables-bouzigues",
+      siteOfficiel: "https://www.herault-tourisme.com/fr/activites/bouzigues/",
       nom: "Kayak Guidé parmi les Tables d'Huîtres",
       categorie: "kayak",
       categorieNom: "Kayak",
@@ -343,6 +355,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "atelier-huitres-prestige-bouzigues",
+      siteOfficiel: "https://www.bouzigues.fr/mas-conchylicoles/",
       nom: "Atelier Ostréicole & Dégustation Prestige",
       categorie: "terroir",
       categorieNom: "Terroir & Mas",
@@ -373,6 +386,7 @@ const ANNUAIRE_DATA = {
     // ==========================================
     {
       id: "ecole-voile-meze-catamaran",
+      siteOfficiel: "https://www.ville-meze.fr/sports-nautiques/",
       nom: "École de Voile & Catamaran de Mèze",
       categorie: "voile",
       categorieNom: "Voile",
@@ -399,6 +413,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "location-semi-rigide-meze",
+      siteOfficiel: "https://www.ville-meze.fr/port-de-plaisance/",
       nom: "Location Bateaux Mèze Port",
       categorie: "location-bateau",
       categorieNom: "Location de bateau",
@@ -425,6 +440,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "paddle-crique-tambourin-meze",
+      siteOfficiel: "https://www.ville-meze.fr/plages-et-loisirs/",
       nom: "Stand-Up Paddle Crique du Tambourin",
       categorie: "kayak",
       categorieNom: "Kayak & Paddle",
@@ -451,6 +467,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "kitesurf-spot-taurus-meze",
+      siteOfficiel: "https://www.ville-meze.fr/centre-du-taurus/",
       nom: "Kitesurf & Wingfoil au Spot du Taurus",
       categorie: "voile",
       categorieNom: "Glisse & Wingfoil",
@@ -481,6 +498,7 @@ const ANNUAIRE_DATA = {
     // ==========================================
     {
       id: "marseillan-bateaux-electriques-port",
+      siteOfficiel: "https://www.marseillan.com/port-et-canal-du-midi/",
       nom: "Bateaux Sans Permis du Port de Marseillan",
       categorie: "location-bateau",
       categorieNom: "Location de bateau",
@@ -507,6 +525,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "marseillan-voile-passion",
+      siteOfficiel: "https://www.marseillan.com/activites-nautiques/",
       nom: "Marseillan Voile Passion",
       categorie: "voile",
       categorieNom: "Voile",
@@ -533,6 +552,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "canoe-onglous-canal-midi",
+      siteOfficiel: "https://www.canal-du-midi.org/fr/les-onglous/",
       nom: "Descente Canoë des Onglous vers Thau",
       categorie: "kayak",
       categorieNom: "Kayak & Canoë",
@@ -559,6 +579,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "noilly-prat-croisiere-aperitif",
+      siteOfficiel: "https://www.noillyprat.com/fr/fr/la-maison/",
       nom: "Visite Noilly Prat & Croisière Apéritif",
       categorie: "terroir",
       categorieNom: "Terroir & Croisière",
@@ -589,6 +610,7 @@ const ANNUAIRE_DATA = {
     // ==========================================
     {
       id: "base-nautique-balaruc-manureva",
+      siteOfficiel: "https://www.balaruc-les-bains.com/nautisme-etang.html",
       nom: "Base Nautique Manuréva",
       categorie: "voile",
       categorieNom: "Voile & Planche",
@@ -615,6 +637,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "balaruc-pedalo-paddle-crique",
+      siteOfficiel: "https://www.balaruc-les-bains.com/parc-crique.html",
       nom: "Pédalos & Paddles de la Crique",
       categorie: "kayak",
       categorieNom: "Nautisme détente",
@@ -641,6 +664,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "plongee-ecosysteme-balaruc",
+      siteOfficiel: "https://www.balaruc-les-bains.com/nature-lagune.html",
       nom: "Sentier Subaquatique & Hippocampes",
       categorie: "plongee",
       categorieNom: "Plongée & Palmes",
@@ -667,6 +691,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "navette-maritime-balaruc-sete",
+      siteOfficiel: "https://www.balaruc-les-bains.com/navette-maritime.html",
       nom: "Navette Maritime Balaruc ⇄ Sète",
       categorie: "location-bateau",
       categorieNom: "Liaisons Maritimes",
@@ -697,6 +722,7 @@ const ANNUAIRE_DATA = {
     // ==========================================
     {
       id: "club-nautique-frontignan-port",
+      siteOfficiel: "https://www.frontignan.fr/tourisme-nautisme/",
       nom: "Club Nautique de Frontignan",
       categorie: "voile",
       categorieNom: "Voile & Glisse",
@@ -723,6 +749,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "jetski-bateaux-frontignan-plage",
+      siteOfficiel: "https://www.frontignan.fr/port-de-plaisance/",
       nom: "Jet-Ski & Speedboats Frontignan",
       categorie: "location-bateau",
       categorieNom: "Location de bateau",
@@ -749,6 +776,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "kayak-salins-aresquiers-nature",
+      siteOfficiel: "https://www.frontignan.fr/reserve-naturelle-aresquiers/",
       nom: "Kayak dans les Anciens Salins & Aresquiers",
       categorie: "kayak",
       categorieNom: "Kayak Nature",
@@ -775,6 +803,7 @@ const ANNUAIRE_DATA = {
     },
     {
       id: "peche-cotiere-frontignan-daurades",
+      siteOfficiel: "https://www.frontignan.fr/peche-en-mer/",
       nom: "Pêche Côtière Daurades & Loups",
       categorie: "peche",
       categorieNom: "Pêche sportive",
