@@ -3,87 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <meta name="theme-color" content="#082f67">
+  <meta name="theme-color" content="#0A84FF">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Joutes Sète">
-  <meta name="format-detection" content="telephone=no">
-  <title>Les Joutes Sétoises - Guide Interactif, Règles & Galerie Officielle</title>
-    <!-- Leaflet CSS & JS pour Carte Interactive du Bassin de Thau -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Sète & Thau">
+  <title>SÈTE & THAU — Vivez l'étang de Thau | Activités nautiques autour de Sète</title>
+  
+  <!-- Polices Google Font Inter & Playfair -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Leaflet CSS & JS pour Carte Interactive -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Outfit', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
             serif: ['Playfair Display', 'serif'],
           },
           colors: {
-            seteblue: {
-              50: '#eef6ff',
-              100: '#d9ecff',
-              500: '#1a6cd1',
-              700: '#0c4ba0',
-              900: '#082f67',
-            },
-            setered: {
-              50: '#fff1f1',
-              100: '#ffe1e1',
-              500: '#e12d39',
-              600: '#c51925',
-              700: '#a3101b',
-            }
+            brandnavy: '#0f2b48',
+            brandblue: '#0A84FF',
+            brandcoral: '#FF6B35',
+            brandgold: '#D4B87C',
+            brandbg: '#FBF8F3',
+            brandsand: '#F7F4EC',
           }
         }
       }
     }
   </script>
+
   <style>
-    /* Optimisations Tactiles et Safe-Areas Mobile (iOS / Android) */
-    html {
-      scroll-behavior: smooth;
-      -webkit-tap-highlight-color: transparent;
-    }
     body {
-      padding-left: env(safe-area-inset-left, 0px);
-      padding-right: env(safe-area-inset-right, 0px);
+      background-color: #FBF8F3;
+      color: #1e293b;
+      font-family: 'Inter', sans-serif;
     }
-    button, a {
-      touch-action: manipulation;
+    
+    /* Vague décorative sous le Hero */
+    .wave-shelf {
+      background-color: #FBF8F3;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      margin-top: -36px;
+      position: relative;
+      z-index: 20;
     }
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
+    @media (min-width: 768px) {
+      .wave-shelf {
+        border-top-left-radius: 60px;
+        border-top-right-radius: 60px;
+        margin-top: -48px;
+      }
     }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    #mobileMenu {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.90);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
-    }
-    .water-bg {
-      background: radial-gradient(circle at 50% 15%, #18375c 0%, #081726 100%);
-    }
-    .img-zoom {
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-    .img-zoom:hover {
-      transform: scale(1.03);
-    }
-  
+
+    /* Carte Leaflet */
     #mapBassinThau {
-      height: 440px;
+      height: 420px;
       width: 100%;
       border-radius: 1.25rem;
       z-index: 10;
@@ -93,485 +78,497 @@
       padding: 0.25rem;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
     }
-    .leaflet-container {
-      font-family: 'Outfit', sans-serif;
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Animation au clic de carte */
+    .activity-card {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .activity-card:hover {
+      transform: translateY(-4px);
     }
 
+    /* Style spécifique pour la carte 2 en surbrillance orange comme dans l'image */
+    .card-highlight {
+      border: 2px solid #FF6B35 !important;
+      box-shadow: 0 12px 30px -10px rgba(255, 107, 53, 0.25) !important;
+    }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-setered-500 selection:text-white">
+<body class="min-h-screen flex flex-col antialiased">
 
-  <!-- Navigation -->
-  <nav class="sticky top-0 z-50 glass-card border-b border-slate-200/80 shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-2.5 sm:gap-3">
-        <span class="text-2xl select-none">🛶</span>
-        <div>
-          <a href="#" class="font-serif font-bold text-lg sm:text-xl tracking-tight text-slate-900 hover:text-seteblue-700 transition">Joutes de Sète</a>
-          <span class="hidden sm:inline-block ml-2 text-xs font-semibold px-2.5 py-0.5 rounded-full bg-seteblue-100 text-seteblue-700">Guide & 3 Quiz</span>
-        </div>
-      </div>
-
-      <!-- Navigation Desktop (écrans larges) -->
-      <div class="hidden lg:flex items-center space-x-5 text-sm font-medium text-slate-600">
-        <a href="#direct" class="px-2.5 py-1 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 transition text-xs font-bold flex items-center gap-1.5 border border-rose-200">
-          <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span> Suivre en Direct
-        </a>
-                <a href="#annuaire" class="hover:text-emerald-700 transition flex items-center gap-1 font-semibold text-emerald-700 text-xs">
-          <span>🗺️</span> Annuaire & Carte Thau
-        </a>
-<a href="#championnat" class="hover:text-amber-700 transition flex items-center gap-1 font-semibold text-amber-700 text-xs">
-          <span>🏆</span> Programme 2026
-        </a>
-        <a href="#galerie" class="hover:text-seteblue-700 transition flex items-center gap-1 font-semibold text-seteblue-700 text-xs">
-          <span>📸</span> Photos
-        </a>
-        <a href="#evenements" class="hover:text-purple-700 transition flex items-center gap-1 font-semibold text-purple-700 text-xs">
-          <span>🎉</span> Festivals
-        </a>
-        <a href="#duel" class="hover:text-seteblue-700 transition text-xs">Le Duel</a>
-        <a href="#anatomie" class="hover:text-seteblue-700 transition text-xs">La Barque</a>
-        <a href="#regles" class="hover:text-seteblue-700 transition text-xs">Règles</a>
-        <a href="#lexique" class="hover:text-setered-600 transition flex items-center gap-1 font-semibold text-setered-600 text-xs">
-          <span>📖</span> Lexique
-        </a>
-        <a href="#quiz" class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-setered-600 to-seteblue-700 text-white hover:opacity-90 transition shadow-sm text-xs font-bold flex items-center gap-1">
-          <span>🏆</span> Les 3 Quiz
-        </a>
-      </div>
-
-      <!-- Boutons Navigation Mobile & Tablette -->
-      <div class="flex items-center lg:hidden gap-2">
-        <a href="#direct" class="px-2.5 py-1 rounded-full bg-rose-50 text-rose-600 text-xs font-bold flex items-center gap-1 border border-rose-200">
-          <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span> Live
-        </a>
-        <button id="mobileMenuBtn" onclick="toggleMobileNav()" aria-label="Menu" class="p-2 rounded-xl text-slate-700 hover:text-seteblue-700 hover:bg-slate-100 focus:outline-none transition border border-slate-200">
-          <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  <!-- ========================================== -->
+  <!-- 1. HEADER / NAVBAR IDENTIQUE AU MOCKUP -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-2xs transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- LOGO SÈTE & THAU (Voilier stylisé or et bleu + Typographie) -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="relative w-10 h-10 flex items-center justify-center">
+          <!-- Icône Voilier Vectoriel Stylisé -->
+          <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M28 8L16 42H28V8Z" fill="#D4B87C"/>
+            <path d="M33 16L48 42H33V16Z" fill="#0A84FF"/>
+            <path d="M12 47C20 47 24 51 32 51C40 51 44 47 52 47" stroke="#0f2b48" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M16 54C22 54 26 57 32 57C38 57 42 54 48 54" stroke="#0A84FF" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
-          <svg id="closeIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-extrabold text-2xl tracking-tight text-[#0f2b48] leading-none">SÈTE & THAU</span>
+          <span class="text-[10px] tracking-widest uppercase font-semibold text-[#D4B87C] mt-0.5">Le Guide Officiel</span>
+        </div>
+      </a>
+
+      <!-- NAVIGATION DROITE : Activités (actif avec barre dorée) | Découvrir | Contact -->
+      <nav class="hidden md:flex items-center space-x-10 text-base font-semibold text-slate-700">
+        <a href="#activites" class="relative text-[#0f2b48] py-2 group">
+          <span>Activités</span>
+          <!-- Barre dorée soulignée active comme dans la maquette -->
+          <span class="absolute bottom-0 left-0 w-full h-[3px] bg-[#D4B87C] rounded-full"></span>
+        </a>
+        <a href="#decouvrir" class="hover:text-[#0A84FF] transition py-2 text-slate-600">
+          Découvrir
+        </a>
+        <a href="#applications-bas" class="hover:text-[#0A84FF] transition py-2 text-slate-600">
+          Applications & Jeux
+        </a>
+        <a href="#contact" class="hover:text-[#0A84FF] transition py-2 text-slate-600">
+          Contact
+        </a>
+      </nav>
+
+      <!-- Bouton Menu Mobile -->
+      <div class="flex items-center md:hidden gap-3">
+        <a href="#activites" class="px-3 py-1.5 rounded-full bg-[#FF6B35] text-white text-xs font-bold">
+          Réserver
+        </a>
+        <button id="mobileMenuBtn" onclick="toggleMobileNav()" aria-label="Menu" class="p-2 rounded-xl text-slate-700 hover:bg-slate-100 border border-slate-200">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
+
     </div>
 
-    <!-- Tiroir Déroulant Menu Mobile -->
-    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-xl px-4 py-3 space-y-1.5 shadow-2xl max-h-[82vh] overflow-y-auto">
-      <a href="#direct" onclick="closeMobileNav()" class="flex items-center justify-between p-3 rounded-xl bg-rose-50 text-rose-700 font-bold text-sm border border-rose-200">
-        <span class="flex items-center gap-2"><span>🔴</span> Suivre les Joutes en Direct & Replay</span>
-        <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
+    <!-- Tiroir Mobile -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-5 py-4 space-y-2 shadow-xl">
+      <a href="#activites" onclick="closeMobileNav()" class="block py-2.5 font-bold text-[#0f2b48] border-b border-slate-100">
+        🌊 Activités Nautiques
       </a>
-            <a href="#annuaire" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl bg-emerald-50 text-emerald-900 font-bold text-sm border border-emerald-200 transition">
-        <span>🗺️</span> Annuaire Nautique & Carte du Bassin de Thau
+      <a href="#decouvrir" onclick="closeMobileNav()" class="block py-2.5 font-semibold text-slate-600 border-b border-slate-100">
+        ⚓ Découvrir le Bassin de Thau
       </a>
-<a href="#championnat" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-amber-50 text-amber-800 font-semibold text-sm transition">
-        <span>🏆</span> Programme 2026, Vainqueur & Barème
+      <a href="#applications-bas" onclick="closeMobileNav()" class="block py-2.5 font-semibold text-slate-600 border-b border-slate-100">
+        🎮 Applications & 3 Quiz Sétois
       </a>
-      <a href="#galerie" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-blue-50 text-seteblue-800 font-semibold text-sm transition">
-        <span>📸</span> Galerie Photos Officielles de Sète
+      <a href="#contact" onclick="closeMobileNav()" class="block py-2.5 font-semibold text-slate-600">
+        📞 Contact & Partenaires
       </a>
-      <a href="#evenements" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-purple-50 text-purple-800 font-semibold text-sm transition">
-        <span>🎉</span> Festivals de Sète (Worldwide & Demi)
-      </a>
-      <a href="#duel" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-slate-100 text-slate-700 font-medium text-sm transition">
-        <span>⚔️</span> Le Duel en 4 Étapes Clés
-      </a>
-      <a href="#anatomie" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-slate-100 text-slate-700 font-medium text-sm transition">
-        <span>🚣</span> La Barque, Les Rameurs & La Tintaine
-      </a>
-      <a href="#regles" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-slate-100 text-slate-700 font-medium text-sm transition">
-        <span>⚖️</span> Règles, Fautes & Pénalités FFJSN
-      </a>
-      <a href="#lexique" onclick="closeMobileNav()" class="flex items-center gap-2.5 p-3 rounded-xl hover:bg-rose-50 text-setered-700 font-semibold text-sm transition">
-        <span>📖</span> Glossaire & Mots Riches Sétois
-      </a>
-      <a href="#quiz" onclick="closeMobileNav()" class="flex items-center justify-center gap-2 p-3.5 rounded-xl bg-gradient-to-r from-setered-600 to-seteblue-700 text-white font-bold text-sm shadow-md mt-2">
-        <span>🎖️</span> Choisir mon Quiz (10, 25 ou 50 Questions)
-      </a>
-    </div>
-  </nav>
-
-  <!-- Hero Section avec Photo Officielle en Arrière-Plan -->
-  <header class="relative overflow-hidden water-bg text-white py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
-    <div class="absolute inset-0 opacity-25 mix-blend-overlay">
-      <img src="images/cadre_royal_nuit.jpg" alt="Cadre Royal de Sète" class="w-full h-full object-cover">
-    </div>
-    <div class="relative max-w-5xl mx-auto text-center space-y-6">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-cyan-200 text-xs font-semibold uppercase tracking-wider backdrop-blur-md border border-white/15">
-        <span>⚓</span> Tradition maritime sétoise depuis 1666 • Grand Prix de la Saint-Louis
-      </div>
-      <h1 class="text-4xl sm:text-6xl font-serif font-extrabold tracking-tight leading-tight">
-        L'Art et les Règles des <br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-white to-red-300">Joutes Languedociennes</span>
-      </h1>
-      <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-light leading-relaxed">
-        Découvrez les règles officielles FFJSN, les photographies du Cadre Royal, le dictionnaire occitan et défiez nos <strong>3 Quiz de l'Île Singulière</strong> (Courtoisie, Téméraire et Sétois Pur Souche !).
-      </p>
-      <div class="flex flex-wrap justify-center gap-4 pt-4">
-        <a href="#direct" class="px-6 py-3.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold transition shadow-lg shadow-rose-600/30 flex items-center gap-2">
-          <span>🔴</span> Suivre les Joutes en Direct
-        </a>
-        <a href="#quiz" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 hover:from-setered-700 hover:to-amber-700 text-white font-bold transition shadow-lg shadow-setered-600/30 flex items-center gap-2">
-          <span>🏆</span> Jouer aux 3 Quiz (10, 25 et 50 Q)
-        </a>
-        <a href="#galerie" class="px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 text-white font-semibold backdrop-blur-md transition border border-white/20 flex items-center gap-2">
-          <span>📸</span> Photos officielles de Sète
-        </a>
-        <a href="#lexique" class="px-6 py-3.5 rounded-xl bg-seteblue-700 hover:bg-seteblue-800 text-white font-semibold transition flex items-center gap-2">
-          <span>🔍</span> Mots riches & dictionnaire
-        </a>
-      </div>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
 
-    <!-- Section 0 : Galerie Photo Officielle de Sète -->
-    <section id="galerie" class="space-y-8">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seteblue-50 text-seteblue-700 text-xs font-bold uppercase tracking-wider">
-          <span>📷</span> Galerie Photographique Officielle
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Sète & Ses Joutes en Images Réelles</h2>
-        <p class="text-slate-600">Photographies patrimoniales et de compétitions au cœur du Cadre Royal et des canaux de Sète (cliquez pour agrandir).</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- Photo 1 : Action du choc -->
-        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/joutes_action.png', 'Le Choc Frontal des Lances — Fête de la Saint-Louis', 'Les deux ajustaïres en pleine fente avant sur la tintaine. Remarquez la flexion impressionnante de la lance (le cintre) et l\'impact de l\'épure dans le pavois au-dessus du Cadre Royal bondé de spectateurs.')">
-          <div class="relative h-64 overflow-hidden bg-slate-900">
-            <img src="images/joutes_action.png" alt="Choc des lances aux joutes de Sète" class="w-full h-full object-cover img-zoom">
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-setered-600 text-white text-xs font-bold shadow">⚔️ En plein choc</span>
-          </div>
-          <div class="p-5 space-y-2">
-            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Le Choc des Lances (Cadre Royal)</h3>
-            <p class="text-xs text-slate-600 line-clamp-2">Combat au sommet de la tintaine lors de la mythique Fête de la Saint-Louis à Sète.</p>
-            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
-              <span>🔍</span> Agrandir la photo
-            </div>
-          </div>
-        </div>
-
-        <!-- Photo 2 : Barques le matin -->
-        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/barques_matin.jpg', 'Les Barques au Petit Matin dans le Port de Sète', 'La Barque Rouge (La Poncha) et la Barque Bleue (Lo Quartier Naut) au repos avant le défilé et la clameur des peñas. On distingue parfaitement la longueur de 8 mètres et le poste avant des musiciens.')">
-          <div class="relative h-64 overflow-hidden bg-slate-900">
-            <img src="images/barques_matin.jpg" alt="Barques de joutes à Sète au lever du jour" class="w-full h-full object-cover img-zoom">
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-seteblue-700 text-white text-xs font-bold shadow">🛶 Embarcations</span>
-          </div>
-          <div class="p-5 space-y-2">
-            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Les Barques au Lever du Jour</h3>
-            <p class="text-xs text-slate-600 line-clamp-2">La Rouge et la Bleue amarrées dans le port de Sète avant l'effervescence du tournoi.</p>
-            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
-              <span>🔍</span> Agrandir la photo
-            </div>
-          </div>
-        </div>
-
-        <!-- Photo 3 : Détails de la tintaine et bigue -->
-        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/details_barques.jpg', 'Détails de la Bigue et de la Tintaine', 'Vue rapprochée de la charpente en bois de la bigue arrière, de son escalier où se placent les jouteurs d\'attente pour équilibrer l\'assiette, et du plancher perché à 3 mètres.')">
-          <div class="relative h-64 overflow-hidden bg-slate-900">
-            <img src="images/details_barques.jpg" alt="Détails de la bigue et du plancher des barques" class="w-full h-full object-cover img-zoom">
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-600 text-white text-xs font-bold shadow">📐 Structure</span>
-          </div>
-          <div class="p-5 space-y-2">
-            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Gros Plan : La Bigue & La Tintaine</h3>
-            <p class="text-xs text-slate-600 line-clamp-2">L'échafaudage en bois arrière et le plancher haut culminant au-dessus du canal.</p>
-            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
-              <span>🔍</span> Agrandir la photo
-            </div>
-          </div>
-        </div>
-
-        <!-- Photo 4 : Les lances et jouteurs -->
-        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer" onclick="openLightbox('images/lances_stlouis.jpg', 'Armement & Contrôle des Lances de 2,80 m', 'Les jouteurs en tenue blanche immaculée préparent les lances réglementaires. On aperçoit les repères de couleur peints (gardes) et les épures en acier.')">
-          <div class="relative h-64 overflow-hidden bg-slate-900">
-            <img src="images/lances_stlouis.jpg" alt="Jouteurs et lances lors de la Saint-Louis" class="w-full h-full object-cover img-zoom">
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold shadow">⚔️ Les Armes</span>
-          </div>
-          <div class="p-5 space-y-2">
-            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Les Lances & Tenue Blanche</h3>
-            <p class="text-xs text-slate-600 line-clamp-2">Contrôle technique et armement des lances de 2,80 m par les jouteurs sétois.</p>
-            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
-              <span>🔍</span> Agrandir la photo
-            </div>
-          </div>
-        </div>
-
-        <!-- Photo 5 : Le Cadre Royal de nuit -->
-        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition border border-slate-200 group cursor-pointer lg:col-span-2" onclick="openLightbox('images/cadre_royal_nuit.jpg', 'Le Cadre Royal Illuminé de Nuit', 'Le canal mythique de Sète traversant la ville, bordé de tribunes et de façades colorées. C\'est ici que se joue chaque année le Grand Prix de la Saint-Louis devant des dizaines de milliers de passionnés.')">
-          <div class="relative h-64 overflow-hidden bg-slate-900">
-            <img src="images/cadre_royal_nuit.jpg" alt="Le canal de Sète de nuit" class="w-full h-full object-cover img-zoom">
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold shadow">🌆 L'Arène des Joutes</span>
-          </div>
-          <div class="p-5 space-y-2">
-            <h3 class="font-bold text-slate-900 text-base group-hover:text-seteblue-700 transition">Le Cadre Royal de Sète (L'Arène Maritime)</h3>
-            <p class="text-xs text-slate-600">Le cœur battant de Sète où s'affrontent les générations d'ajustaïres depuis plus de 350 ans.</p>
-            <div class="pt-2 text-xs font-semibold text-seteblue-700 flex items-center gap-1">
-              <span>🔍</span> Agrandir la photo
-            </div>
-          </div>
-        </div>
-
-        
-
-      </div>
-    </section>
-
+  <!-- ========================================== -->
+  <!-- 2. HERO SECTION PANORAMIQUE AVEC RECHERCHE -->
+  <!-- ========================================== -->
+  <section class="relative bg-cover bg-center min-h-[460px] lg:min-h-[520px] flex items-center justify-center text-center px-4"
+           style="background-image: linear-gradient(rgba(10, 50, 92, 0.35), rgba(10, 50, 92, 0.45)), url('images/hero_sete_thau.jpg');">
     
+    <div class="max-w-4xl mx-auto space-y-4 pt-6 pb-16">
+      
+      <!-- Titre & Sous-Titre exactement comme sur la maquette -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight drop-shadow-md">
+        Vivez l'étang de Thau
+      </h1>
+      
+      <p class="text-white/95 text-base sm:text-xl font-medium tracking-wide drop-shadow-sm max-w-2xl mx-auto">
+        Les meilleures activités nautiques autour de Sète
+      </p>
 
-    <!-- Section 1 : Le Duel en 4 étapes simples -->
-    <section id="duel" class="space-y-8">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <h2 class="text-xs uppercase tracking-widest font-bold text-seteblue-700">Comprendre en 2 minutes</h2>
-        <h3 class="text-3xl font-serif font-bold text-slate-900">Le Duel d'une Passe : Étape par Étape</h3>
-        <p class="text-slate-600">Deux barques lourdes s'affrontent sur l'eau. Le principe est limpide : faire tomber l'adversaire à l'eau sans tricher ni tomber soi-même.</p>
-      </div>
+      <!-- Petite barre dorée décorative -->
+      <div class="w-16 h-1 bg-[#D4B87C] rounded-full mx-auto my-3"></div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Étape 1 -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-seteblue-500 relative flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="w-10 h-10 rounded-xl bg-seteblue-50 text-seteblue-700 font-bold flex items-center justify-center text-lg">1</div>
-            <h4 class="font-bold text-lg text-slate-900">L'Élan et La Charge</h4>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Les deux barques (la <strong class="text-setered-600">Rouge</strong> et la <strong class="text-seteblue-700">Bleue</strong>) sont propulsées par <strong>8 à 10 rameurs</strong>. Les musiciens à la proue jouent l'air sacré du hautbois et du tambour : <em>« La Charge »</em>.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
-            <span>⚖️</span> Approche impérative par la droite (tribord)
-          </div>
-        </div>
-
-        <!-- Étape 2 -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-amber-500 relative flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 font-bold flex items-center justify-center text-lg">2</div>
-            <h4 class="font-bold text-lg text-slate-900">La Posture de Combat</h4>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Perché sur la <em>tintaine</em> à près de 3m au-dessus de l'eau, le jouteur adopte la <strong>fente avant</strong>. Le lourd <em>pavois</em> (bouclier) est collé au torse et au genou, la lance de 2,80m bloquée sous l'aisselle.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
-            <span>🛡️</span> Interdiction formelle de quitter la fente
-          </div>
-        </div>
-
-        <!-- Étape 3 -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-setered-500 relative flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="w-10 h-10 rounded-xl bg-setered-50 text-setered-700 font-bold flex items-center justify-center text-lg">3</div>
-            <h4 class="font-bold text-lg text-slate-900">Le Choc Frontal</h4>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Au croisement des pavillons, le crampon d'acier à 3 pointes (l'<em>épure</em>) percute violemment le pavois adverse dans la zone centrale autorisée. L'impact est colossal : les lances cintrent ou se brisent !
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
-            <span>⚡</span> Cible : le centre exact du pavois
-          </div>
-        </div>
-
-        <!-- Étape 4 -->
-        <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition border-t-4 border-emerald-500 relative flex flex-col justify-between">
-          <div class="space-y-4">
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 font-bold flex items-center justify-center text-lg">4</div>
-            <h4 class="font-bold text-lg text-slate-900">Le Verdict de l'Eau</h4>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Le jouteur qui désarçonne son adversaire et le fait plonger dans le canal remporte la passe. Si les deux tombent ensemble, c'est le <em>« bouquet »</em> : les deux sont éliminés !
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center gap-1 font-medium">
-            <span>🏆</span> Rester debout sur le plancher
-          </div>
-        </div>
-      </div>
-    </section>
-
-    
-
-    <!-- Section 2 : Anatomie de la Barque et de la Tintaine -->
-    <section id="anatomie" class="space-y-8">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <h2 class="text-xs uppercase tracking-widest font-bold text-setered-600">Dispositif & Équipage</h2>
-        <h3 class="text-3xl font-serif font-bold text-slate-900">Anatomie de la Barque Traditionnelle</h3>
-        <p class="text-slate-600">Une barque de joute (type <em>mourre de porc</em>) pèse lourd et abrite un équipage ultra-synchronisé de 15 à 18 personnes.</p>
-      </div>
-
-      <!-- Schéma interactif des éléments avec photo d'appui -->
-      <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+      <!-- Capsule de Recherche Flottante Arrondie (Même structure que l'image) -->
+      <div class="pt-4 max-w-2xl mx-auto">
+        <form onsubmit="handleHeroSearch(event)" class="bg-white rounded-full p-2 pl-6 sm:pl-7 shadow-2xl flex flex-col sm:flex-row items-center gap-2 sm:gap-4 border border-white/60">
           
-          <div class="space-y-4">
-            <h4 class="font-bold text-xl text-slate-900 flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-setered-500"></span> La Barque Rouge
-              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">La Poncha (Pointe-Courte)</span>
-            </h4>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Mesure environ 8 m sur 2,20 m. Elle embarque un contrepoids avant indispensable de <strong>600 kg</strong> pour équilibrer la bigue arrière lors de la poussée des jouteurs.
-            </p>
-            <div class="space-y-2 pt-2">
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
-                <strong class="text-slate-800">1. Les Musiciens (Avant) :</strong> Hautbois languedocien et tambornet qui donnent la cadence et le moral.
-              </div>
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
-                <strong class="text-slate-800">2. Rameurs (8 à 10) :</strong> Les moteurs vivants de la barque, ils assurent vitesse égale et ligne droite.
-              </div>
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
-                <strong class="text-slate-800">3. Timonier patron (Barreur) :</strong> Il tient la barre franche et ajuste la trajectoire au millimètre.
-              </div>
-            </div>
+          <!-- Champ "Que souhaitez-vous faire ?" -->
+          <div class="flex items-center gap-2.5 flex-1 w-full py-1">
+            <span class="text-slate-400 text-lg">🔍</span>
+            <input type="text" id="heroSearchQuery" placeholder="Que souhaitez-vous faire ?" 
+                   class="w-full text-slate-800 text-sm font-medium focus:outline-none placeholder-slate-400 bg-transparent">
           </div>
 
-          <div class="bg-gradient-to-b from-sky-50 to-indigo-50/50 rounded-2xl p-6 border border-sky-100 text-center space-y-4">
-            <div class="relative h-44 rounded-xl overflow-hidden shadow-sm border border-slate-200">
-              <img src="images/details_barques.jpg" alt="Détail tintaine et bigue" class="w-full h-full object-cover">
-            </div>
-            <h4 class="font-bold text-slate-900 font-serif text-lg">La Tintaine & La Bigue</h4>
-            <p class="text-xs text-slate-600">
-              La <strong>bigue</strong> est l'escalier en bois à l'arrière où 4 à 5 jouteurs se placent en attente pour régler l'assiette du bateau.
-            </p>
-            <div class="inline-block p-4 rounded-xl bg-white shadow-sm border border-slate-200 text-left space-y-2 w-full">
-              <div class="text-xs font-bold text-seteblue-700">Le Plancher de Combat (Tintaine) :</div>
-              <ul class="text-xs text-slate-600 space-y-1 list-disc list-inside">
-                <li>Perché à <strong>2,50 m - 3,00 m</strong> au-dessus de l'eau</li>
-                <li>Surface antidérapante</li>
-                <li>Interdiction formelle de toucher le sol de la main ou du genou</li>
-              </ul>
-            </div>
+          <!-- Séparateur vertical -->
+          <div class="hidden sm:block w-[1px] h-8 bg-slate-200"></div>
+
+          <!-- Champ "Date" -->
+          <div class="flex items-center gap-2.5 w-full sm:w-auto py-1 px-2">
+            <span class="text-slate-400 text-lg">📅</span>
+            <input type="text" id="heroSearchDate" placeholder="Date" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"
+                   class="w-full sm:w-32 text-slate-800 text-sm font-medium focus:outline-none placeholder-slate-400 bg-transparent cursor-pointer">
           </div>
 
-          <div class="space-y-4">
-            <h4 class="font-bold text-xl text-slate-900 flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-seteblue-500"></span> La Barque Bleue
-              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">Lo Quartier Naut (Quartier Haut)</span>
-            </h4>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Jumelle parfaite de la rouge, vêtue de bleu ciel et blanc. Les deux barques doivent impérativement présenter leurs planchers à la <strong>même hauteur absolue</strong> grâce aux poids répartis sur la bigue.
-            </p>
-            <div class="space-y-2 pt-2">
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
-                <strong class="text-slate-800">Le Pavois (Bouclier) :</strong> Bois du Nord rouge, 70 cm × 40 cm, équipé de liteaux de retenue.
-              </div>
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
-                <strong class="text-slate-800">La Lance :</strong> 2,80 m avec son crampon fer (épure) et ses gardes peintes.
-              </div>
-              <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 text-xs">
-                <strong class="text-slate-800">Tenue Blanche Obligatoire :</strong> Pantalon, chemise et bas immaculés, symbole de pureté sportive.
-              </div>
-            </div>
-          </div>
+          <!-- Bouton Orange Corail "Rechercher" -->
+          <button type="submit" 
+                  class="w-full sm:w-auto px-7 py-3 rounded-full bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-sm tracking-wide shadow-md transition-all duration-200 shrink-0">
+            Rechercher
+          </button>
+        </form>
+      </div>
 
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- 3. BANDEAU VAGUE : LES 4 CATÉGORIES CIRCULAIRES -->
+  <!-- ========================================== -->
+  <div class="wave-shelf pt-8 pb-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      
+      <!-- Les 4 Bulles Iconiques : Voile | Kayak | Plongée | Location de bateau -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 justify-items-center">
+        
+        <!-- Catégorie 1 : Voile -->
+        <button onclick="filterByCategory('voile')" id="heroCat-voile" 
+                class="category-circle-btn flex flex-col items-center gap-2.5 group focus:outline-none">
+          <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-[#dcebf9] group-hover:bg-[#0A84FF] transition-all duration-300 flex items-center justify-center shadow-xs">
+            <!-- Icône Voilier minimaliste -->
+            <svg class="w-9 h-9 text-[#0b3b60] group-hover:text-white transition" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L4 18H12V2Z"/>
+              <path d="M14 8L20 18H14V8Z"/>
+              <path d="M2 20C7 20 9 22 14 22C19 22 21 20 22 20H2Z"/>
+            </svg>
+          </div>
+          <span class="font-bold text-sm sm:text-base text-[#0f2b48] group-hover:text-[#0A84FF] transition">Voile</span>
+        </button>
+
+        <!-- Catégorie 2 : Kayak -->
+        <button onclick="filterByCategory('kayak')" id="heroCat-kayak" 
+                class="category-circle-btn flex flex-col items-center gap-2.5 group focus:outline-none">
+          <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-[#dcebf9] group-hover:bg-[#0A84FF] transition-all duration-300 flex items-center justify-center shadow-xs">
+            <!-- Icône Kayakiste minimaliste -->
+            <svg class="w-9 h-9 text-[#0b3b60] group-hover:text-white transition" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="2.5"/>
+              <path d="M17.5 10.5L14 8.5V11L18 13.5L17.5 10.5Z"/>
+              <path d="M6.5 10.5L10 8.5V11L6 13.5L6.5 10.5Z"/>
+              <path d="M2 17C6 17 9 19 12 19C15 19 18 17 22 17L20 15C16 15 14 16 12 16C10 16 8 15 4 15L2 17Z"/>
+            </svg>
+          </div>
+          <span class="font-bold text-sm sm:text-base text-[#0f2b48] group-hover:text-[#0A84FF] transition">Kayak</span>
+        </button>
+
+        <!-- Catégorie 3 : Plongée -->
+        <button onclick="filterByCategory('plongee')" id="heroCat-plongee" 
+                class="category-circle-btn flex flex-col items-center gap-2.5 group focus:outline-none">
+          <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-[#dcebf9] group-hover:bg-[#0A84FF] transition-all duration-300 flex items-center justify-center shadow-xs">
+            <!-- Icône Masque de plongée & Tuba -->
+            <svg class="w-9 h-9 text-[#0b3b60] group-hover:text-white transition" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 6C3.79 6 2 7.79 2 10C2 12.21 3.79 14 6 14C8.21 14 10 12.21 10 10C10 7.79 8.21 6 6 6ZM18 6C15.79 6 14 7.79 14 10C14 12.21 15.79 14 18 14C20.21 14 22 12.21 22 10C22 7.79 20.21 6 18 6Z"/>
+              <path d="M10 10H14"/>
+              <path d="M20 4V2H22V8C22 11.31 19.31 14 16 14H15V12H16C18.21 12 20 10.21 20 8V4Z"/>
+            </svg>
+          </div>
+          <span class="font-bold text-sm sm:text-base text-[#0f2b48] group-hover:text-[#0A84FF] transition">Plongée</span>
+        </button>
+
+        <!-- Catégorie 4 : Location de bateau -->
+        <button onclick="filterByCategory('location-bateau')" id="heroCat-location-bateau" 
+                class="category-circle-btn flex flex-col items-center gap-2.5 group focus:outline-none">
+          <div class="w-18 h-18 sm:w-20 sm:h-20 rounded-full bg-[#dcebf9] group-hover:bg-[#0A84FF] transition-all duration-300 flex items-center justify-center shadow-xs">
+            <!-- Icône Bateau à moteur -->
+            <svg class="w-9 h-9 text-[#0b3b60] group-hover:text-white transition" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M3 16L5 11H17L21 16H3Z"/>
+              <path d="M7 11L9 6H15L14 11H7Z"/>
+              <path d="M1 18C5 18 8 20 12 20C16 20 19 18 23 18V21C19 21 16 23 12 23C8 23 5 21 1 21V18Z"/>
+            </svg>
+          </div>
+          <span class="font-bold text-sm sm:text-base text-[#0f2b48] group-hover:text-[#0A84FF] transition">Location de bateau</span>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- 4. CONTENU PRINCIPAL : SIDEBAR FILTRES + GRILLE -->
+  <!-- ========================================== -->
+  <main id="activites" class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-20 w-full">
+    
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+      
+      <!-- ======================================== -->
+      <!-- COLONNE GAUCHE : FILTRES (Même UI que mockup) -->
+      <!-- ======================================== -->
+      <aside class="w-full lg:w-64 bg-[#F8F5EE] border border-[#EBE4D5] rounded-2xl p-5 shadow-xs space-y-6 shrink-0">
+        
+        <!-- En-tête Filtres -->
+        <div class="flex items-center justify-between border-b border-[#EBE4D5] pb-3">
+          <div class="flex items-center gap-2 text-base font-bold text-[#0f2b48]">
+            <span>⚙️</span>
+            <span>Filtres</span>
+          </div>
+          <button onclick="resetAllFilters()" class="text-xs text-slate-400 hover:text-[#0A84FF] transition">
+            Réinitialiser
+          </button>
+        </div>
+
+        <!-- GROUPE 1 : CATÉGORIE -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-700 cursor-pointer" onclick="toggleFilterGroup('groupCat')">
+            <span>Catégorie</span>
+            <span class="text-slate-400 text-xs">▼</span>
+          </div>
+          <div id="groupCat" class="space-y-2 text-xs font-medium text-slate-700 pl-0.5">
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="catFilter" value="voile" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Voile</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="catFilter" value="kayak" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Kayak</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="catFilter" value="plongee" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Plongée</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="catFilter" value="location-bateau" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Location de bateau</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- GROUPE 2 : BUDGET -->
+        <div class="space-y-3 border-t border-[#EBE4D5] pt-4">
+          <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-700 cursor-pointer" onclick="toggleFilterGroup('groupBudget')">
+            <span>Budget</span>
+            <span class="text-slate-400 text-xs">▼</span>
+          </div>
+          <div id="groupBudget" class="space-y-2 text-xs font-medium text-slate-700 pl-0.5">
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="budgetFilter" value="moins-50" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Moins de 50 €</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="budgetFilter" value="50-100" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>50 € – 100 €</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="budgetFilter" value="100-200" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>100 € – 200 €</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="budgetFilter" value="plus-200" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Plus de 200 €</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- GROUPE 3 : SAISON -->
+        <div class="space-y-3 border-t border-[#EBE4D5] pt-4">
+          <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-700 cursor-pointer" onclick="toggleFilterGroup('groupSaison')">
+            <span>Saison</span>
+            <span class="text-slate-400 text-xs">▼</span>
+          </div>
+          <div id="groupSaison" class="space-y-2 text-xs font-medium text-slate-700 pl-0.5">
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="saisonFilter" value="printemps" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Printemps</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="saisonFilter" value="ete" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Été</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="saisonFilter" value="automne" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Automne</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer hover:text-[#0A84FF]">
+              <input type="checkbox" name="saisonFilter" value="hiver" onchange="applySidebarFilters()" class="rounded text-[#0A84FF] focus:ring-0 w-4 h-4">
+              <span>Hiver</span>
+            </label>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ======================================== -->
+      <!-- COLONNE DROITE : GRILLE DES CARTES IDENTIQUE -->
+      <!-- ======================================== -->
+      <section class="flex-1 w-full space-y-6">
+        
+        <!-- En-tête de résultats -->
+        <div class="flex items-center justify-between">
+          <div class="text-sm font-semibold text-slate-600">
+            <span id="resultsCountBadge" class="font-extrabold text-[#0f2b48]">4 activités</span> sélectionnées autour de Sète
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="text-slate-400">Trier par :</span>
+            <select id="sortSelect" onchange="applySidebarFilters()" class="bg-transparent font-bold text-[#0f2b48] focus:outline-none cursor-pointer">
+              <option value="featured">Recommandées</option>
+              <option value="price-asc">Prix croissant</option>
+              <option value="rating">Meilleurs avis</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- GRILLE DYNAMIQUE DES 4 CARTES DU MOCKUP -->
+        <div id="activitiesGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+          <!-- Rempli dynamiquement en JS avec les mêmes photos, textes, prix et boutons -->
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- ======================================== -->
+    <!-- SECTION DÉCOUVRIR & CARTE DU BASSIN DE THAU -->
+    <!-- ======================================== -->
+    <div id="decouvrir" class="mt-20 pt-10 border-t border-[#EBE4D5] space-y-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-bold text-[#D4B87C] uppercase tracking-widest">Cartographie Interactive</span>
+        <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-[#0f2b48] mt-1">
+          Explorez le Bassin de Thau et ses Canaux
+        </h2>
+        <p class="text-slate-600 text-sm mt-1">
+          Visualisez les points de départ voile, criques, parcs à huîtres et loueurs de bateaux entre Sète, Bouzigues, Mèze et Frontignan.
+        </p>
+      </div>
+
+      <div id="mapBassinThau" class="shadow-md border border-[#EBE4D5]"></div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SECTION TOUT EN BAS : APPLICATIONS, QUIZ & JOUTES SÉTOISES -->
+    <!-- ======================================================== -->
+    <div id="applications-bas" class="mt-24 pt-12 border-t-2 border-[#D4B87C]/30 space-y-12">
+      
+      <!-- Bandeau Espace Applications & Jeux Sétois -->
+      <div class="rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-[#0f2b48] via-[#091b2e] to-[#0f2b48] text-white shadow-xl space-y-6">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4B87C]/20 text-[#D4B87C] text-xs font-bold uppercase tracking-wider">
+              <span>🎮</span> Espace Ludique & Applications
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-serif font-bold">Le Patrimoine Vivant : Les Joutes & Les 3 Quiz Sétois</h3>
+            <p class="text-xs sm:text-sm text-slate-300">
+              Découvrez le sacre des chevaliers de la Saint-Louis, lancez l'hymne officiel ou testez votre culture sétoise.
+            </p>
+          </div>
+          <a href="Joutes_Setoises.apk" download class="px-5 py-3 rounded-2xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-xs shadow-md transition flex items-center gap-2 shrink-0">
+            <span>📱</span> Télécharger l'App Android (APK)
+          </a>
+        </div>
+
+        <!-- Composants conservés : Les 3 Quiz -->
+        <section id="quiz" class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 space-y-10">
+      <div class="max-w-3xl mx-auto text-center space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-setered-50 text-setered-700 text-xs font-bold uppercase tracking-wider">
+          <span>🏆</span> Le Défi des Chevaliers du Cadre Royal
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">Choisissez Votre Défi Sétois</h2>
+        <p class="text-slate-600 text-sm sm:text-base">De l'amateur poli au jouteur aguerri, mesurez votre savoir face aux 3 niveaux de l'Île Singulière !</p>
+      </div>
+
+      <!-- Sélecteur des 3 Modes de Quiz -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto" id="quizModeSelector">
+        
+        <!-- Mode 1: Courtoisie -->
+        <div onclick="selectQuizMode('courtoisie')" id="card-courtoisie" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-seteblue-500 bg-white hover:shadow-md transition text-left space-y-3 group">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">🌱</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-seteblue-50 text-seteblue-700">10 Questions</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-seteblue-700 transition">Sétois de Courtoisie</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Les bases indispensables pour apprécier un tournoi et comprendre l'essentiel sans faire d'impair.</p>
+          <div class="pt-2 text-xs font-bold text-seteblue-700 flex items-center gap-1">
+            <span>▶</span> Lancer ce quiz
+          </div>
+        </div>
+
+        <!-- Mode 2: Téméraire -->
+        <div onclick="selectQuizMode('temeraire')" id="card-temeraire" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-amber-500 bg-white hover:shadow-md transition text-left space-y-3 group">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">⚔️</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-50 text-amber-800">25 Questions</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-amber-700 transition">Sétois Téméraire</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Règles fédérales FFJSN complètes, arbitrage, barèmes de points, lances courtes et tactique de fente.</p>
+          <div class="pt-2 text-xs font-bold text-amber-700 flex items-center gap-1">
+            <span>▶</span> Lancer ce quiz
+          </div>
+        </div>
+
+        <!-- Mode 3: Pur Souche -->
+        <div onclick="selectQuizMode('pur_souche')" id="card-pur_souche" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-setered-600 bg-white hover:shadow-md transition text-left space-y-3 group">
+          <div class="flex items-center justify-between">
+            <span class="text-2xl">👑</span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-setered-100 text-setered-700">50 Questions</span>
+          </div>
+          <h3 class="font-bold text-lg text-slate-900 group-hover:text-setered-700 transition">Sétois Pur Souche</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">Le graal absolu ! Patois occitan, argot de Sète, secrets de la Saint-Louis, légendes et anecdotes de l'étang.</p>
+          <div class="pt-2 text-xs font-bold text-setered-700 flex items-center gap-1">
+            <span>▶</span> Lancer ce quiz
+          </div>
+        </div>
+
+        
+
+      </div>
+
+      <!-- Zone de Jeu du Quiz -->
+      <div id="quizContainer" class="max-w-2xl mx-auto bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6">
+        
+        <!-- En-tête du Quiz Actif -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+          <div class="space-y-0.5">
+            <span id="activeQuizBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700"></span>
+            <h4 id="activeQuizName" class="text-lg font-bold text-slate-900"></h4>
+          </div>
+          <div class="flex items-center gap-4 text-xs font-semibold">
+            <span class="text-slate-500">Question <strong id="currentQuestionNum" class="text-slate-900">1</strong> / <span id="totalQuestionsNum">10</span></span>
+            <span id="quizScoreDisplay" class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold">Score: 0</span>
+          </div>
+        </div>
+
+        <!-- Barre de Progression -->
+        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+          <div id="quizProgressBar" class="bg-gradient-to-r from-seteblue-600 to-setered-600 h-full w-0 transition-all duration-300"></div>
+        </div>
+
+        <!-- Boîte de Question -->
+        <div id="quizQuestionBox" class="space-y-4">
+          <h4 id="questionTitle" class="text-base sm:text-lg font-bold text-slate-900 leading-snug"></h4>
+          <div id="optionsContainer" class="space-y-2.5">
+            <!-- Boutons de réponses injectés ici -->
+          </div>
+        </div>
+
+        <!-- Feedback Explicatif Sétois -->
+        <div id="quizFeedback" class="hidden p-4 rounded-xl text-xs sm:text-sm leading-relaxed"></div>
+
+        <!-- Boutons d'Action -->
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="changeQuizModePrompt()" class="text-xs text-slate-500 hover:text-slate-800 transition underline font-medium">
+            ← Changer de niveau
+          </button>
+          <button id="nextBtn" onclick="nextQuestion()" class="hidden px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition shadow-sm">
+            Question Suivante →
+          </button>
         </div>
       </div>
     </section>
 
-    
-
-    <!-- Section 3 : Règles Officielles, Fautes & Sanctions -->
-    <section id="regles" class="space-y-8">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <h2 class="text-xs uppercase tracking-widest font-bold text-seteblue-700">Code FFJSN</h2>
-        <h3 class="text-3xl font-serif font-bold text-slate-900">Règles Officielles, Fautes & Disqualifications</h3>
-        <p class="text-slate-600">La joute languedocienne est un sport codifié avec une rigueur absolue pour assurer la sécurité et l'équité des passes.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Cartons rouges directs -->
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-setered-600 space-y-4">
-          <div class="flex items-center justify-between">
-            <h4 class="font-bold text-slate-900 text-lg">Disqualifications Directes</h4>
-            <span class="px-2 py-0.5 rounded text-xs font-bold bg-setered-100 text-setered-700">Faute Majeure</span>
-          </div>
-          <p class="text-xs text-slate-500">Ces infractions entraînent l'exclusion immédiate du tournoi :</p>
-          <ul class="text-sm space-y-2.5 text-slate-700">
-            <li class="flex items-start gap-2">
-              <span class="text-setered-600 font-bold">✕</span>
-              <span><strong>Lance courte :</strong> Ne pas garder la base de la lance coincée sous l'aisselle à l'impact.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-setered-600 font-bold">✕</span>
-              <span><strong>Passer la 2ème garde :</strong> Laisser glisser la main jusqu'à masquer la zone blanche de la lance.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-setered-600 font-bold">✕</span>
-              <span><strong>Double frappe :</strong> Recharger sa lance pour donner un 2ème coup après l'impact initial.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-setered-600 font-bold">✕</span>
-              <span><strong>Faire tomber en avant :</strong> Relâcher délibérément la poussée pour attirer l'adversaire dans le vide.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-setered-600 font-bold">✕</span>
-              <span><strong>Frappe hors zone :</strong> Piquer en dehors de la demi-surface centrale du pavois.</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Élimination de la passe -->
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-amber-500 space-y-4">
-          <div class="flex items-center justify-between">
-            <h4 class="font-bold text-slate-900 text-lg">Passe Perdue / Élimination</h4>
-            <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-100 text-amber-800">Chute & Contacts</span>
-          </div>
-          <p class="text-xs text-slate-500">Le jouteur perd son combat sans faute antisportive :</p>
-          <ul class="text-sm space-y-2.5 text-slate-700">
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 font-bold">!</span>
-              <span><strong>Chute à l'eau :</strong> Toucher l'eau du canal (même le bout du pied).</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 font-bold">!</span>
-              <span><strong>Contact avec le plancher :</strong> Poser la main, le genou ou le pavois au sol pour garder l'équilibre.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 font-bold">!</span>
-              <span><strong>Pied sur la planche de devant :</strong> Mettre le pied sur le rebord avant du plancher.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 font-bold">!</span>
-              <span><strong>Lâcher d'arme :</strong> Faire tomber sa lance ou son pavois de ses mains.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-amber-600 font-bold">!</span>
-              <span><strong>Bouquet :</strong> Si les deux tombent ensemble, les deux sont éliminés !</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Format du tournoi et points -->
-        <div class="glass-card rounded-2xl p-6 border-l-4 border-seteblue-600 space-y-4">
-          <div class="flex items-center justify-between">
-            <h4 class="font-bold text-slate-900 text-lg">Format d'un Tournoi</h4>
-            <span class="px-2 py-0.5 rounded text-xs font-bold bg-seteblue-100 text-seteblue-800">Compétition</span>
-          </div>
-          <p class="text-xs text-slate-500">Les différentes étapes d'une journée de joutes :</p>
-          <div class="text-sm space-y-3 text-slate-700">
-            <div class="p-3 bg-slate-50 rounded-xl">
-              <strong class="text-slate-900">1. Éliminatoires :</strong>
-              <p class="text-xs text-slate-600 mt-1">Chaque jouteur doit faire tomber <strong>3 adversaires</strong> (2 pour les juniors) pour obtenir son ticket pour les revanches.</p>
-            </div>
-            <div class="p-3 bg-slate-50 rounded-xl">
-              <strong class="text-slate-900">2. Les Revanches :</strong>
-              <p class="text-xs text-slate-600 mt-1">Tournoi à élimination directe. Une seule passe par tour jusqu'à la grande finale.</p>
-            </div>
-            <div class="p-3 bg-slate-50 rounded-xl">
-              <strong class="text-slate-900">3. Points Championnat de Ligue :</strong>
-              <p class="text-xs text-slate-600 mt-1">Vainqueur (1er Prix) = <strong>20 pts</strong>, 2e Prix = <strong>12 pts</strong>, 3e/4e = <strong>8 pts</strong>, Qualifié revanches = <strong>4 pts</strong>.</p>
-            </div>
-          </div>
-        </div>
-
-        
-
-      </div>
-    </section>
-
-    
-
-    <!-- Section Championnat 2026 : Programme, Championnat de Ligue & Parcours du Vainqueur -->
-    <section id="championnat" class="space-y-12 pt-6 border-t border-slate-200">
+        <!-- Championnat & Vainqueur -->
+        <section id="championnat" class="space-y-12 pt-6 border-t border-slate-200">
       
       <!-- En-tête de section -->
       <div class="text-center max-w-3xl mx-auto space-y-2">
@@ -1020,1947 +1017,367 @@ Julien Bourdel;Nouvelle Lance Mézoise;Mèze;Moyens;70" class="w-full p-3 rounde
       </div>
 
     </section>
-
-    
-    
-    <!-- Section Suivre les Joutes en Direct (Live Streaming, TV & Radio) -->
-    <section id="direct" class="space-y-8 pt-6 border-t border-slate-200">
-      
-      <!-- En-tête de section -->
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold uppercase tracking-wider animate-pulse">
-          <span class="w-2 h-2 rounded-full bg-rose-600"></span> Retransmission Officielle en Direct
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">Suivre les Joutes en Direct Vidéo & Radio</h2>
-        <p class="text-slate-600 text-sm sm:text-base">
-          Lorsque les tournois battent leur plein sur le Cadre Royal, plusieurs canaux officiels retransmettent l'intégralité des passes en direct multicaméras.
-        </p>
       </div>
 
-      <!-- Carte Principale Direct -->
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-rose-200 shadow-lg bg-gradient-to-b from-rose-50/20 via-white to-slate-50 space-y-8">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
-          <!-- Lecteur / Aperçu Flux Vidéo -->
-          <div class="lg:col-span-7 space-y-3">
-            <div class="relative rounded-2xl overflow-hidden bg-slate-950 aspect-video shadow-xl border border-slate-800 group">
-              <img src="images/joutes_action.png" alt="Direct des joutes de Sète" class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-500">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 flex flex-col justify-between p-5">
-                <div class="flex items-center justify-between">
-                  <span class="px-3 py-1 rounded-full bg-rose-600 text-white text-xs font-bold flex items-center gap-1.5 shadow">
-                    <span class="w-2 h-2 rounded-full bg-white animate-ping"></span> DIRECT LIVE OFFICIEL
-                  </span>
-                  <span class="text-xs text-white/80 font-mono bg-black/50 px-2 py-0.5 rounded backdrop-blur">Cadre Royal • Sète</span>
-                </div>
-                
-                <div class="text-center space-y-3 my-auto">
-                  <div class="flex flex-wrap items-center justify-center gap-3">
-                    <a href="https://www.youtube.com/results?search_query=Saint+Louis+2026+Grand+tournoi+de+joutes+poids+lourds+Sete" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm shadow-xl transition hover:scale-105 cursor-pointer">
-                      <span>▶</span> Voir la Rediffusion 2026 (Intégrale)
-                    </a>
-                    <a href="https://www.youtube.com/@VilledeseteOfficiel/streams" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-lg transition hover:scale-105 cursor-pointer">
-                      <span>🔴</span> Flux Direct
-                    </a>
-                  </div>
-                  <p class="text-white font-bold text-base">Grand Tournoi des Lourds — Ville de Sète & Décibel Event</p>
-                  <p class="text-white/80 text-xs">Replay intégral des passes, ralentis multicaméras et sacre sous l'orage</p>
-                </div>
-
-                <div class="flex items-center justify-between text-[11px] text-white/70 border-t border-white/10 pt-2">
-                  <span>Flux Vidéo HD 1080p</span>
-                  <span>Accessible gratuitement sur tous écrans</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex items-center gap-2 text-xs text-slate-500">
-              <span class="text-rose-600 font-bold">●</span> <em>Le direct vidéo s'active automatiquement lors des jours de tournois majeurs (notamment le lundi des Lourds de la Saint-Louis et les grands tournois du Championnat de Ligue).</em>
-            </div>
-          </div>
-
-          <!-- Canaux et Moyens de Diffusion -->
-          <div class="lg:col-span-5 space-y-4">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Les Canaux de Diffusion Officiels :</h4>
-
-            <!-- Canal 1 : YouTube Ville de Sète -->
-            <a href="https://www.youtube.com/@VilledeseteOfficiel/streams" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-rose-500 hover:shadow-md transition block group">
-              <div class="flex items-start gap-3">
-                <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 font-bold flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
-                  📺
-                </div>
-                <div class="space-y-0.5 flex-1">
-                  <div class="flex items-center justify-between">
-                    <h5 class="font-bold text-sm text-slate-900 group-hover:text-rose-600 transition">YouTube — Ville de Sète</h5>
-                    <span class="text-xs text-rose-600 font-semibold">Live Vidéo ↗</span>
-                  </div>
-                  <p class="text-xs text-slate-600 leading-relaxed">
-                    Le flux officiel de référence. Toutes les passes commentées par les spécialistes sétois avec prises de vue aériennes.
-                  </p>
-                </div>
-              </div>
-            </a>
-
-            <!-- Canal 2 : viàOccitanie & France 3 -->
-            <a href="https://viaoccitanie.tv" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-seteblue-500 hover:shadow-md transition block group">
-              <div class="flex items-start gap-3">
-                <div class="w-10 h-10 rounded-xl bg-blue-50 text-seteblue-700 font-bold flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
-                  📡
-                </div>
-                <div class="space-y-0.5 flex-1">
-                  <div class="flex items-center justify-between">
-                    <h5 class="font-bold text-sm text-slate-900 group-hover:text-seteblue-700 transition">viàOccitanie & France 3</h5>
-                    <span class="text-xs text-seteblue-700 font-semibold">TNT & Web ↗</span>
-                  </div>
-                  <p class="text-xs text-slate-600 leading-relaxed">
-                    Diffusion télévisée régionale sur la TNT (Canal 31/33), les box internet et en streaming sur france.tv.
-                  </p>
-                </div>
-              </div>
-            </a>
-
-            <!-- Canal 3 : Radio Saint-Louis (RSL) -->
-            <a href="https://www.sete.fr" target="_blank" rel="noopener noreferrer" class="p-4 rounded-2xl bg-white border border-slate-200 hover:border-amber-500 hover:shadow-md transition block group">
-              <div class="flex items-start gap-3">
-                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 font-bold flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition">
-                  📻
-                </div>
-                <div class="space-y-0.5 flex-1">
-                  <div class="flex items-center justify-between">
-                    <h5 class="font-bold text-sm text-slate-900 group-hover:text-amber-700 transition">RSL — La Radio des Joutes</h5>
-                    <span class="text-xs text-amber-700 font-semibold">Audio Live ↗</span>
-                  </div>
-                  <p class="text-xs text-slate-600 leading-relaxed">
-                    Suivez le direct radio avec les clameurs du Cadre Royal, la musique du hautbois et les annonces des jurés.
-                  </p>
-                </div>
-              </div>
-            </a>
-
-            <!-- Info Écrans géants -->
-            <div class="p-3 bg-slate-100 rounded-xl text-[11px] text-slate-600 flex items-center gap-2">
-              <span>🏟️</span> <strong>Sur place à Sète :</strong> Retransmission sur écrans géants au complexe Fonquerne et sur les quais.
-            </div>
-
-          </div>
-
-        </div>
-
-        
-
-      
-        <!-- Bandeau Spécial : Rediffusion Intégrale de la Saint-Louis 2026 -->
-        <div class="p-6 rounded-2xl bg-gradient-to-r from-amber-500/15 via-setered-500/10 to-indigo-500/10 border-2 border-amber-300 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-          <div class="space-y-1.5 text-left flex-1">
-            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[11px] font-bold">
-              <span>📼</span> Replay Disponible en Accès Libre
-            </div>
-            <h4 class="font-serif font-bold text-lg sm:text-xl text-slate-900">
-              Revoir la Rediffusion Intégrale de la Saint-Louis 2026
-            </h4>
-            <p class="text-xs text-slate-600 leading-relaxed max-w-2xl">
-              Revivez l'intégralité du Grand Tournoi des Lourds du lundi 24 août 2026 sur le Cadre Royal : l'entrée des barques, les éliminatoires, l'épisode héroïque de l'orage qui a stoppé les joutes pendant 2h, et la passe décisive sacrant <strong>Valentin Casenove</strong> face à <strong>Thibaut Lognos</strong> !
-            </p>
-          </div>
-          <div class="flex flex-wrap sm:flex-nowrap gap-3 shrink-0 w-full sm:w-auto">
-            <a href="https://www.youtube.com/results?search_query=Saint+Louis+2026+Grand+tournoi+de+joutes+poids+lourds+Sete" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 hover:from-setered-700 hover:to-amber-700 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2">
-              <span>▶</span> Lancer la Rediffusion 2026
-            </a>
-            <a href="https://www.youtube.com/@VilledeseteOfficiel/videos" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs sm:text-sm shadow transition flex items-center justify-center gap-1.5">
-              <span>Chaîne Ville de Sète ↗</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <section id="lexique" class="space-y-8">
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <h2 class="text-xs uppercase tracking-widest font-bold text-setered-600">Parler Sétois & Maîtriser le Vocabulaire</h2>
-        <h3 class="text-3xl font-serif font-bold text-slate-900">Le Dictionnaire des « Mots Riches » des Joutes</h3>
-        <p class="text-slate-600">Recherchez ou filtrez tous les termes traditionnels, leur étymologie occitane et leur explication simple.</p>
-      </div>
-
-      <!-- Filtres et Recherche -->
-      <div class="glass-card rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 space-y-4">
-        <div class="flex flex-col sm:flex-row gap-4">
-          <div class="relative flex-1">
-            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">🔍</span>
-            <input 
-              type="text" 
-              id="searchInput" 
-              placeholder="Rechercher un mot riche (ex: Pavois, Tintaine, Épure, Chapaïre, Empéguer...)" 
-              class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-seteblue-500 bg-white text-sm"
-              oninput="filterLexicon()"
-            >
-          </div>
-          <div class="flex gap-2 items-center overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap no-scrollbar" id="filterChips">
-            <button onclick="setCategory('all')" class="cat-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white transition">Tous (<span id="totalCount">0</span>)</button>
-            <button onclick="setCategory('armes')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Équipement & Armes</button>
-            <button onclick="setCategory('bateau')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Barque & Équipage</button>
-            <button onclick="setCategory('combat')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Gestes & Fautes</button>
-            <button onclick="setCategory('tradition')" class="cat-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Traditions & Musique</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grille des cartes de vocabulaire -->
-      <div id="lexiconGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Rempli dynamiquement en JS -->
-      </div>
-    </section>
-
-    
-
-    <!-- Section 5 : LES 3 GRANDS QUIZ SÉTOIS -->
-    <section id="quiz" class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg border border-slate-200 space-y-10">
-      <div class="max-w-3xl mx-auto text-center space-y-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-setered-50 text-setered-700 text-xs font-bold uppercase tracking-wider">
-          <span>🏆</span> Le Défi des Chevaliers du Cadre Royal
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-slate-900">Choisissez Votre Défi Sétois</h2>
-        <p class="text-slate-600 text-sm sm:text-base">De l'amateur poli au jouteur aguerri, mesurez votre savoir face aux 3 niveaux de l'Île Singulière !</p>
-      </div>
-
-      <!-- Sélecteur des 3 Modes de Quiz -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto" id="quizModeSelector">
-        
-        <!-- Mode 1: Courtoisie -->
-        <div onclick="selectQuizMode('courtoisie')" id="card-courtoisie" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-seteblue-500 bg-white hover:shadow-md transition text-left space-y-3 group">
-          <div class="flex items-center justify-between">
-            <span class="text-2xl">🌱</span>
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-seteblue-50 text-seteblue-700">10 Questions</span>
-          </div>
-          <h3 class="font-bold text-lg text-slate-900 group-hover:text-seteblue-700 transition">Sétois de Courtoisie</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">Les bases indispensables pour apprécier un tournoi et comprendre l'essentiel sans faire d'impair.</p>
-          <div class="pt-2 text-xs font-bold text-seteblue-700 flex items-center gap-1">
-            <span>▶</span> Lancer ce quiz
-          </div>
-        </div>
-
-        <!-- Mode 2: Téméraire -->
-        <div onclick="selectQuizMode('temeraire')" id="card-temeraire" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-amber-500 bg-white hover:shadow-md transition text-left space-y-3 group">
-          <div class="flex items-center justify-between">
-            <span class="text-2xl">⚔️</span>
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-50 text-amber-800">25 Questions</span>
-          </div>
-          <h3 class="font-bold text-lg text-slate-900 group-hover:text-amber-700 transition">Sétois Téméraire</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">Règles fédérales FFJSN complètes, arbitrage, barèmes de points, lances courtes et tactique de fente.</p>
-          <div class="pt-2 text-xs font-bold text-amber-700 flex items-center gap-1">
-            <span>▶</span> Lancer ce quiz
-          </div>
-        </div>
-
-        <!-- Mode 3: Pur Souche -->
-        <div onclick="selectQuizMode('pur_souche')" id="card-pur_souche" class="mode-card cursor-pointer rounded-2xl p-6 border-2 border-slate-200 hover:border-setered-600 bg-white hover:shadow-md transition text-left space-y-3 group">
-          <div class="flex items-center justify-between">
-            <span class="text-2xl">👑</span>
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-setered-100 text-setered-700">50 Questions</span>
-          </div>
-          <h3 class="font-bold text-lg text-slate-900 group-hover:text-setered-700 transition">Sétois Pur Souche</h3>
-          <p class="text-xs text-slate-600 leading-relaxed">Le graal absolu ! Patois occitan, argot de Sète, secrets de la Saint-Louis, légendes et anecdotes de l'étang.</p>
-          <div class="pt-2 text-xs font-bold text-setered-700 flex items-center gap-1">
-            <span>▶</span> Lancer ce quiz
-          </div>
-        </div>
-
-        
-
-      </div>
-
-      <!-- Zone de Jeu du Quiz -->
-      <div id="quizContainer" class="max-w-2xl mx-auto bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6">
-        
-        <!-- En-tête du Quiz Actif -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
-          <div class="space-y-0.5">
-            <span id="activeQuizBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700"></span>
-            <h4 id="activeQuizName" class="text-lg font-bold text-slate-900"></h4>
-          </div>
-          <div class="flex items-center gap-4 text-xs font-semibold">
-            <span class="text-slate-500">Question <strong id="currentQuestionNum" class="text-slate-900">1</strong> / <span id="totalQuestionsNum">10</span></span>
-            <span id="quizScoreDisplay" class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 font-bold">Score: 0</span>
-          </div>
-        </div>
-
-        <!-- Barre de Progression -->
-        <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-          <div id="quizProgressBar" class="bg-gradient-to-r from-seteblue-600 to-setered-600 h-full w-0 transition-all duration-300"></div>
-        </div>
-
-        <!-- Boîte de Question -->
-        <div id="quizQuestionBox" class="space-y-4">
-          <h4 id="questionTitle" class="text-base sm:text-lg font-bold text-slate-900 leading-snug"></h4>
-          <div id="optionsContainer" class="space-y-2.5">
-            <!-- Boutons de réponses injectés ici -->
-          </div>
-        </div>
-
-        <!-- Feedback Explicatif Sétois -->
-        <div id="quizFeedback" class="hidden p-4 rounded-xl text-xs sm:text-sm leading-relaxed"></div>
-
-        <!-- Boutons d'Action -->
-        <div class="flex items-center justify-between pt-2">
-          <button onclick="changeQuizModePrompt()" class="text-xs text-slate-500 hover:text-slate-800 transition underline font-medium">
-            ← Changer de niveau
-          </button>
-          <button id="nextBtn" onclick="nextQuestion()" class="hidden px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition shadow-sm">
-            Question Suivante →
-          </button>
-        </div>
-      </div>
-    </section>
-
-    
-
-    <!-- Section 6 : Les Grands Événements & Festivals de Sète (Worldwide & Demi Festival) -->
-    <section id="evenements" class="space-y-8 pt-6 border-t border-slate-200">
-      
-      <!-- En-tête de section -->
-      <div class="text-center max-w-3xl mx-auto space-y-2">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider">
-          <span>🎵</span> Musique & Culture • Bassin de Thau
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">Les Deux Festivals Majeurs de Sète</h2>
-        <p class="text-slate-600 text-sm sm:text-base">
-          En marge des joutes sacrées, Sète s'embrase chaque été avec deux événements d'envergure internationale célébrés au <strong>Théâtre de la Mer</strong> face aux vagues.
-        </p>
-      </div>
-
-      <!-- Bandeau Écrin : Le Théâtre de la Mer -->
-      <div class="glass-card rounded-2xl overflow-hidden shadow-sm border border-slate-200 flex flex-col md:flex-row items-center gap-6 p-4 sm:p-6 bg-gradient-to-r from-slate-900 to-indigo-950 text-white">
-        <div class="relative w-full md:w-56 h-36 rounded-xl overflow-hidden shrink-0 cursor-pointer shadow-md" onclick="openLightbox('images/theatre_de_la_mer.jpg', 'Le Théâtre de la Mer Jean Vilar', 'Amphithéâtre à ciel ouvert aménagé dans l\'ancien Fort Saint-Pierre (bâti en 1743). Les artistes s\'y produisent avec la mer Méditerranée en toile de fond absolue.')">
-          <img src="images/theatre_de_la_mer.jpg" alt="Théâtre de la Mer à Sète" class="w-full h-full object-cover img-zoom">
-          <span class="absolute bottom-2 right-2 px-2 py-0.5 rounded bg-black/60 text-[10px] font-bold">🔍 Agrandir</span>
-        </div>
-        <div class="space-y-1 text-left flex-1">
-          <span class="text-xs font-bold text-cyan-300 uppercase tracking-wider">L'Écrin Historique</span>
-          <h3 class="text-lg sm:text-xl font-serif font-bold">Le Théâtre de la Mer Jean Vilar</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Ancien fort défensif du XVIIIe siècle surplombant la falaise, ce joyau architectural offre une acoustique magique et une proximité unique entre artistes et festivaliers au son du ressac méditerranéen.
-          </p>
-        </div>
-      </div>
-
-      <!-- Grille des 2 Festivals : Format compact et élégant -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <!-- Festival 1 : Worldwide Festival Sète -->
-        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 flex flex-col justify-between">
-          <div>
-            <!-- Vignette Compacte & Badge -->
-            <div class="relative h-44 overflow-hidden bg-slate-900 cursor-pointer" onclick="openLightbox('images/worldwide_gilles_peterson.jpg', 'Gilles Peterson — Fondateur du Worldwide Festival', 'Le DJ et animateur radio britannique Gilles Peterson, fondateur du Worldwide Festival à Sète depuis 2006, lors d\'une performance.')">
-              <img src="images/worldwide_gilles_peterson.jpg" alt="Gilles Peterson Worldwide Festival" class="w-full h-full object-cover object-top img-zoom">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/30"></div>
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold shadow">
-                🌍 Musiques du Monde & Électro
-              </span>
-              <span class="absolute bottom-3 left-3 text-white text-xs font-semibold">
-                Fondé par Gilles Peterson & Freshly Cut (depuis 2006)
-              </span>
-            </div>
-
-            <!-- Contenu descriptif -->
-            <div class="p-5 space-y-3">
-              <div>
-                <h3 class="font-serif font-bold text-xl text-slate-900">Worldwide Festival Sète</h3>
-                <p class="text-xs font-semibold text-seteblue-700 mt-0.5">Jazz, Soul, Funk, Hip-Hop, Broken Beat & Électro</p>
-              </div>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Inspiré de l'émission culte de la BBC, le festival fait de la cité maritime son terrain de jeu musical. Des après-midis sur les plages aux nuits étoilées du Théâtre de la Mer, il incarne l'art de vivre sétois entre dégustations de tielles et découvertes sonores d'avant-garde.
-              </p>
-              
-              <!-- Période habituelle -->
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2 text-xs text-slate-700">
-                <span>🗓️</span> <strong>Période habituelle :</strong> Première semaine de <strong>juillet</strong>.
-              </div>
-            </div>
-          </div>
-
-          <!-- Section Date Future / Statut -->
-          <div class="p-5 pt-0 space-y-3">
-            <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200/80 text-xs space-y-1">
-              <div class="flex items-center gap-1.5 font-bold text-amber-800">
-                <span>⏳</span> Prochainement / Dates 2027 en attente
-              </div>
-              <p class="text-amber-900/80 text-[11px] leading-relaxed">
-                L'édition se tient chaque début juillet. Les dates officielles et l'ouverture de la billetterie ne sont pas encore mises en ligne à ce jour.
-              </p>
-            </div>
-            <a href="https://worldwidefestival.com" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-sm">
-              <span>Site officiel</span> <span>worldwidefestival.com ↗</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- Festival 2 : Le Demi Festival (Demi Portion) -->
-        <div class="glass-card rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 flex flex-col justify-between">
-          <div>
-            <!-- Vignette Compacte & Badge -->
-            <div class="relative h-44 overflow-hidden bg-slate-900 cursor-pointer" onclick="openLightbox('images/demi_portion_festival.jpg', 'Demi Portion en concert', 'Le rappeur sétois Demi Portion (Rachid Daïf), créateur et âme du Demi Festival au Théâtre de la Mer.')">
-              <img src="images/demi_portion_festival.jpg" alt="Demi Portion au Demi Festival" class="w-full h-full object-cover object-top img-zoom">
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/30"></div>
-              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-setered-600 text-white text-xs font-bold shadow">
-                🎤 Rap Indépendant & Culture Hip-Hop
-              </span>
-              <span class="absolute bottom-3 left-3 text-white text-xs font-semibold">
-                Créé par Demi Portion (depuis 2016)
-              </span>
-            </div>
-
-            <!-- Contenu descriptif -->
-            <div class="p-5 space-y-3">
-              <div>
-                <h3 class="font-serif font-bold text-xl text-slate-900">Le Demi Festival</h3>
-                <p class="text-xs font-semibold text-setered-600 mt-0.5">Le rendez-vous roi du Hip-Hop indépendant à taille humaine</p>
-              </div>
-              <p class="text-xs text-slate-600 leading-relaxed">
-                Porté avec ferveur par l'enfant de Sète <strong>Demi Portion</strong>, ce festival défend des valeurs de partage, de proximité et de prix abordables. Il réunit toutes les légendes du rap (Oxmo Puccino, Fonky Family, JoeyStarr, Hugo TSR...) avec un grand concert populaire gratuit sur le port.
-              </p>
-              
-              <!-- Période habituelle -->
-              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2 text-xs text-slate-700">
-                <span>🗓️</span> <strong>Période habituelle :</strong> Début <strong>août</strong> (sold-out en 10 minutes !).
-              </div>
-            </div>
-          </div>
-
-          <!-- Section Date Future / Statut -->
-          <div class="p-5 pt-0 space-y-3">
-            <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200/80 text-xs space-y-1">
-              <div class="flex items-center gap-1.5 font-bold text-amber-800">
-                <span>⏳</span> Prochainement / Dates 2027 en attente
-              </div>
-              <p class="text-amber-900/80 text-[11px] leading-relaxed">
-                Après la 10ème édition anniversaire d'août 2026, les prochaines dates ne sont pas encore officialisées. Restez à l'affût dès l'ouverture des préventes.
-              </p>
-            </div>
-            <a href="https://demifestival.fr" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-setered-600 hover:bg-setered-700 text-white text-xs font-semibold transition flex items-center justify-center gap-1.5 shadow-sm">
-              <span>Site officiel</span> <span>demifestival.fr ↗</span>
-            </a>
-          </div>
-        </div>
-
-        
-
-      </div>
-
-    </section>
-
-    
-
-  
-    <!-- SECTION LE GUIDE OFFICIEL DE SÈTE & SES CANAUX -->
-    <section id="annuaire" class="space-y-8 pt-8 border-t border-slate-200">
-      
-      <!-- Présentation Immersive : Sète et ses Canaux -->
-      <div class="glass-card rounded-3xl p-6 sm:p-10 border-2 border-seteblue-300 shadow-xl bg-gradient-to-br from-seteblue-50/50 via-white to-cyan-50/40 space-y-6">
-        
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b border-seteblue-200 pb-6">
-          <div class="space-y-2 max-w-3xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-seteblue-100 text-seteblue-900 text-xs font-bold uppercase tracking-wider border border-seteblue-200">
-              <span>⚓</span> leguidedesete.fr • Guide Officiel
-            </div>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 leading-tight">
-              Sète & Ses Canaux au Fil de l'Eau
-            </h2>
-            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-              Surnommée la <em>Venise du Languedoc</em>, <strong>Sète</strong> est une île singulière sculptée par la mer et la lagune. Du mythique <strong>Cadre Royal</strong> où s'affrontent les jouteurs jusqu'aux ruelles poétiques de la <strong>Pointe Courte</strong>, découvrez tous les établissements, activités maritimes et bonnes adresses répertoriés <strong>par secteur et par ordre alphabétique</strong>.
-            </p>
-          </div>
-
-          <!-- Météo Marine & Conditions Canaux -->
-          <div class="p-4 rounded-2xl bg-slate-900 text-white text-xs space-y-2 shadow-lg shrink-0 w-full md:w-auto border border-slate-800">
-            <div class="flex items-center justify-between gap-3 text-xs font-bold text-cyan-400">
-              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Conditions Canaux & Mer</span>
-              <span class="text-[10px] text-slate-400">En direct</span>
-            </div>
-            <div class="text-xs text-slate-200 flex items-center gap-2">
-              <span>💨 Vent : <strong>Brise marine 11 kts</strong></span>
-              <span>•</span>
-              <span>🌊 Eau : <strong>19°C</strong></span>
-            </div>
-            <div class="text-[10px] text-slate-400">
-              Navigation fluide sous les ponts levants
-            </div>
-          </div>
-        </div>
-
-        <!-- Moteur de Recherche, Secteurs Sétois & Tri Alphabétique -->
-        <div class="space-y-4 pt-2">
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
-            
-            <!-- Recherche textuelle -->
-            <div class="md:col-span-5 relative">
-              <input type="text" id="annuaireSearchInput" oninput="applyAnnuaireFilters()" placeholder="🔍 Rechercher un établissement, une activité à Sète..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-seteblue-600 bg-white shadow-2xs">
-            </div>
-
-            <!-- Filtre par Secteur de Sète (Plus de communes extérieures) -->
-            <div class="md:col-span-4">
-              <select id="annuaireSecteurFilter" onchange="applyAnnuaireFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-seteblue-600 shadow-2xs">
-                <option value="all">📍 Tous les Secteurs de Sète</option>
-                <option value="canaux-centre">Canaux Historiques & Cadre Royal</option>
-                <option value="pointe-courte">La Pointe Courte & Quartier des Pêcheurs</option>
-                <option value="port-mole">Vieux Port, Criée & Môle Saint-Louis</option>
-                <option value="plages-corniche">Plages du Lido, Corniche & Quilles</option>
-                <option value="mont-clair">Mont Saint-Clair & Théâtre de la Mer</option>
-                <option value="lagune-rives">Rives de l'Étang de Thau & Parcs</option>
-              </select>
-            </div>
-
-            <!-- Tri Alphabétique / Pertinence -->
-            <div class="md:col-span-3">
-              <select id="annuaireSortFilter" onchange="applyAnnuaireFilters()" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-seteblue-800 bg-white focus:outline-none focus:ring-2 focus:ring-seteblue-600 shadow-2xs">
-                <option value="alpha-asc">🔤 Ordre Alphabétique (A ➔ Z)</option>
-                <option value="alpha-desc">🔤 Ordre Alphabétique (Z ➔ A)</option>
-                <option value="note">⭐ Avis & Note Clients</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Filtres Catégories sous forme de Chips horizontaux défilables -->
-          <div class="flex gap-2 items-center overflow-x-auto pb-2 no-scrollbar" id="annuaireCatChips">
-            <button onclick="setAnnuaireCategory('all')" id="catChip-all" class="annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-seteblue-700 text-white shadow-xs transition flex items-center gap-1.5">
-              <span>✨</span> Toutes les activités
-            </button>
-            <button onclick="setAnnuaireCategory('canaux-croisiere')" id="catChip-canaux-croisiere" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>⚓</span> Canaux & Mer
-            </button>
-            <button onclick="setAnnuaireCategory('location-bateau')" id="catChip-location-bateau" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>🛥️</span> Location Bateaux
-            </button>
-            <button onclick="setAnnuaireCategory('voile-glisse')" id="catChip-voile-glisse" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>⛵</span> Voile & Glisse
-            </button>
-            <button onclick="setAnnuaireCategory('kayak-paddle')" id="catChip-kayak-paddle" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>🛶</span> Kayak & Paddle
-            </button>
-            <button onclick="setAnnuaireCategory('terroir-halles')" id="catChip-terroir-halles" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>🦪</span> Tielles & Gastronomie
-            </button>
-            <button onclick="setAnnuaireCategory('peche')" id="catChip-peche" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>🎣</span> Pêche
-            </button>
-            <button onclick="setAnnuaireCategory('plongee-nature')" id="catChip-plongee-nature" class="annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5">
-              <span>🤿</span> Plongée & Nature
-            </button>
-          </div>
-        </div>
-
-        <!-- Carte Interactive Leaflet centrée sur Sète et ses canaux -->
-        <div class="space-y-2">
-          <div class="flex items-center justify-between text-xs font-bold text-slate-600 px-1">
-            <span class="flex items-center gap-1.5">
-              <span>📍</span> Carte détaillée de Sète et ses canaux (cliquez sur un repère pour voir la fiche)
-            </span>
-            <span class="text-[11px] text-slate-400">Cartographie OpenStreetMap • Sète</span>
-          </div>
-          <div id="mapBassinThau" class="shadow-inner border border-slate-200"></div>
-        </div>
-
-        <!-- Répertoire Général : Toutes les Fiches en Bas par Secteur & Ordre Alphabétique -->
-        <div class="space-y-3 pt-4 border-t border-slate-200">
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-            <div>
-              <h3 class="font-serif font-bold text-2xl text-slate-900">Le Répertoire Général des Établissements Sétois</h3>
-              <p class="text-xs text-slate-500">Tous les établissements classés par secteur et par ordre alphabétique</p>
-            </div>
-            <div class="flex items-center gap-2">
-              <span id="annuaireCountBadge" class="px-3.5 py-1.5 rounded-xl bg-white border border-slate-200 font-bold text-xs text-seteblue-800 shadow-2xs">
-                20 adresses répertoriées
-              </span>
-              <button onclick="openReferencementModal()" class="px-3.5 py-1.5 rounded-xl bg-seteblue-700 hover:bg-seteblue-800 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-xs">
-                <span>➕</span> Référencer mon établissement
-              </button>
-            </div>
-          </div>
-
-          <div id="annuaireCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            <!-- Rempli dynamiquement en JS -->
-          </div>
-
-          <!-- Bouton Voir Plus d'adresses -->
-          <div id="voirPlusContainer" class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-6">
-            <button id="btnVoirPlusAnnuaire" onclick="loadMoreAnnuaireCards()" class="px-8 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition flex items-center gap-2">
-              <span>➕</span> Voir plus d'adresses (<span id="remainingCountDisplay">22</span> restantes)
-            </button>
-            <button onclick="showAllAnnuaireCards()" class="px-5 py-3.5 rounded-2xl bg-white hover:bg-slate-100 border border-slate-300 text-slate-700 font-semibold text-xs transition">
-              Tout afficher (30 adresses)
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-    
-    <!-- Modal Référencer mon Établissement -->
-    <div id="referencementModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeReferencementModal()">
-      <div class="relative max-w-lg w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-5" onclick="event.stopPropagation()">
-        <button onclick="closeReferencementModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm transition">✕</button>
-        
-        <div class="space-y-1">
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-            <span>✨</span> leguidedesete.fr
-          </div>
-          <h4 class="text-2xl font-serif font-bold text-slate-900">Référencer votre Activité</h4>
-          <p class="text-xs text-slate-500">Rejoignez l'annuaire d'expérience du Bassin de Thau. Fiche gratuite ou mise en avant Premium.</p>
-        </div>
-
-        <form id="referencementForm" onsubmit="submitReferencement(event)" class="space-y-3 text-xs">
-          <div>
-            <label class="block font-bold text-slate-700 mb-1">Nom de votre établissement / activité *</label>
-            <input type="text" id="refNom" required placeholder="Ex: Cap Thau Voile, Mas Chez..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block font-bold text-slate-700 mb-1">Commune *</label>
-              <select id="refVille" required class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
-                <option value="Sète">Sète</option>
-                <option value="Bouzigues">Bouzigues</option>
-                <option value="Mèze">Mèze</option>
-                <option value="Frontignan">Frontignan</option>
-                <option value="Balaruc-les-Bains">Balaruc-les-Bains</option>
-                <option value="Marseillan">Marseillan</option>
-              </select>
-            </div>
-            <div>
-              <label class="block font-bold text-slate-700 mb-1">Catégorie *</label>
-              <select id="refCat" required class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
-                <option value="Location Bateaux">Location Bateaux</option>
-                <option value="Voile & Glisse">Voile & Glisse</option>
-                <option value="Kayak & Paddle">Kayak & Paddle</option>
-                <option value="Sorties Mer">Sorties Mer</option>
-                <option value="Mas Conchylicole">Mas Conchylicole</option>
-                <option value="Pêche">Pêche</option>
-                <option value="Plongée & Nature">Plongée & Nature</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block font-bold text-slate-700 mb-1">Téléphone de contact *</label>
-              <input type="tel" id="refTel" required placeholder="04 67..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
-            </div>
-            <div>
-              <label class="block font-bold text-slate-700 mb-1">Site web ou Page Réseaux</label>
-              <input type="url" id="refWeb" placeholder="https://..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50">
-            </div>
-          </div>
-
-          <div>
-            <label class="block font-bold text-slate-700 mb-1">Courte description de l'activité</label>
-            <textarea id="refDesc" rows="2" placeholder="Prestations proposées, tarifs indicatifs, spécificités..." class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 bg-slate-50"></textarea>
-          </div>
-
-          <div id="refFeedback" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
-
-          <button type="submit" class="w-full py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-md transition flex items-center justify-center gap-2">
-            <span>🚀</span> Envoyer ma demande de référencement
-          </button>
-        </form>
-      </div>
     </div>
 
-    <!-- Modal Détail Prestataire -->
-    <div id="prestataireModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closePrestataireModal()">
-      <div class="relative max-w-2xl w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200" onclick="event.stopPropagation()">
-        <button onclick="closePrestataireModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center font-bold text-sm transition">✕</button>
-        
-        <div class="h-48 bg-slate-900 relative overflow-hidden">
-          <img id="modalPrestaImg" src="" alt="" class="w-full h-full object-cover opacity-85">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
-          <div class="absolute bottom-4 left-6 right-6 text-white space-y-1">
-            <span id="modalPrestaBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500 text-white"></span>
-            <h4 id="modalPrestaNom" class="text-2xl font-serif font-bold leading-tight"></h4>
-            <div id="modalPrestaVille" class="text-xs text-emerald-300 font-semibold"></div>
+  </main>
+
+
+  <!-- ========================================== -->
+  <!-- MODAL DE RÉSERVATION / CONTACT RAPIDE -->
+  <!-- ========================================== -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4" onclick="closeBookingModal()">
+    <div class="relative max-w-lg w-full bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-5" onclick="event.stopPropagation()">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-sm transition">✕</button>
+      
+      <div class="space-y-1">
+        <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-orange-100 text-[#FF6B35] text-xs font-bold">
+          <span>⚡</span> Réservation instantanée
+        </div>
+        <h4 id="bookingModalTitle" class="text-2xl font-serif font-bold text-[#0f2b48]">Sortie en voilier</h4>
+        <p id="bookingModalPrice" class="text-sm font-extrabold text-[#FF6B35]">à partir de 59 €</p>
+      </div>
+
+      <div class="p-3.5 rounded-2xl bg-[#F8F5EE] border border-[#EBE4D5] text-xs text-slate-600 space-y-1">
+        <div id="bookingModalDesc" class="leading-relaxed"></div>
+        <div id="bookingModalAdresse" class="font-bold text-[#0f2b48] pt-1"></div>
+      </div>
+
+      <form onsubmit="handleBookingSubmit(event)" class="space-y-3 text-xs">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Date souhaitée *</label>
+            <input type="date" required id="bookDate" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A84FF]">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Participants *</label>
+            <select id="bookPersons" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A84FF]">
+              <option value="1">1 personne</option>
+              <option value="2" selected>2 personnes</option>
+              <option value="3">3 personnes</option>
+              <option value="4">4 personnes</option>
+              <option value="5+">5+ personnes</option>
+            </select>
           </div>
         </div>
 
-        <div class="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div class="flex items-center gap-1.5 text-amber-500 font-bold text-sm">
-              <span>⭐</span> <span id="modalPrestaNote"></span> <span id="modalPrestaAvis" class="text-xs text-slate-400 font-normal"></span>
-            </div>
-            <div id="modalPrestaPrix" class="text-xs font-extrabold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200"></div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Votre Nom *</label>
+            <input type="text" required placeholder="Jean Dupont" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A84FF]">
           </div>
-
-          <div class="space-y-1">
-            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-400">Présentation de l'expérience :</h5>
-            <p id="modalPrestaDesc" class="text-xs sm:text-sm text-slate-600 leading-relaxed"></p>
-          </div>
-
-          <div class="space-y-1.5">
-            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-400">Points forts & Prestations :</h5>
-            <div id="modalPrestaPoints" class="flex flex-wrap gap-1.5"></div>
-          </div>
-
-          <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-2">
-            <div class="flex items-center gap-2 text-slate-700">
-              <span>📍</span> <span id="modalPrestaAdresse" class="font-medium"></span>
-            </div>
-            <div class="flex items-center gap-2 text-slate-700">
-              <span>📞</span> <span id="modalPrestaTel" class="font-bold text-slate-900"></span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-3 pt-2">
-            <a id="modalPrestaCallBtn" href="#" class="flex-1 py-3 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold text-center shadow-md transition flex items-center justify-center gap-2">
-              <span>📞</span> Contacter / Réserver
-            </a>
-            <button onclick="closePrestataireModal()" class="py-3 px-4 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition">
-              Fermer
-            </button>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Téléphone *</label>
+            <input type="tel" required placeholder="06 12 34 56 78" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A84FF]">
           </div>
         </div>
-      </div>
-    </div>
 
-</main>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Email *</label>
+          <input type="email" required placeholder="jean.dupont@email.com" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#0A84FF]">
+        </div>
 
-  <!-- Lightbox Modal pour les Photos -->
-  <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4" onclick="closeLightbox()">
-    <div class="relative max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl" onclick="event.stopPropagation()">
-      <button onclick="closeLightbox()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center text-lg font-bold transition">✕</button>
-      <div class="max-h-[75vh] bg-black flex items-center justify-center overflow-hidden">
-        <img id="lightboxImg" src="" alt="" class="max-h-[75vh] w-auto object-contain">
-      </div>
-      <div class="p-5 text-white space-y-1">
-        <h4 id="lightboxTitle" class="text-lg font-bold"></h4>
-        <p id="lightboxDesc" class="text-xs text-slate-300 leading-relaxed"></p>
-      </div>
+        <div id="bookingFeedback" class="hidden p-3 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold text-center"></div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+          <span>✓</span> Confirmer ma demande de réservation
+        </button>
+      </form>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-200 bg-white py-8 text-center text-xs text-slate-500 space-y-2">
-    <p>Guide Interactif, Photographies Officielles & Les 3 Quiz des Joutes de Sète • Règles Officielles FFJSN.</p>
-    <p class="text-slate-400">Carnet NotebookLM « Les Joutes Nautiques Languedociennes » • Fait avec passion pour les amoureux de l'Île Singulière.</p>
+
+  <!-- ========================================== -->
+  <!-- FOOTER OFFICIEL -->
+  <!-- ========================================== -->
+  <footer id="contact" class="bg-[#0f2b48] text-white pt-14 pb-10 border-t border-slate-800 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 flex items-center justify-center">
+            <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none">
+              <path d="M28 8L16 42H28V8Z" fill="#D4B87C"/>
+              <path d="M33 16L48 42H33V16Z" fill="#0A84FF"/>
+              <path d="M12 47C20 47 24 51 32 51C40 51 44 47 52 47" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <span class="font-extrabold text-xl tracking-tight text-white">SÈTE & THAU</span>
+            <p class="text-slate-400 text-xs">Le portail touristique d'autorité de Sète et de l'Étang de Thau</p>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-6 text-slate-300 font-semibold">
+          <a href="#activites" class="hover:text-white transition">Activités</a>
+          <a href="#decouvrir" class="hover:text-white transition">Découvrir</a>
+          <a href="#applications-bas" class="hover:text-white transition">Quiz & Joutes</a>
+          <a href="mailto:contact@leguidedesete.fr" class="hover:text-white transition">contact@leguidedesete.fr</a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between text-slate-400 text-[11px] gap-3">
+        <div>© 2026 Sète & Thau (leguidedesete.fr) • Tous droits réservés.</div>
+        <div>Hébergement Hostinger • SSL Gratuit • Conçu avec passion pour l'Île Singulière.</div>
+      </div>
+
+    </div>
   </footer>
 
   <!-- Scripts -->
   <script src="annuaire-data.js"></script>
   <script src="championnat-data.js"></script>
   <script src="quiz-data.js"></script>
-  <script>
-    // Lightbox Modal
-    function openLightbox(src, title, desc) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightboxTitle').textContent = title;
-      document.getElementById('lightboxDesc').textContent = desc;
-      document.getElementById('lightboxModal').classList.remove('hidden');
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightboxModal').classList.add('hidden');
-    }
-
-    // Base de données complète des mots riches
-    const lexiconData = [
-      {
-        term: "Ajustaïre",
-        category: "tradition",
-        tag: "Occitan",
-        meaning: "Le jouteur en personne.",
-        explanation: "Terme traditionnel en langue d'oc pour désigner les chevaliers de la tintaine qui montent au combat.",
-        badgeColor: "bg-purple-100 text-purple-700"
-      },
-      {
-        term: "Barelle",
-        category: "armes",
-        tag: "Matériel",
-        meaning: "Liteau vertical de séparation.",
-        explanation: "Morceau de bois fixé verticalement au milieu du pavois qui sépare la zone droite de la zone gauche.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "Bigue",
-        category: "bateau",
-        tag: "Structure",
-        meaning: "L'escalier incliné arrière.",
-        explanation: "Deux poutres en bois qui montent depuis le fond de la barque jusqu'au plancher. 4 à 5 jouteurs s'y tiennent pour faire contrepoids.",
-        badgeColor: "bg-amber-100 text-amber-800"
-      },
-      {
-        term: "Bouquet",
-        category: "combat",
-        tag: "Issue de passe",
-        meaning: "Chute simultanée des deux jouteurs.",
-        explanation: "Quand les deux hommes tombent à l'eau en même temps sous la violence de l'impact. Tous deux sont déclarés battus et éliminés.",
-        badgeColor: "bg-red-100 text-red-700"
-      },
-      {
-        term: "Caler",
-        category: "combat",
-        tag: "Geste d'arrêt",
-        meaning: "Stopper net la course des barques.",
-        explanation: "Exploit de force où la puissance combinée de la frappe et de l'ancrage des deux jouteurs bloque l'avancement des deux barques lors de l'impact.",
-        badgeColor: "bg-emerald-100 text-emerald-800"
-      },
-      {
-        term: "Casse (Double casse)",
-        category: "armes",
-        tag: "Matériel",
-        meaning: "Rupture de la lance de combat.",
-        explanation: "Bris d'une ou deux lances sous la pression gigantesque du choc. La passe est alors généralement rejouée sans pénalité si les lances sont brisées nettes.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "Chariot",
-        category: "tradition",
-        tag: "Apprentissage",
-        meaning: "Barque sur roulettes d'entraînement.",
-        explanation: "Plateforme à roulettes tractée à terre permettant aux enfants des écoles de joutes (de 3 à 8 ans) d'apprendre la fente avant et le coup de lance en toute sécurité.",
-        badgeColor: "bg-purple-100 text-purple-700"
-      },
-      {
-        term: "Cintre",
-        category: "combat",
-        tag: "Physique du coup",
-        meaning: "Courbure impressionnante de la lance.",
-        explanation: "Flexion extrême que prend la perche de bois de 2,80 m sous l'impact avant de propulser le jouteur adverse ou de rompre.",
-        badgeColor: "bg-emerald-100 text-emerald-800"
-      },
-      {
-        term: "Dehors",
-        category: "combat",
-        tag: "Zone interdite",
-        meaning: "Partie extérieure du pavois.",
-        explanation: "Zones périphériques du pavois où il est strictement interdit de piquer. Piquer en « dehors » entraîne une faute ou disqualification.",
-        badgeColor: "bg-red-100 text-red-700"
-      },
-      {
-        term: "Double Frappe",
-        category: "combat",
-        tag: "Faute éliminatoire",
-        meaning: "Donner deux à-coups successifs.",
-        explanation: "Décoller sa lance du pavois après un premier contact pour redonner une seconde impulsion. Formellement interdit et disqualifiant !",
-        badgeColor: "bg-red-100 text-red-700"
-      },
-      {
-        term: "Épine",
-        category: "armes",
-        tag: "Anatomie du Pavois",
-        meaning: "Zone sous la pointe du pavois.",
-        explanation: "Endroit précis du pavois situé sous le repère central, souvent ciblé pour un ancrage parfait de l'épure.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "Épure (ou Crampon)",
-        category: "armes",
-        tag: "Fer de lance",
-        meaning: "Embout métallique à trois pointes.",
-        explanation: "Pièce d'acier fixée au bout de la lance permettant d'accrocher le bois du pavois sans déraper.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "Fente Avant",
-        category: "combat",
-        tag: "Posture de fer",
-        meaning: "Position réglementaire de combat.",
-        explanation: "Jambe arrière tendue au plancher, genou avant fléchi maintenant le bas du pavois. Aucune autre position n'est tolérée.",
-        badgeColor: "bg-emerald-100 text-emerald-800"
-      },
-      {
-        term: "Filer",
-        category: "combat",
-        tag: "Faute de tenue",
-        meaning: "Laisser glisser la lance dans sa main.",
-        explanation: "Sous la force du choc adverse, la main du jouteur glisse en arrière. Si elle dépasse les gardes réglementaires, il est sanctionné ou éliminé.",
-        badgeColor: "bg-amber-100 text-amber-800"
-      },
-      {
-        term: "Gardes (1ère & 2ème)",
-        category: "armes",
-        tag: "Marques arbitrales",
-        meaning: "Anneaux de peinture sur la lance.",
-        explanation: "Repères visuels colorés (bleu/rouge et blanc). La main ne doit jamais masquer la zone blanche (2ème garde) sous peine de disqualification immédiate.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "La Charge",
-        category: "tradition",
-        tag: "Musique sacrée",
-        meaning: "L'hymne de combat des joutes.",
-        explanation: "Mélodie martiale et vibrante jouée par le hautbois et le tambourin dès que les barques se croisent pour porter les jouteurs vers l'impact.",
-        badgeColor: "bg-purple-100 text-purple-700"
-      },
-      {
-        term: "Lance Courte",
-        category: "combat",
-        tag: "Faute majeure",
-        meaning: "Ne pas coincer la lance sous l'aisselle.",
-        explanation: "Faute disqualifiante consistant à tenir la lance trop courte en laissant du bois dépasser derrière le bras, augmentant dangereusement le levier.",
-        badgeColor: "bg-red-100 text-red-700"
-      },
-      {
-        term: "Lo Quartier Naut",
-        category: "bateau",
-        tag: "Tradition sétoise",
-        meaning: "Nom de la Barque Bleue.",
-        explanation: "Rend hommage aux pêcheurs du Quartier Haut de Sète, historiquement opposés aux gens de la Pointe-Courte.",
-        badgeColor: "bg-sky-100 text-sky-800"
-      },
-      {
-        term: "La Poncha",
-        category: "bateau",
-        tag: "Tradition sétoise",
-        meaning: "Nom de la Barque Rouge.",
-        explanation: "Représente le quartier pittoresque de la Pointe-Courte bordant l'étang de Thau à Sète.",
-        badgeColor: "bg-rose-100 text-rose-800"
-      },
-      {
-        term: "Mourre",
-        category: "armes",
-        tag: "Pavois",
-        meaning: "Haut du pavois (sous le menton).",
-        explanation: "Partie supérieure arrondie du pavois en bois. 'Mourre' signifie museau ou visage en occitan.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "Mourre de porc",
-        category: "bateau",
-        tag: "Type d'embarcation",
-        meaning: "Barque traditionnelle à fond plat.",
-        explanation: "Bateau lourd et très stable à fond plat, conçu spécialement pour résister au choc titanesque des deux embarcations.",
-        badgeColor: "bg-amber-100 text-amber-800"
-      },
-      {
-        term: "Passer en avant",
-        category: "combat",
-        tag: "Faute antisportive",
-        meaning: "Attirer l'adversaire dans le vide.",
-        explanation: "Esquiver ou relâcher sournoisement sa poussée pour que l'adversaire bascule dans le vide par son propre élan. Sanctionné d'un carton direct.",
-        badgeColor: "bg-red-100 text-red-700"
-      },
-      {
-        term: "Pavois",
-        category: "armes",
-        tag: "Bouclier sacré",
-        meaning: "Bouclier lourd de 70 × 40 cm.",
-        explanation: "Fabriqué en bois du Nord rouge, orné de liteaux de retenue. Porté plaqué sur la poitrine et le genou, il encaisse toute la violence du coup.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "Peña",
-        category: "tradition",
-        tag: "Fête sétoise",
-        meaning: "Fanfare de rue festive.",
-        explanation: "Orchestre de cuivres et percussions accompagnant les défilés des jouteurs en blanc dans les rues de la ville.",
-        badgeColor: "bg-purple-100 text-purple-700"
-      },
-      {
-        term: "Plancher (Plateau)",
-        category: "bateau",
-        tag: "Arène",
-        meaning: "La surface haute de la tintaine.",
-        explanation: "Plateforme carrée étroite perchée au sommet de la bigue. Seul endroit où les pieds du jouteur doivent rester pendant le combat.",
-        badgeColor: "bg-amber-100 text-amber-800"
-      },
-      {
-        term: "Retenants",
-        category: "armes",
-        tag: "Pavois",
-        meaning: "Liteaux en bois horizontaux.",
-        explanation: "Baguettes de bois clouées sur le pavois servant de cales pour empêcher l'épure de la lance adverse de riper.",
-        badgeColor: "bg-blue-100 text-blue-700"
-      },
-      {
-        term: "Revanches",
-        category: "tradition",
-        tag: "Compétition",
-        meaning: "Phase finale d'un tournoi.",
-        explanation: "Phase palpitante à élimination directe qui débute une fois que les jouteurs ont franchi les éliminatoires (3 victoires).",
-        badgeColor: "bg-purple-100 text-purple-700"
-      },
-      {
-        term: "Tambornet",
-        category: "tradition",
-        tag: "Musique",
-        meaning: "Petit tambour languedocien.",
-        explanation: "Instrument à percussion traditionnel formant un duo indissociable avec le hautbois sétois à la proue des barques.",
-        badgeColor: "bg-purple-100 text-purple-700"
-      },
-      {
-        term: "Timonier patron",
-        category: "bateau",
-        tag: "Capitaine",
-        meaning: "Le barreur de la barque.",
-        explanation: "Pilote expérimenté tenant la barre franche, il guide la trajectoire, motive les rameurs et ajuste la distance de frôlement.",
-        badgeColor: "bg-amber-100 text-amber-800"
-      },
-      {
-        term: "Tintaine",
-        category: "bateau",
-        tag: "Monument",
-        meaning: "L'échafaudage complet arrière.",
-        explanation: "Structure complète comprenant la bigue inclinée et le plancher haut culminant à environ 3 mètres au-dessus du canal.",
-        badgeColor: "bg-amber-100 text-amber-800"
-      }
-    ];
-
-    let currentCategory = 'all';
-
-    function renderLexicon() {
-      const grid = document.getElementById('lexiconGrid');
-      const search = document.getElementById('searchInput').value.toLowerCase();
-      
-      const filtered = lexiconData.filter(item => {
-        const matchesCategory = currentCategory === 'all' || item.category === currentCategory;
-        const matchesSearch = item.term.toLowerCase().includes(search) || 
-                              item.meaning.toLowerCase().includes(search) || 
-                              item.explanation.toLowerCase().includes(search);
-        return matchesCategory && matchesSearch;
-      });
-
-      document.getElementById('totalCount').textContent = lexiconData.length;
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-400">
-            <span class="text-3xl">🛶</span>
-            <p class="mt-2 text-sm">Aucun mot trouvé pour « ${search} ». Essayez un autre terme !</p>
-          </div>
-        `;
-        return;
-      }
-
-      grid.innerHTML = filtered.map(item => `
-        <div class="glass-card rounded-2xl p-5 shadow-sm hover:shadow-md transition border border-slate-200/80 flex flex-col justify-between group">
-          <div class="space-y-3">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold px-2 py-0.5 rounded-full ${item.badgeColor}">${item.tag}</span>
-              <span class="text-xs text-slate-400 font-mono">Languedocien</span>
-            </div>
-            <div>
-              <h4 class="text-lg font-bold text-slate-900 group-hover:text-seteblue-700 transition">${item.term}</h4>
-              <p class="text-xs font-semibold text-setered-600 mt-0.5">${item.meaning}</p>
-            </div>
-            <p class="text-xs text-slate-600 leading-relaxed">${item.explanation}</p>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function filterLexicon() {
-      renderLexicon();
-    }
-
-    function setCategory(cat) {
-      currentCategory = cat;
-      document.querySelectorAll('.cat-chip').forEach(btn => {
-        btn.classList.remove('active', 'bg-slate-900', 'text-white');
-        btn.classList.add('bg-slate-100', 'text-slate-700');
-      });
-      event.target.classList.remove('bg-slate-100', 'text-slate-700');
-      event.target.classList.add('active', 'bg-slate-900', 'text-white');
-      renderLexicon();
-    }
-
-    // Simulateur de Points Championnat de Ligue
-    function calcChampPoints() {
-      const sel = document.getElementById('champSimSelect');
-      if (!sel) return;
-      const val = parseInt(sel.value, 10);
-      const disp = document.getElementById('champSimPointsDisplay');
-      const comment = document.getElementById('champSimComment');
-      if (disp) disp.textContent = `${val} pts`;
-      if (!comment) return;
-
-      if (val === 20) {
-        comment.textContent = "✨ Victoire royale ! 20 points remportés (comme Valentin Casenove en 2026 pour la LAS) !";
-        comment.className = "text-[11px] text-emerald-300 italic";
-      } else if (val === 12) {
-        comment.textContent = "🥈 Superbe parcours de finaliste ! 12 points précieux au Championnat.";
-        comment.className = "text-[11px] text-amber-300 italic";
-      } else if (val === 8) {
-        comment.textContent = "🥉 Demi-finale d'honneur : 8 points enregistrés au palmarès de la société.";
-        comment.className = "text-[11px] text-sky-300 italic";
-      } else if (val === 4) {
-        comment.textContent = "🎟️ Bravo pour la qualification aux Revanches ! 4 points garantis.";
-        comment.className = "text-[11px] text-indigo-300 italic";
-      } else if (val > 0) {
-        comment.textContent = "⚔️ Passes éliminatoires vaillantes : des points précieux pour le classement.";
-        comment.className = "text-[11px] text-slate-300 italic";
-      } else {
-        comment.textContent = "🌊 Plouf dans le canal ! 0 point pour cette fois, rendez-vous au prochain tournoi !";
-        comment.className = "text-[11px] text-rose-300 italic";
-      }
-    }
-
-    // Gestion du Moteur de Quiz Multi-Modes
-    let currentQuizMode = 'courtoisie';
-    let currentQuestions = [];
-    let currentQ = 0;
-    let score = 0;
-    let answered = false;
-
-    function selectQuizMode(modeKey) {
-      currentQuizMode = modeKey;
-      const mode = quizLevels[modeKey];
-      currentQuestions = mode.questions;
-      currentQ = 0;
-      score = 0;
-
-      // Update card styles
-      document.querySelectorAll('.mode-card').forEach(card => {
-        card.classList.remove('ring-4', 'ring-seteblue-500', 'ring-amber-500', 'ring-setered-500', 'border-transparent');
-      });
-      const activeCard = document.getElementById(`card-${modeKey}`);
-      if (activeCard) {
-        if (modeKey === 'courtoisie') activeCard.classList.add('ring-4', 'ring-seteblue-500', 'border-transparent');
-        if (modeKey === 'temeraire') activeCard.classList.add('ring-4', 'ring-amber-500', 'border-transparent');
-        if (modeKey === 'pur_souche') activeCard.classList.add('ring-4', 'ring-setered-500', 'border-transparent');
-      }
-
-      // Update Header
-      document.getElementById('activeQuizBadge').textContent = mode.badge;
-      document.getElementById('activeQuizName').textContent = mode.name;
-      document.getElementById('totalQuestionsNum').textContent = currentQuestions.length;
-      document.getElementById('quizScoreDisplay').textContent = `Score: 0 / ${currentQuestions.length}`;
-
-      loadQuestion();
-    }
-
-    function loadQuestion() {
-      answered = false;
-      const q = currentQuestions[currentQ];
-      
-      document.getElementById('currentQuestionNum').textContent = currentQ + 1;
-      
-      // Update Progress Bar
-      const progressPct = ((currentQ) / currentQuestions.length) * 100;
-      document.getElementById('quizProgressBar').style.width = `${progressPct}%`;
-
-      document.getElementById('questionTitle').textContent = q.question;
-      
-      const optContainer = document.getElementById('optionsContainer');
-      optContainer.innerHTML = q.options.map((opt, idx) => `
-        <button onclick="checkAnswer(${idx})" class="w-full text-left p-3.5 sm:p-4 rounded-xl border border-slate-200 hover:border-seteblue-500 hover:bg-slate-50 transition text-xs sm:text-sm font-medium text-slate-800 flex items-center justify-between group shadow-2xs">
-          <span>${opt}</span>
-          <span class="w-5 h-5 rounded-full border border-slate-300 group-hover:border-seteblue-500 flex items-center justify-center text-xs"></span>
-        </button>
-      `).join('');
-
-      document.getElementById('quizFeedback').className = 'hidden';
-      document.getElementById('nextBtn').classList.add('hidden');
-    }
-
-    function checkAnswer(chosen) {
-      if (answered) return;
-      answered = true;
-      const q = currentQuestions[currentQ];
-      const fb = document.getElementById('quizFeedback');
-      const optButtons = document.querySelectorAll('#optionsContainer button');
-
-      optButtons.forEach((btn, idx) => {
-        btn.disabled = true;
-        if (idx === q.answer) {
-          btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'font-bold');
-        } else if (idx === chosen) {
-          btn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-900');
-        }
-      });
-
-      if (chosen === q.answer) {
-        score++;
-        document.getElementById('quizScoreDisplay').textContent = `Score: ${score} / ${currentQuestions.length}`;
-        fb.className = 'p-4 rounded-xl text-xs sm:text-sm leading-relaxed bg-emerald-50 border border-emerald-200 text-emerald-800 block';
-        fb.innerHTML = `<strong>✨ Bravo !</strong> ${q.feedback}`;
-      } else {
-        fb.className = 'p-4 rounded-xl text-xs sm:text-sm leading-relaxed bg-rose-50 border border-rose-200 text-rose-800 block';
-        fb.innerHTML = `<strong>✕ Aïoli ! Faux !</strong> ${q.feedback}`;
-      }
-
-      document.getElementById('nextBtn').classList.remove('hidden');
-      if (currentQ === currentQuestions.length - 1) {
-        document.getElementById('nextBtn').textContent = "Voir le Résultat Final 🎉";
-      } else {
-        document.getElementById('nextBtn').textContent = "Question Suivante →";
-      }
-    }
-
-    function nextQuestion() {
-      if (currentQ < currentQuestions.length - 1) {
-        currentQ++;
-        loadQuestion();
-      } else {
-        showFinalResult();
-      }
-    }
-
-    function showFinalResult() {
-      document.getElementById('quizProgressBar').style.width = '100%';
-      const container = document.getElementById('quizContainer');
-      const total = currentQuestions.length;
-      const pct = (score / total) * 100;
-      
-      let title = "";
-      let emoji = "";
-      let appraisal = "";
-
-      if (currentQuizMode === 'pur_souche') {
-        if (pct >= 90) {
-          emoji = "👑";
-          title = "Seigneur Suprême de la Tintaine !";
-          appraisal = "Macarel ! Tu as le sang sétois qui coule dans les veines. Georges Brassens et Paul Valéry trinquent à ta santé ! Ton nom mérite d'être gravé sur le Pavois d'Or !";
-        } else if (pct >= 70) {
-          emoji = "🛶";
-          title = "Véritable Sétois Pur Souche !";
-          appraisal = "T'es un brave ! Tu maîtrises l'argot, les coins secrets de la Pointe-Courte et le tournoi des Lourds n'a aucun secret pour toi.";
-        } else if (pct >= 50) {
-          emoji = "⚓";
-          title = "Sétois d'Adoption Honorable";
-          appraisal = "Pas mal du tout ! Tu as encore deux ou trois tielles et macaronades à déguster avant de monter en finale de la Saint-Louis, mais le respect est là.";
-        } else {
-          emoji = "🌊";
-          title = "Plouf dans le Cadre Royal !";
-          appraisal = "Aïoli ! Tu t'es fait empéguer par les questions corsées. Revois le lexique et remonte sur la tintaine !";
-        }
-      } else if (currentQuizMode === 'temeraire') {
-        if (pct >= 85) {
-          emoji = "⚔️";
-          title = "Maître Téméraire du Règlement FFJSN !";
-          appraisal = "Rien ne t'échappe : gardes de lances, éliminatoires, fentes et lest avant... Tu peux arbitrer la Saint-Louis dès demain !";
-        } else if (pct >= 60) {
-          emoji = "🛡️";
-          title = "Jouteur Vaillant";
-          appraisal = "Solide sur la bigue ! Tu as évité la lance courte et la double frappe avec brio.";
-        } else {
-          emoji = "🌊";
-          title = "Bouquet !";
-          appraisal = "Chute à l'eau ! Prends une brassée de courage et rejoue pour dompter le règlement officiel.";
-        }
-      } else {
-        if (pct >= 80) {
-          emoji = "🌱";
-          title = "Sétois Courtois et Éclairé !";
-          appraisal = "Bravo ! Tu as toutes les clés pour briller lors des défilés et apprécier le spectacle comme un habitué.";
-        } else {
-          emoji = "🛶";
-          title = "Initié Débutant";
-          appraisal = "C'est un bon début ! Tu connais maintenant le pavois et la tintaine.";
-        }
-      }
-
-      container.innerHTML = `
-        <div class="text-center py-8 space-y-5">
-          <div class="text-6xl animate-bounce">${emoji}</div>
-          <h4 class="text-2xl sm:text-3xl font-extrabold font-serif text-slate-900">${title}</h4>
-          <div class="inline-block px-4 py-2 rounded-xl bg-slate-100 font-bold text-lg text-slate-900">
-            Score Final : <span class="text-setered-600">${score}</span> / ${total} (${Math.round(pct)}%)
-          </div>
-          <p class="text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">${appraisal}</p>
-          
-          <!-- Box Audio Célébration Hymne de la Saint-Louis -->
-          <div class="my-5 p-5 rounded-2xl bg-gradient-to-r from-amber-500/10 via-setered-500/10 to-seteblue-500/10 border-2 border-amber-300 shadow-sm max-w-md mx-auto space-y-3">
-            <div class="flex items-center justify-center gap-2 text-sm font-bold text-slate-900">
-              <span class="text-xl">🎺</span>
-              <span>L'Hymne Officiel des Joutes de la Saint-Louis</span>
-            </div>
-            <p class="text-xs text-slate-600 italic">
-              « Ils sont venus tous les voisins de l'Étang de Thau, dans le Cadre Royal... Pour la Saint-Louis ! »
-            </p>
-            <div class="pt-1 flex flex-col items-center gap-2">
-              <button id="resultAudioBtn" onclick="toggleSaintLouisAudio()" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 hover:from-setered-700 hover:to-amber-700 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center justify-center gap-2 mx-auto cursor-pointer">
-                <span id="resultAudioIcon">▶</span> <span id="resultAudioText">Écouter l'Hymne de la Victoire</span>
-              </button>
-              <!-- Lecteur audio standard de secours -->
-              <audio id="resultNativeAudio" controls class="w-full max-w-xs mt-2 h-9" onplay="syncAudioState(this, true)" onpause="syncAudioState(this, false)">
-                <source src="audio/hymne_saint_louis.mp3" type="audio/mpeg">
-                Votre navigateur ne prend pas en charge l'élément audio.
-              </audio>
-            </div>
-            <div id="audioWaveAnim" class="hidden text-[10px] font-semibold text-setered-600 animate-pulse text-center">
-              🎵 Musique en cours de lecture... Ambiance garantie au Cadre Royal !
-            </div>
-          </div>
-
-          <div class="flex flex-wrap justify-center gap-3 pt-2">
-            <button onclick="selectQuizMode('${currentQuizMode}')" class="px-5 py-2.5 rounded-xl bg-slate-900 text-white font-semibold text-xs sm:text-sm hover:bg-slate-800 transition shadow">
-              🔄 Rejouer ce Quiz
-            </button>
-            <button onclick="location.href='#quiz'; selectQuizMode('pur_souche')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-setered-600 to-amber-600 text-white font-bold text-xs sm:text-sm hover:opacity-90 transition shadow">
-              👑 Tenter le Défi 50 Questions (Pur Souche)
-            </button>
-          </div>
-        </div>
-      `;
-    }
-
-    function changeQuizModePrompt() {
-      document.getElementById('quizModeSelector').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Gestionnaire Audio Robuste
-    let globalAudio = null;
-
-    function getAudioPlayer() {
-      if (!globalAudio) {
-        globalAudio = document.getElementById('saintLouisAudio');
-        if (!globalAudio) {
-          globalAudio = new Audio('audio/hymne_saint_louis.mp3');
-        }
-        globalAudio.onplay = () => syncAudioUI(true);
-        globalAudio.onpause = () => syncAudioUI(false);
-        globalAudio.onended = () => syncAudioUI(false);
-        globalAudio.onerror = (e) => {
-          console.error('Audio error:', e);
-        };
-      }
-      return globalAudio;
-    }
-
-    function toggleSaintLouisAudio() {
-      const p = getAudioPlayer();
-      if (!p) return;
-      if (p.paused) {
-        p.play().catch(err => {
-          console.warn('Autoplay/play issue:', err);
-        });
-      } else {
-        p.pause();
-      }
-    }
-
-    function syncAudioState(nativeEl, isPlaying) {
-      const p = getAudioPlayer();
-      if (isPlaying) {
-        if (p && p !== nativeEl && !p.paused) {
-          p.pause();
-        }
-        syncAudioUI(true);
-      } else {
-        syncAudioUI(false);
-      }
-    }
-
-    function syncAudioUI(isPlaying) {
-      const widgetBtn = document.getElementById('widgetPlayBtn');
-      const widgetStatus = document.getElementById('widgetStatus');
-      const resIcon = document.getElementById('resultAudioIcon');
-      const resText = document.getElementById('resultAudioText');
-      const wave = document.getElementById('audioWaveAnim');
-
-      if (isPlaying) {
-        if (widgetBtn) widgetBtn.textContent = '⏸';
-        if (widgetStatus) widgetStatus.textContent = 'En cours de lecture 🎵';
-        if (resIcon) resIcon.textContent = '⏸';
-        if (resText) resText.textContent = 'Mettre en pause l\'Hymne';
-        if (wave) wave.classList.remove('hidden');
-      } else {
-        if (widgetBtn) widgetBtn.textContent = '▶';
-        if (widgetStatus) widgetStatus.textContent = 'Cliquer pour lancer l\'ambiance';
-        if (resIcon) resIcon.textContent = '▶';
-        if (resText) resText.textContent = 'Reprendre l\'Hymne de la Victoire';
-        if (wave) wave.classList.add('hidden');
-      }
-    }
-
-    // Init au chargement
-    window.addEventListener('DOMContentLoaded', () => {
-      renderLexicon();
-      selectQuizMode('courtoisie');
-      getAudioPlayer(); // initialise l'audio dès le chargement du DOM
-    });
   
-    // Gestion du Menu Déroulant Mobile
-    function toggleMobileNav() {
-      const menu = document.getElementById('mobileMenu');
-      const burger = document.getElementById('hamburgerIcon');
-      const close = document.getElementById('closeIcon');
-      if (!menu) return;
-      const isOpen = !menu.classList.contains('hidden');
-      if (isOpen) {
-        closeMobileNav();
-      } else {
-        menu.classList.remove('hidden');
-        burger.classList.add('hidden');
-        close.classList.remove('hidden');
-      }
-    }
-
-    function closeMobileNav() {
-      const menu = document.getElementById('mobileMenu');
-      const burger = document.getElementById('hamburgerIcon');
-      const close = document.getElementById('closeIcon');
-      if (!menu) return;
-      menu.classList.add('hidden');
-      burger.classList.remove('hidden');
-      close.classList.add('hidden');
-    }
-
-    // Fermer le menu si clic en dehors
-    document.addEventListener('click', (e) => {
-      const nav = document.querySelector('nav');
-      const menu = document.getElementById('mobileMenu');
-      if (menu && !menu.classList.contains('hidden') && nav && !nav.contains(e.target)) {
-        closeMobileNav();
-      }
-    });
-
-    // ========================================================
-    // LOGIQUE DU CHAMPIONNAT DYNAMIQUE & GESTIONNAIRE DE PROGRAMME
-    // ========================================================
-    let currentChampData = null;
-    let pendingImportContent = null;
-
-    function initChampionnatModule() {
-      if (typeof getChampionnatData === 'function') {
-        currentChampData = getChampionnatData();
-      } else if (typeof DEFAULT_CHAMPIONNAT_DATA !== 'undefined') {
-        currentChampData = JSON.parse(JSON.stringify(DEFAULT_CHAMPIONNAT_DATA));
-      } else {
-        console.warn('Données de championnat non disponibles.');
-        return;
-      }
-      renderChampionnatUI();
-    }
-
-    function switchChampTab(tabName) {
-      const tabs = ['classement', 'programme', 'import'];
-      tabs.forEach(t => {
-        const view = document.getElementById('champView-' + t);
-        const btn = document.getElementById('tabBtn-' + t);
-        if (view) {
-          if (t === tabName) {
-            view.classList.remove('hidden');
-          } else {
-            view.classList.add('hidden');
-          }
-        }
-        if (btn) {
-          if (t === tabName) {
-            btn.className = "champ-tab-btn active shrink-0 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-seteblue-700 text-white shadow-sm transition flex items-center gap-2";
-          } else if (t === 'import') {
-            btn.className = "champ-tab-btn shrink-0 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-amber-50 text-amber-900 hover:bg-amber-100 border border-amber-300 transition flex items-center gap-2";
-          } else {
-            btn.className = "champ-tab-btn shrink-0 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition flex items-center gap-2";
-          }
-        }
-      });
-    }
-
-    function getCityBadgeClass(city) {
-      city = (city || '').toLowerCase();
-      if (city.includes('sète') || city.includes('sete')) {
-        return 'bg-blue-100 text-blue-800 border-blue-200';
-      } else if (city.includes('agde')) {
-        return 'bg-amber-100 text-amber-800 border-amber-200';
-      } else if (city.includes('frontignan')) {
-        return 'bg-emerald-100 text-emerald-800 border-emerald-200';
-      } else if (city.includes('mèze') || city.includes('meze')) {
-        return 'bg-purple-100 text-purple-800 border-purple-200';
-      } else if (city.includes('palavas')) {
-        return 'bg-cyan-100 text-cyan-800 border-cyan-200';
-      } else if (city.includes('balaruc')) {
-        return 'bg-indigo-100 text-indigo-800 border-indigo-200';
-      } else if (city.includes('grau')) {
-        return 'bg-rose-100 text-rose-800 border-rose-200';
-      }
-      return 'bg-slate-100 text-slate-700 border-slate-200';
-    }
-
-    function renderChampionnatUI() {
-      if (!currentChampData) return;
-
-      // Badges saison
-      const sName = document.getElementById('seasonNameDisplay');
-      if (sName) sName.textContent = currentChampData.saison || "2026";
-      const uDate = document.getElementById('lastUpdatedDisplay');
-      if (uDate) uDate.textContent = currentChampData.derniereMiseAJour || "Août 2026";
-
-      const countJ = document.getElementById('totalJouteursCount');
-      if (countJ) countJ.textContent = (currentChampData.participants || []).length;
-      const countT = document.getElementById('totalTournoisCount');
-      if (countT) countT.textContent = (currentChampData.tournois || []).length;
-
-      renderRankingTable(currentChampData.participants || []);
-      renderTournoisGrid(currentChampData.tournois || []);
-    }
-
-    function renderRankingTable(participants) {
-      const tbody = document.getElementById('rankingTableBody');
-      if (!tbody) return;
-
-      if (!participants || participants.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" class="text-center p-8 text-slate-400">Aucun participant trouvé correspondant à vos critères.</td></tr>';
-        return;
-      }
-
-      tbody.innerHTML = participants.map((p, idx) => {
-        let rankBadge = '';
-        if (p.rang === 1) {
-          rankBadge = '<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-400 text-slate-900 font-extrabold text-xs shadow-xs">🥇 1</span>';
-        } else if (p.rang === 2) {
-          rankBadge = '<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-300 text-slate-900 font-extrabold text-xs">🥈 2</span>';
-        } else if (p.rang === 3) {
-          rankBadge = '<span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-700 text-white font-extrabold text-xs">🥉 3</span>';
-        } else {
-          rankBadge = '<span class="font-bold text-slate-500 text-xs">' + p.rang + '</span>';
-        }
-
-        const cityBadge = getCityBadgeClass(p.ville);
-
-        return '<tr class="hover:bg-slate-50 transition">' +
-          '<td class="p-3 text-center">' + rankBadge + '</td>' +
-          '<td class="p-3">' +
-            '<div class="font-bold text-slate-900 text-xs sm:text-sm">' + p.nom + '</div>' +
-            '<div class="text-[11px] text-slate-500 font-medium">' + (p.statut || '') + '</div>' +
-          '</td>' +
-          '<td class="p-3">' +
-            '<div class="font-semibold text-slate-800 text-xs">' + p.societe + '</div>' +
-            '<span class="inline-block mt-0.5 px-2 py-0.5 rounded-full text-[10px] font-bold border ' + cityBadge + '">' + p.ville + '</span>' +
-          '</td>' +
-          '<td class="p-3 text-center">' +
-            '<span class="px-2.5 py-1 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700">' + p.categorie + '</span>' +
-          '</td>' +
-          '<td class="p-3 text-center font-bold text-slate-800 text-xs">' + (p.victoires || 0) + '</td>' +
-          '<td class="p-3 text-center text-slate-600 text-xs font-semibold">' + (p.passesGagnees || 0) + '</td>' +
-          '<td class="p-3 text-right pr-4 font-extrabold text-sm sm:text-base text-setered-600">' + p.points + ' pts</td>' +
-        '</tr>';
-      }).join('');
-
-      const filteredCount = document.getElementById('filteredCountLabel');
-      if (filteredCount) {
-        filteredCount.textContent = 'Affichage de ' + participants.length + ' jouteur' + (participants.length > 1 ? 's' : '');
-      }
-    }
-
-    function applyChampFilters() {
-      if (!currentChampData) return;
-      const search = (document.getElementById('jouteurSearchInput')?.value || '').toLowerCase().trim();
-      const cat = document.getElementById('jouteurCatFilter')?.value || 'all';
-      const ville = document.getElementById('jouteurVilleFilter')?.value || 'all';
-
-      const filtered = (currentChampData.participants || []).filter(p => {
-        const matchSearch = !search ||
-          p.nom.toLowerCase().includes(search) ||
-          p.societe.toLowerCase().includes(search) ||
-          p.ville.toLowerCase().includes(search) ||
-          (p.statut && p.statut.toLowerCase().includes(search));
-
-        const matchCat = (cat === 'all') || (p.categorie === cat);
-        const matchVille = (ville === 'all') || (p.ville.toLowerCase().includes(ville.toLowerCase()));
-
-        return matchSearch && matchCat && matchVille;
-      });
-
-      renderRankingTable(filtered);
-    }
-
-    function renderTournoisGrid(tournois) {
-      const container = document.getElementById('tournoisGrid');
-      if (!container) return;
-
-      if (!tournois || tournois.length === 0) {
-        container.innerHTML = '<div class="col-span-3 text-center p-8 text-slate-400">Aucun tournoi enregistré.</div>';
-        return;
-      }
-
-      container.innerHTML = tournois.map(t => {
-        const isDone = t.statut === 'Terminé';
-        const statusBadge = isDone
-          ? '<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">Terminé</span>'
-          : '<span class="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 text-[10px] font-bold">À venir</span>';
-
-        const participantsList = Array.isArray(t.participants) ? t.participants : [];
-        const partBadges = participantsList.slice(0, 5).map(name => 
-          '<span class="inline-block px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-[10px] font-medium">' + name + '</span>'
-        ).join(' ');
-
-        return '<div class="glass-card rounded-2xl p-4 border border-slate-200 hover:border-seteblue-400 shadow-2xs space-y-3 transition flex flex-col justify-between">' +
-          '<div class="space-y-2">' +
-            '<div class="flex items-center justify-between text-xs">' +
-              '<span class="font-bold text-slate-500">' + t.date + '</span>' +
-              statusBadge +
-            '</div>' +
-            '<h5 class="font-bold text-sm text-slate-900 leading-snug">' + t.nom + '</h5>' +
-            '<p class="text-xs text-seteblue-700 font-semibold flex items-center gap-1"><span>📍</span> ' + t.lieu + '</p>' +
-            (t.description ? '<p class="text-[11px] text-slate-600 line-clamp-2">' + t.description + '</p>' : '') +
-            (t.vainqueur && t.vainqueur !== '—' ? 
-              '<div class="p-2.5 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-900 font-semibold flex items-center gap-2">' +
-                '<span>🏆</span> <div>Vainqueur : <strong>' + t.vainqueur + '</strong></div>' +
-              '</div>' : '') +
-          '</div>' +
-          '<div class="border-t border-slate-100 pt-3 space-y-1.5">' +
-            '<div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Engagements (' + participantsList.length + ' jouteurs) :</div>' +
-            '<div class="flex flex-wrap gap-1">' + partBadges + (participantsList.length > 5 ? '<span class="text-[10px] text-slate-400 font-bold">+' + (participantsList.length - 5) + ' autres</span>' : '') + '</div>' +
-          '</div>' +
-        '</div>';
-      }).join('');
-    }
-
-    // Gestion de l'Importation de Programme
-    function handleProgramFile(e) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(evt) {
-        pendingImportContent = evt.target.result;
-        const nameDisplay = document.getElementById('fileNameDisplay');
-        const statsDisplay = document.getElementById('fileStatsDisplay');
-        const previewInfo = document.getElementById('filePreviewInfo');
-        
-        if (nameDisplay) nameDisplay.textContent = file.name;
-        if (statsDisplay) {
-          statsDisplay.textContent = (file.size / 1024).toFixed(1) + ' Ko • Prêt pour validation';
-        }
-        if (previewInfo) previewInfo.classList.remove('hidden');
-
-        showImportAlert('Fichier "' + file.name + '" prêt. Cliquez sur "Valider et Actualiser le Programme" pour appliquer.', 'info');
-      };
-      reader.readAsText(file);
-    }
-
-    function showImportAlert(msg, type) {
-      const box = document.getElementById('importAlertBox');
-      if (!box) return;
-      box.classList.remove('hidden', 'bg-emerald-50', 'text-emerald-900', 'border-emerald-300', 'bg-rose-50', 'text-rose-900', 'border-rose-300', 'bg-blue-50', 'text-blue-900', 'border-blue-300');
-      
-      if (type === 'success') {
-        box.classList.add('bg-emerald-50', 'text-emerald-900', 'border-emerald-300');
-        box.innerHTML = '✅ ' + msg;
-      } else if (type === 'error') {
-        box.classList.add('bg-rose-50', 'text-rose-900', 'border-rose-300');
-        box.innerHTML = '❌ ' + msg;
-      } else {
-        box.classList.add('bg-blue-50', 'text-blue-900', 'border-blue-300');
-        box.innerHTML = 'ℹ️ ' + msg;
-      }
-    }
-
-    function validateAndApplyProgram() {
-      // Vérifie si un fichier ou du texte dans le textarea a été fourni
-      const pasteText = (document.getElementById('programPasteTextarea')?.value || '').trim();
-      const contentToParse = pendingImportContent || pasteText;
-
-      if (!contentToParse) {
-        showImportAlert('Veuillez d\'abord sélectionner un fichier ou coller une liste de participants dans la zone de texte.', 'error');
-        return;
-      }
-
-      try {
-        if (typeof parseImportedProgram !== 'function') {
-          throw new Error('Module d\'import non disponible.');
-        }
-
-        const parsed = parseImportedProgram(contentToParse);
-        currentChampData = parsed;
-        if (typeof saveChampionnatData === 'function') {
-          saveChampionnatData(currentChampData);
-        }
-
-        renderChampionnatUI();
-        showImportAlert('Programme validé avec succès ! ' + parsed.participants.length + ' jouteurs chargés. Vos données sont sauvegardées.', 'success');
-
-        // Réinitialiser les champs
-        pendingImportContent = null;
-        const textarea = document.getElementById('programPasteTextarea');
-        if (textarea) textarea.value = '';
-        const fileInput = document.getElementById('programFileInput');
-        if (fileInput) fileInput.value = '';
-        const previewInfo = document.getElementById('filePreviewInfo');
-        if (previewInfo) previewInfo.classList.add('hidden');
-
-        // Basculer automatiquement sur la vue classement après 1.2s
-        setTimeout(() => {
-          switchChampTab('classement');
-        }, 1200);
-
-      } catch (err) {
-        showImportAlert('Erreur lors de la validation : ' + err.message, 'error');
-      }
-    }
-
-    function downloadProgramTemplate() {
-      const template = {
-        saison: "2027",
-        derniereMiseAJour: "Nouveau programme officiel",
-        participants: [
-          {
-            nom: "Lucas Azaïs",
-            societe: "Lance Amicale Sétoise (LAS)",
-            ville: "Sète",
-            categorie: "Lourds",
-            points: 90,
-            victoires: 2,
-            passesGagnees: 18,
-            statut: "Tête de série",
-            historique: "Champion en titre."
-          },
-          {
-            nom: "Enzo Michel",
-            societe: "Société Nautique des Jouteurs Agathois (SNJA)",
-            ville: "Agde",
-            categorie: "Lourds",
-            points: 75,
-            victoires: 1,
-            passesGagnees: 15,
-            statut: "Finaliste",
-            historique: "Jouteur redouté."
-          }
-        ],
-        tournois: [
-          {
-            nom: "Grand Prix d'Ouverture",
-            date: "Dimanche 12 Juillet 2027",
-            lieu: "Sète - Cadre Royal",
-            categorie: "Lourds",
-            statut: "À venir",
-            vainqueur: "—",
-            finaliste: "—",
-            description: "Tournoi d'ouverture de la nouvelle saison.",
-            participants: ["Lucas Azaïs", "Enzo Michel"]
-          }
-        ]
-      };
-
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(template, null, 2));
-      const a = document.createElement('a');
-      a.setAttribute("href", dataStr);
-      a.setAttribute("download", "programme_joutes_modele.json");
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }
-
-    function downloadCurrentDataJSON() {
-      if (!currentChampData) return;
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentChampData, null, 2));
-      const a = document.createElement('a');
-      a.setAttribute("href", dataStr);
-      a.setAttribute("download", "classement_joutes_sete_" + (currentChampData.saison || "2026") + ".json");
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    }
-
-    function confirmResetProgram() {
-      if (confirm('Voulez-vous vraiment restaurer le programme et le classement officiel de la Saint-Louis 2026 ?')) {
-        if (typeof resetChampionnatData === 'function') {
-          currentChampData = resetChampionnatData();
-        } else if (typeof DEFAULT_CHAMPIONNAT_DATA !== 'undefined') {
-          currentChampData = JSON.parse(JSON.stringify(DEFAULT_CHAMPIONNAT_DATA));
-        }
-        renderChampionnatUI();
-        showImportAlert('Programme restauré au calendrier officiel 2026 avec succès.', 'success');
-        switchChampTab('classement');
-      }
-    }
-
-    // Initialisation automatique au chargement du DOM
-    document.addEventListener('DOMContentLoaded', () => {
-      initChampionnatModule();
-    });
-
-    // ========================================================
-    // LOGIQUE DU GUIDE DE SÈTE & SES CANAUX (PAR SECTEUR ET ORDRE ALPHABÉTIQUE)
+  <script>
+    // ==========================================
+    // LOGIQUE DU RENDU & FILTRAGE EXACT AU MOCKUP
+    // ==========================================
+    let currentCategoryFilter = 'all';
+    let currentSearchTerm = '';
     let thauMap = null;
     let thauMarkers = [];
-    let currentAnnuaireCategory = 'all';
 
-    function initAnnuaireModule() {
-      if (typeof ANNUAIRE_DATA === 'undefined') {
-        console.warn('Données annuaire non trouvées.');
-        return;
-      }
-      initThauMap();
-      applyAnnuaireFilters();
+    document.addEventListener('DOMContentLoaded', () => {
+      renderActivitiesCards();
+      initLeafletMap();
+    });
+
+    function toggleMobileNav() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+    function closeMobileNav() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.add('hidden');
     }
 
-    function initThauMap() {
+    function toggleFilterGroup(groupId) {
+      const group = document.getElementById(groupId);
+      if (group) group.classList.toggle('hidden');
+    }
+
+    function filterByCategory(catId) {
+      currentCategoryFilter = (currentCategoryFilter === catId) ? 'all' : catId;
+      
+      // Mettre à jour les checkbox sidebar correspondants
+      const checkboxes = document.querySelectorAll('input[name="catFilter"]');
+      checkboxes.forEach(cb => {
+        cb.checked = (currentCategoryFilter === 'all') ? false : (cb.value === currentCategoryFilter);
+      });
+
+      applySidebarFilters();
+    }
+
+    function handleHeroSearch(e) {
+      e.preventDefault();
+      const query = document.getElementById('heroSearchQuery')?.value || '';
+      currentSearchTerm = query.toLowerCase().trim();
+      
+      // Scroll doux vers les activités
+      document.getElementById('activites')?.scrollIntoView({ behavior: 'smooth' });
+      applySidebarFilters();
+    }
+
+    function applySidebarFilters() {
+      if (typeof ANNUAIRE_DATA === 'undefined') return;
+
+      // 1. Lire catégories cochées
+      const checkedCats = Array.from(document.querySelectorAll('input[name="catFilter"]:checked')).map(cb => cb.value);
+      
+      // 2. Lire budgets cochés
+      const checkedBudgets = Array.from(document.querySelectorAll('input[name="budgetFilter"]:checked')).map(cb => cb.value);
+
+      // 3. Lire saisons cochées
+      const checkedSaisons = Array.from(document.querySelectorAll('input[name="saisonFilter"]:checked')).map(cb => cb.value);
+
+      // 4. Tri
+      const sortBy = document.getElementById('sortSelect')?.value || 'featured';
+
+      const filtered = ANNUAIRE_DATA.prestataires.filter(p => {
+        // Filtre texte hero
+        const matchSearch = !currentSearchTerm || 
+          p.nom.toLowerCase().includes(currentSearchTerm) ||
+          p.description.toLowerCase().includes(currentSearchTerm) ||
+          p.categorieNom.toLowerCase().includes(currentSearchTerm);
+
+        // Filtre catégorie
+        const matchCat = checkedCats.length === 0 || checkedCats.includes(p.categorie);
+
+        // Filtre budget
+        const matchBudget = checkedBudgets.length === 0 || checkedBudgets.includes(p.budget);
+
+        // Filtre saison
+        const matchSaison = checkedSaisons.length === 0 || (p.saison && p.saison.some(s => checkedSaisons.includes(s)));
+
+        return matchSearch && matchCat && matchBudget && matchSaison;
+      });
+
+      // Application du tri
+      if (sortBy === 'price-asc') {
+        filtered.sort((a, b) => a.prixValeur - b.prixValeur);
+      } else if (sortBy === 'rating') {
+        filtered.sort((a, b) => b.note - a.note);
+      } else {
+        // featured : met les éléments en avant d'abord
+        filtered.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+      }
+
+      renderFilteredCards(filtered);
+      updateLeafletMarkers(filtered);
+    }
+
+    function resetAllFilters() {
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+      const searchInput = document.getElementById('heroSearchQuery');
+      if (searchInput) searchInput.value = '';
+      currentSearchTerm = '';
+      currentCategoryFilter = 'all';
+      applySidebarFilters();
+    }
+
+    function renderActivitiesCards() {
+      if (typeof ANNUAIRE_DATA === 'undefined') return;
+      renderFilteredCards(ANNUAIRE_DATA.prestataires);
+    }
+
+    function renderFilteredCards(list) {
+      const grid = document.getElementById('activitiesGrid');
+      const countBadge = document.getElementById('resultsCountBadge');
+      if (!grid) return;
+
+      if (countBadge) {
+        countBadge.textContent = list.length + ' activité' + (list.length > 1 ? 's' : '');
+      }
+
+      if (!list || list.length === 0) {
+        grid.innerHTML = '<div class="col-span-full p-12 text-center bg-white rounded-2xl border border-[#EBE4D5] text-slate-400 font-medium">Aucune activité trouvée correspondant à ces critères.</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(item => {
+        // Si l'activité est la n°2 du mockup (kayak sunset), on applique la bordure orange highlight
+        const isHighlight = item.id === 'kayak-coucher-soleil';
+        const cardClass = isHighlight 
+          ? 'activity-card card-highlight bg-white rounded-2xl overflow-hidden shadow-md flex flex-col justify-between'
+          : 'activity-card bg-white rounded-2xl overflow-hidden border border-[#EBE4D5] shadow-xs hover:shadow-md flex flex-col justify-between';
+
+        return `
+          <div class="${cardClass}">
+            <div>
+              <!-- Image Haute Définition -->
+              <div class="h-44 sm:h-48 overflow-hidden relative">
+                <img src="${item.image}" alt="${item.nom}" class="w-full h-full object-cover">
+                ${item.badge ? `<span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#0f2b48]/80 text-white backdrop-blur-xs">${item.badge}</span>` : ''}
+              </div>
+
+              <!-- Contenu Carte -->
+              <div class="p-4 space-y-2">
+                <h3 class="font-serif font-bold text-base sm:text-lg text-[#0f2b48] leading-snug">
+                  ${item.nom}
+                </h3>
+                <p class="text-xs text-slate-600 leading-relaxed line-clamp-2">
+                  ${item.description}
+                </p>
+
+                <!-- Étoiles & Note Avis -->
+                <div class="flex items-center gap-1.5 text-xs pt-1">
+                  <span class="text-amber-500 font-bold">★★★★★</span>
+                  <span class="font-extrabold text-[#0f2b48]">${item.note}</span>
+                  <span class="text-slate-400 font-normal">(${item.avisCount} avis)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Barre Prix & Bouton Réserver Exactement comme dans l'image -->
+            <div class="p-4 pt-0 mt-2 flex items-center justify-between border-t border-slate-50">
+              <span class="text-xs font-semibold text-slate-700">
+                ${item.prix}
+              </span>
+              <button onclick="openBookingModal('${item.id}')" 
+                      class="px-4 py-2 rounded-xl bg-[#FF6B35] hover:bg-[#e05622] text-white font-bold text-xs shadow-xs transition-all duration-150">
+                Réserver
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Modal Réservation
+    function openBookingModal(itemId) {
+      const item = ANNUAIRE_DATA.prestataires.find(p => p.id === itemId);
+      if (!item) return;
+
+      document.getElementById('bookingModalTitle').textContent = item.nom;
+      document.getElementById('bookingModalPrice').textContent = item.prix;
+      document.getElementById('bookingModalDesc').textContent = item.descriptionComplete || item.description;
+      document.getElementById('bookingModalAdresse').textContent = '📍 Lieu : ' + item.adresse;
+      
+      // Date par défaut aujourd'hui
+      const today = new Date().toISOString().split('T')[0];
+      const dateInput = document.getElementById('bookDate');
+      if (dateInput) dateInput.value = today;
+
+      document.getElementById('bookingModal')?.classList.remove('hidden');
+    }
+
+    function closeBookingModal() {
+      document.getElementById('bookingModal')?.classList.add('hidden');
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const feedback = document.getElementById('bookingFeedback');
+      if (feedback) {
+        feedback.textContent = "✓ Votre demande a été transmise au prestataire ! Vous recevrez une confirmation sous 15 minutes.";
+        feedback.classList.remove('hidden');
+      }
+      setTimeout(() => {
+        closeBookingModal();
+        if (feedback) feedback.classList.add('hidden');
+      }, 2500);
+    }
+
+    // Leaflet Map Init
+    function initLeafletMap() {
       const mapElem = document.getElementById('mapBassinThau');
       if (!mapElem || typeof L === 'undefined') return;
 
-      // Centrage parfait sur les Canaux de Sète et le Mont Saint-Clair
-      thauMap = L.map('mapBassinThau', {
-        scrollWheelZoom: false
-      }).setView([43.4045, 3.6945], 13);
+      thauMap = L.map('mapBassinThau', { scrollWheelZoom: false }).setView([43.415, 3.665], 11);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,
-        attribution: '&copy; OpenStreetMap contributeurs • leguidedesete.fr'
+        attribution: '&copy; OpenStreetMap & Sète & Thau'
       }).addTo(thauMap);
 
-      updateMapMarkers(ANNUAIRE_DATA.prestataires);
+      if (typeof ANNUAIRE_DATA !== 'undefined') {
+        updateLeafletMarkers(ANNUAIRE_DATA.prestataires);
+      }
     }
 
-    function updateMapMarkers(prestataires) {
+    function updateLeafletMarkers(list) {
       if (!thauMap || typeof L === 'undefined') return;
 
       thauMarkers.forEach(m => thauMap.removeLayer(m));
       thauMarkers = [];
 
-      prestataires.forEach(p => {
-        const marker = L.marker([p.lat, p.lng]).addTo(thauMap);
-        
-        const popupContent = document.createElement('div');
-        popupContent.className = 'p-1 space-y-1.5 text-slate-800';
-        popupContent.innerHTML = 
-          '<div class="font-serif font-bold text-sm text-slate-900 leading-tight">' + p.nom + '</div>' +
-          '<div class="text-[11px] font-semibold text-seteblue-700">📍 ' + p.secteurNom + '</div>' +
-          '<div class="text-[11px] text-slate-600 font-medium">' + p.prix + '</div>' +
-          '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="mt-1 w-full py-1.5 px-2 rounded-lg bg-seteblue-700 hover:bg-seteblue-800 text-white font-bold text-[10px] transition text-center">' +
-            'Consulter la fiche complète ↗' +
-          '</button>';
-
-        marker.bindPopup(popupContent);
-        marker.prestataireId = p.id;
+      list.forEach(p => {
+        const marker = L.marker([p.lat || 43.404, p.lng || 3.695]).addTo(thauMap);
+        marker.bindPopup(`
+          <div class="p-1 space-y-1 text-slate-800">
+            <div class="font-bold text-sm text-[#0f2b48]">${p.nom}</div>
+            <div class="text-xs text-slate-600">${p.prix}</div>
+            <button onclick="openBookingModal('${p.id}')" class="mt-1 w-full py-1 px-2 rounded-lg bg-[#FF6B35] text-white font-bold text-xs text-center">
+              Réserver ↗
+            </button>
+          </div>
+        `);
         thauMarkers.push(marker);
       });
     }
+  </script>
 
-    function renderAnnuaireCards(list) {
-      const grid = document.getElementById('annuaireCardsGrid');
-      const badge = document.getElementById('annuaireCountBadge');
-      if (!grid) return;
-
-      if (badge) {
-        badge.textContent = list.length + ' établissement' + (list.length > 1 ? 's répertoriés' : ' répertorié');
-      }
-
-      if (!list || list.length === 0) {
-        grid.innerHTML = '<div class="col-span-full text-center p-12 bg-white rounded-2xl border border-slate-200 text-slate-400 font-medium">Aucun établissement ne correspond à vos critères dans ce secteur.</div>';
-        return;
-      }
-
-      // Affichage de toutes les fiches en forme de fiches complètes cliquables
-      grid.innerHTML = list.map(p => {
-        return '<div onclick="openPrestataireModal(\'' + p.id + '\')" class="cursor-pointer glass-card rounded-2xl overflow-hidden border border-slate-200 hover:border-seteblue-500 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group transform hover:-translate-y-1 bg-white">' +
-          '<div>' +
-            '<div class="h-44 bg-slate-900 relative overflow-hidden">' +
-              '<img src="' + p.image + '" alt="' + p.nom + '" class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90">' +
-              '<div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent"></div>' +
-              '<div class="absolute top-3 left-3">' +
-                '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-seteblue-700 text-white shadow-xs">' + p.badge + '</span>' +
-              '</div>' +
-              '<div class="absolute bottom-2 right-2 px-2 py-0.5 rounded-md bg-black/75 text-white text-[11px] font-bold flex items-center gap-1 backdrop-blur-xs">' +
-                '<span>⭐</span> ' + p.note + ' <span class="text-[9px] text-slate-300 font-normal">(' + p.avisCount + ')</span>' +
-              '</div>' +
-            '</div>' +
-            '<div class="p-4 space-y-2">' +
-              '<div class="flex items-center justify-between text-[11px] text-slate-500 font-semibold">' +
-                '<span class="text-seteblue-700 font-bold">📍 ' + p.secteurNom + '</span>' +
-                '<span class="text-slate-400">' + p.categorieNom + '</span>' +
-              '</div>' +
-              '<h4 class="font-serif font-bold text-base text-slate-900 leading-snug group-hover:text-seteblue-700 transition">' + p.nom + '</h4>' +
-              '<p class="text-[11px] text-slate-600 line-clamp-2 leading-relaxed">' + p.description + '</p>' +
-              '<div class="text-[11px] font-extrabold text-slate-900 bg-seteblue-50/70 p-2.5 rounded-xl border border-seteblue-100 flex items-center justify-between">' +
-                '<span>' + p.prix + '</span>' +
-                '<span class="text-[10px] text-seteblue-700 font-bold">Voir fiche ↗</span>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-          '<div class="p-4 pt-0 border-t border-slate-100 mt-2 flex items-center gap-2" onclick="event.stopPropagation()">' +
-            '<button onclick="focusOnMap(\'' + p.id + '\')" class="p-2 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 text-xs font-semibold transition" title="Situer sur la carte">' +
-              '📍' +
-            '</button>' +
-            '<button onclick="openPrestataireModal(\'' + p.id + '\')" class="flex-1 py-2 px-3 rounded-xl bg-slate-900 hover:bg-seteblue-700 text-white font-bold text-xs transition text-center shadow-xs">' +
-              'Consulter la fiche ↗' +
-            '</button>' +
-          '</div>' +
-        '</div>';
-      }).join('');
-    }
-
-    function setAnnuaireCategory(catId) {
-      currentAnnuaireCategory = catId;
-      document.querySelectorAll('.annuaire-chip').forEach(btn => {
-        btn.className = "annuaire-chip shrink-0 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 transition flex items-center gap-1.5";
-      });
-      const activeBtn = document.getElementById('catChip-' + catId);
-      if (activeBtn) {
-        activeBtn.className = "annuaire-chip active shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold bg-seteblue-700 text-white shadow-xs transition flex items-center gap-1.5";
-      }
-      applyAnnuaireFilters();
-    }
-
-    function applyAnnuaireFilters() {
-      if (typeof ANNUAIRE_DATA === 'undefined') return;
-      const search = (document.getElementById('annuaireSearchInput')?.value || '').toLowerCase().trim();
-      const secteur = document.getElementById('annuaireSecteurFilter')?.value || 'all';
-      const sortBy = document.getElementById('annuaireSortFilter')?.value || 'alpha-asc';
-
-      let filtered = ANNUAIRE_DATA.prestataires.filter(p => {
-        const matchSearch = !search ||
-          p.nom.toLowerCase().includes(search) ||
-          p.description.toLowerCase().includes(search) ||
-          p.secteurNom.toLowerCase().includes(search) ||
-          p.categorieNom.toLowerCase().includes(search);
-
-        const matchCat = (currentAnnuaireCategory === 'all') || (p.categorie === currentAnnuaireCategory);
-        const matchSecteur = (secteur === 'all') || (p.secteur === secteur);
-
-        return matchSearch && matchCat && matchSecteur;
-      });
-
-      // Tri par ordre alphabétique (par défaut) ou note
-      if (sortBy === 'alpha-asc') {
-        filtered.sort((a, b) => a.nom.localeCompare(b.nom, 'fr', { sensitivity: 'base' }));
-      } else if (sortBy === 'alpha-desc') {
-        filtered.sort((a, b) => b.nom.localeCompare(a.nom, 'fr', { sensitivity: 'base' }));
-      } else if (sortBy === 'note') {
-        filtered.sort((a, b) => b.note - a.note);
-      }
-
-      renderAnnuaireCards(filtered);
-      updateMapMarkers(filtered);
-    }
-
-    function openPrestataireModal(prestaId) {
-      const p = (ANNUAIRE_DATA?.prestataires || []).find(item => item.id === prestaId);
-      if (!p) return;
-
-      document.getElementById('modalPrestaNom').textContent = p.nom;
-      document.getElementById('modalPrestaBadge').textContent = p.badge;
-      document.getElementById('modalPrestaVille').textContent = '📍 ' + p.villeNom + ' • ' + p.categorieNom;
-      document.getElementById('modalPrestaImg').src = p.image;
-      document.getElementById('modalPrestaNote').textContent = p.note;
-      document.getElementById('modalPrestaAvis').textContent = '(' + p.avisCount + ' avis vérifiés)';
-      document.getElementById('modalPrestaPrix').textContent = p.prix;
-      document.getElementById('modalPrestaDesc').textContent = p.description;
-      document.getElementById('modalPrestaAdresse').textContent = p.adresse;
-      document.getElementById('modalPrestaTel').textContent = p.telephone;
-      document.getElementById('modalPrestaCallBtn').href = 'tel:' + p.telephone.replace(/\s+/g, '');
-
-      const pointsContainer = document.getElementById('modalPrestaPoints');
-      if (pointsContainer) {
-        pointsContainer.innerHTML = (p.pointsForts || []).map(pt => 
-          '<span class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200 text-xs font-semibold">✓ ' + pt + '</span>'
-        ).join('');
-      }
-
-      document.getElementById('prestataireModal')?.classList.remove('hidden');
-    }
-
-    function closePrestataireModal() {
-      document.getElementById('prestataireModal')?.classList.add('hidden');
-    }
-
-    // Lancement au chargement du DOM
-    document.addEventListener('DOMContentLoaded', () => {
-      initAnnuaireModule();
-    });
-</script>
-
-  <!-- Audio Player Principal & Widget Flottant Ambiance Saint-Louis -->
-  <audio id="saintLouisAudio" src="audio/hymne_saint_louis.mp3" preload="auto"></audio>
-
-  <!-- Widget Flottant -->
-  <div id="ambientAudioWidget" style="margin-bottom: env(safe-area-inset-bottom, 0px);" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 glass-card max-w-[calc(100vw-2rem)] px-3 sm:px-4 py-2 sm:py-2.5 rounded-full shadow-xl border border-slate-200/90 flex items-center gap-3 backdrop-blur-md hover:shadow-2xl transition">
-    <button onclick="toggleSaintLouisAudio()" id="widgetPlayBtn" class="w-8 h-8 rounded-full bg-gradient-to-r from-setered-600 to-amber-600 hover:scale-105 text-white flex items-center justify-center text-xs font-bold transition shadow cursor-pointer" title="Lancer / Mettre en pause la musique">
-      ▶
-    </button>
-    <div class="text-left hidden sm:block">
-      <div class="text-[11px] font-bold text-slate-800 leading-tight">Hymne des Joutes</div>
-      <div id="widgetStatus" class="text-[9px] text-slate-500">Cliquer pour lancer l'ambiance</div>
-    </div>
-    <span class="text-sm">🎺</span>
-  </div>
 </body>
 </html>
